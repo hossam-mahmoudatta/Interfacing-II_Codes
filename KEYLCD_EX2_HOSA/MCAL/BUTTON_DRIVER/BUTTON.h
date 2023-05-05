@@ -1,17 +1,17 @@
  /******************************************************************************
  *
- * Module: KEYPAD
+ * Module: GPIO (General Purpose I/O
  *
- * File Name: KEYPAD.h
+ * File Name: GPIO.h
  *
- * Description: Header file for the AVR KEYPAD Driver
+ * Description: Header file for the AVR GPIO Driver
  *
  * Author: Hossam Mahmoud
  *
  *******************************************************************************/
 
-#ifndef KEYPAD_H_
-#define KEYPAD_H_
+#ifndef BUTTON_H_
+#define BUTTON_H_
 
 #include "../GPIO_DRIVER/GPIO.h"
 #include "../../LIB/STD_TYPES.h"
@@ -19,29 +19,23 @@
 
 
 /*******************************************************************************
- *                                									Definitions                                  					  *
+ *                                									Definitions                                  					           		  *
  *******************************************************************************/
 
 
 /*******************************************************************************
- *                               							Types Declaration                            	 					  *
+ *                               							Types Declaration                            									  *
  *******************************************************************************/
 
-#define KEYPAD_COL_NUM			3
-#define KEYPAD_ROW_NUM			4
-
-#define KEYPAD_COL_PORT			PORT_B
-#define KEYPAD_ROW_PORT			PORT_B
-
-#define KEYPAD_FIRSTCOL_PIN		PIN_0
-#define KEYPAD_FIRSTROW_PIN		PIN_4
-
-#define KEYPAD_BUTTON_PRESSED				LOGIC_LOW
-#define KEYPAD_BUTTON_RELEASED			LOGIC_HIGH
+typedef enum BUTTON_Error_t {
+	BUTTON_OK,
+	BUTTON_WRONG_PIN_NUMBER,
+	BUTTON_WRONG_PORT_NUMBER
+} BUTTON_Error_t;
 
 
 /*******************************************************************************
- *                              						Functions Prototypes                          						  *
+ *                              Functions Prototypes                           *
  *******************************************************************************/
 
 /*
@@ -49,7 +43,7 @@
  * Setup the direction of the required pin input/output.
  * If the input port number or pin number are not correct, The function will not handle the request.
  */
-void KEYPAD_Init(void);
+BUTTON_Error_t BUTTON_Init(uint8 port_num, uint8 pin_num);
 
 /*
  * Description :
@@ -57,6 +51,6 @@ void KEYPAD_Init(void);
  * If the input port number or pin number are not correct, The function will not handle the request.
  * If the pin is input, this function will enable/disable the internal pull-up resistor.
  */
-uint8 KEYPAD_getPressedKey(void);
+uint8 BUTTON_Read(uint8 port_num, uint8 pin_num);
 
-#endif /* SEVEN-SEGMENT_H_ */
+#endif
