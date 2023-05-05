@@ -8,24 +8,19 @@
 #include <avr/io.h>
 //#include "../MCAL/LED_DRIVER/LED.h"
 //#include "../MCAL/BUTTON_DRIVER/BUTTON.h"
-#include "../MCAL/SEVEN-SEGMENT_DRIVER/SEGMENT.h"
-#include "../MCAL/KEYPAD_DRIVER/KEYPAD.h"
+//#include "../MCAL/SEVEN-SEGMENT_DRIVER/SEGMENT.h"
+//#include "../MCAL/KEYPAD_DRIVER/KEYPAD.h"
+#include "../MCAL/LCD_DRIVER/LCD.h"
 
 int main(void) {
-
-	// Initializes the Buttons
-
-	SEGMENT_Init(PORT_C);
-	KEYPAD_Init();
-
-	uint8 key = 0;
+	// Initializes the screen
+	LCD_Init();
+	// Displays messages
+	LCD_displayStringRowColumn(0, 2, "Hossam is good");
+	LCD_displayStringRowColumn(1, 2, "and bad");
 
 	while (1) {
-		key = KEYPAD_getPressedKey();
 
-		if ( (key >= 0) && (key <= 9) ) {
-			SEGMENT_DISPLAY(PORT_C, key);
-		}
 	}
 }
 

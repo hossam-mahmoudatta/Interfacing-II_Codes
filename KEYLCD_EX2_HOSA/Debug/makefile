@@ -50,6 +50,9 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 LSS += \
 KEYLCD_EX2_HOSA.lss \
 
+FLASH_IMAGE += \
+KEYLCD_EX2_HOSA.hex \
+
 SIZEDUMMY += \
 sizedummy \
 
@@ -74,6 +77,12 @@ KEYLCD_EX2_HOSA.lss: KEYLCD_EX2_HOSA.elf makefile objects.mk $(OPTIONAL_TOOL_DEP
 	@echo 'Finished building: $@'
 	@echo ' '
 
+KEYLCD_EX2_HOSA.hex: KEYLCD_EX2_HOSA.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+	@echo 'Create Flash image (ihex format)'
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex KEYLCD_EX2_HOSA.elf  "KEYLCD_EX2_HOSA.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 sizedummy: KEYLCD_EX2_HOSA.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'
 	-avr-size --format=avr --mcu=atmega16 KEYLCD_EX2_HOSA.elf
@@ -82,10 +91,10 @@ sizedummy: KEYLCD_EX2_HOSA.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 
 # Other Targets
 clean:
-	-$(RM) $(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) KEYLCD_EX2_HOSA.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) KEYLCD_EX2_HOSA.elf
 	-@echo ' '
 
-secondary-outputs: $(LSS) $(SIZEDUMMY)
+secondary-outputs: $(LSS) $(FLASH_IMAGE) $(SIZEDUMMY)
 
 .PHONY: all clean dependents main-build
 

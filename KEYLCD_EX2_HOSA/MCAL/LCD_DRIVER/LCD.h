@@ -1,10 +1,10 @@
  /******************************************************************************
  *
- * Module: GPIO (General Purpose I/O
+ * Module: LCD Display
  *
- * File Name: GPIO.h
+ * File Name: LCD.h
  *
- * Description: Header file for the AVR GPIO Driver
+ * Description: Header file for the AVR LCD Driver
  *
  * Author: Hossam Mahmoud
  *
@@ -18,24 +18,33 @@
 #include "../../LIB/COMMON_MACROS.h"
 
 
+
 /*******************************************************************************
- *                                									Definitions                                  					           		  *
+ *                                								Definitions                                  					      *
  *******************************************************************************/
 
 
 /*******************************************************************************
- *                               							Types Declaration                            									  *
+ *                               							Types Declaration                            						  *
  *******************************************************************************/
 
-typedef enum LED_Error_t {
-	LED_OK,
-	LED_WRONG_PIN_NUMBER,
-	LED_WRONG_PORT_NUMBER
-} LED_Error_t;
+#define LCD_DATA_PORT							PORT_C
+#define LCD_INIT_PORT								PORT_D
+
+#define LCD_RS											PIN_4
+#define LCD_ENABLE									PIN_5
+
+#define LCD_CLEAR_DISPLAY					0x01
+#define LCD_TWO_LINE_FOUR_BIT			0x28
+#define LCD_TWO_LINE_EIGHT_BIT			0x38
+#define LCD_CURSOR_OFF          				0x0C
+#define LCD_CURSOR_ON          				0x0E
+#define LCD_CURSOR_BLINKING          		0x0F
+#define LCD_CURSOR_LOCATION        		0x80
 
 
 /*******************************************************************************
- *                              Functions Prototypes                           *
+ *                              						Functions Prototypes                           					  *
  *******************************************************************************/
 
 /*
@@ -43,31 +52,21 @@ typedef enum LED_Error_t {
  * Setup the direction of the required pin input/output.
  * If the input port number or pin number are not correct, The function will not handle the request.
  */
-LED_Error_t LED_Init(uint8 port_num, uint8 pin_num);
+void LCD_Init(void);
 
-/*
- * Description :
- * Write the value Logic High or Logic Low on the required pin.
- * If the input port number or pin number are not correct, The function will not handle the request.
- * If the pin is input, this function will enable/disable the internal pull-up resistor.
- */
-LED_Error_t LED_On(uint8 port_num, uint8 pin_num);
+void LCD_sendCommand(uint8 command);
 
+void LCD_displayCharacter(uint8 data);
 
-/*
- * Description :
- * Read and return the value for the required pin, it should be Logic High or Logic Low.
- * If the input port number or pin number are not correct, The function will return Logic Low.
- */
-LED_Error_t LED_Off(uint8 port_num, uint8 pin_num);
+void LCD_displayString(const char *Str);
 
-/*
- * Description :
- * Setup the direction of the required port all pins input/output.
- * If the direction value is PORT_INPUT all pins in this port should be input pins.
- * If the direction value is PORT_OUTPUT all pins in this port should be output pins.
- * If the input port number is not correct, The function will not handle the request.
- */
-LED_Error_t LED_Toggle(uint8 port_num, uint8 pin_num);
+void LCD_moveCursor(uint8 row,uint8 col);
+
+void LCD_displayStringRowColumn(uint8 row, uint8 col, const char *Str);
+
+void LCD_intgerToString(int data);
+
+void LCD_clearScreen(void);
+
 
 #endif /* LCD_H_ */
