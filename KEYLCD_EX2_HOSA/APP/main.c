@@ -15,9 +15,11 @@
 int main(void) {
 	// Initializes the screen
 	LCD_Init();
+
 	// Displays messages
-	LCD_displayStringRowColumn(0, 2, "Hossam is good");
-	LCD_displayStringRowColumn(1, 2, "and bad");
+	LCD_displayString("ENG Mohd Tarek");
+	//LCD_displayStringRowColumn(0, 2, "Testing LCD");
+	//LCD_displayStringRowColumn(1, 2, "Nice");
 
 	while (1) {
 
