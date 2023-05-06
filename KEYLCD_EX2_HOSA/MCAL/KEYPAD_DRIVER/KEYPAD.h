@@ -44,19 +44,10 @@
  *                              						Functions Prototypes                          						  *
  *******************************************************************************/
 
-/*
- * Description :
- * Setup the direction of the required pin input/output.
- * If the input port number or pin number are not correct, The function will not handle the request.
- */
+// Initializes the driver for the keypad with the option for 4x3 and 4x4 Keypads
 void KEYPAD_Init(void);
 
-/*
- * Description :
- * Write the value Logic High or Logic Low on the required pin.
- * If the input port number or pin number are not correct, The function will not handle the request.
- * If the pin is input, this function will enable/disable the internal pull-up resistor.
- */
+// Checks which key was pressed
 uint8 KEYPAD_getPressedKey(void);
 
-#endif /* SEVEN-SEGMENT_H_ */
+#endif /* KEYPAD_H_ */

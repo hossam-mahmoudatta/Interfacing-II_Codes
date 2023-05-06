@@ -17,9 +17,9 @@ int main(void) {
 	LCD_Init();
 
 	// Displays messages
-	LCD_displayString("ENG Mohd Tarek");
-	//LCD_displayStringRowColumn(0, 2, "Testing LCD");
-	//LCD_displayStringRowColumn(1, 2, "Nice");
+	//LCD_displayString("ENG Mohd Tarek");
+	LCD_displayStringRowColumn(0, 2, "kdjflksdjfslakdj");
+	LCD_displayStringRowColumn(1, 6, "Hehe");
 
 	while (1) {
 

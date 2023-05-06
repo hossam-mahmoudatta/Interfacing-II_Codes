@@ -1,0 +1,845 @@
+
+AVRTester.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000044e  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000010  00800060  0000044e  000004c2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000004d2  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000504  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000c8  00000000  00000000  00000540  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00001014  00000000  00000000  00000608  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000801  00000000  00000000  0000161c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000968  00000000  00000000  00001e1d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000178  00000000  00000000  00002788  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000005f2  00000000  00000000  00002900  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000c44  00000000  00000000  00002ef2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000098  00000000  00000000  00003b36  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ee e4       	ldi	r30, 0x4E	; 78
+  68:	f4 e0       	ldi	r31, 0x04	; 4
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 37       	cpi	r26, 0x70	; 112
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 41 00 	call	0x82	; 0x82 <main>
+  7a:	0c 94 25 02 	jmp	0x44a	; 0x44a <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <main>:
+//#include "../MCAL/KEYPAD_DRIVER/KEYPAD.h"
+#include "../MCAL/LCD_DRIVER/LCD.h"
+
+int main(void) {
+	// Initializes the screen
+	LCD_Init();
+  82:	0e 94 c1 01 	call	0x382	; 0x382 <LCD_Init>
+
+	// Displays messages
+	LCD_displayString("ENG Mohd Tarek");
+  86:	80 e6       	ldi	r24, 0x60	; 96
+  88:	90 e0       	ldi	r25, 0x00	; 0
+  8a:	0e 94 12 02 	call	0x424	; 0x424 <LCD_displayString>
+  8e:	ff cf       	rjmp	.-2      	; 0x8e <main+0xc>
+
+00000090 <GPIO_setupPinDirection>:
+			break;
+		}
+		GPIO_Driver_Checker = GPIO_OK;
+	}
+	return pin_value;
+}
+  90:	68 30       	cpi	r22, 0x08	; 8
+  92:	08 f0       	brcs	.+2      	; 0x96 <GPIO_setupPinDirection+0x6>
+  94:	7b c0       	rjmp	.+246    	; 0x18c <GPIO_setupPinDirection+0xfc>
+  96:	84 30       	cpi	r24, 0x04	; 4
+  98:	08 f0       	brcs	.+2      	; 0x9c <GPIO_setupPinDirection+0xc>
+  9a:	7a c0       	rjmp	.+244    	; 0x190 <GPIO_setupPinDirection+0x100>
+  9c:	42 30       	cpi	r20, 0x02	; 2
+  9e:	08 f0       	brcs	.+2      	; 0xa2 <GPIO_setupPinDirection+0x12>
+  a0:	79 c0       	rjmp	.+242    	; 0x194 <GPIO_setupPinDirection+0x104>
+  a2:	81 30       	cpi	r24, 0x01	; 1
+  a4:	11 f1       	breq	.+68     	; 0xea <GPIO_setupPinDirection+0x5a>
+  a6:	30 f0       	brcs	.+12     	; 0xb4 <GPIO_setupPinDirection+0x24>
+  a8:	82 30       	cpi	r24, 0x02	; 2
+  aa:	d1 f1       	breq	.+116    	; 0x120 <GPIO_setupPinDirection+0x90>
+  ac:	83 30       	cpi	r24, 0x03	; 3
+  ae:	09 f4       	brne	.+2      	; 0xb2 <GPIO_setupPinDirection+0x22>
+  b0:	52 c0       	rjmp	.+164    	; 0x156 <GPIO_setupPinDirection+0xc6>
+  b2:	72 c0       	rjmp	.+228    	; 0x198 <GPIO_setupPinDirection+0x108>
+  b4:	41 30       	cpi	r20, 0x01	; 1
+  b6:	61 f4       	brne	.+24     	; 0xd0 <GPIO_setupPinDirection+0x40>
+  b8:	2a b3       	in	r18, 0x1a	; 26
+  ba:	81 e0       	ldi	r24, 0x01	; 1
+  bc:	90 e0       	ldi	r25, 0x00	; 0
+  be:	02 c0       	rjmp	.+4      	; 0xc4 <GPIO_setupPinDirection+0x34>
+  c0:	88 0f       	add	r24, r24
+  c2:	99 1f       	adc	r25, r25
+  c4:	6a 95       	dec	r22
+  c6:	e2 f7       	brpl	.-8      	; 0xc0 <GPIO_setupPinDirection+0x30>
+  c8:	82 2b       	or	r24, r18
+  ca:	8a bb       	out	0x1a, r24	; 26
+  cc:	80 e0       	ldi	r24, 0x00	; 0
+  ce:	08 95       	ret
+  d0:	2a b3       	in	r18, 0x1a	; 26
+  d2:	81 e0       	ldi	r24, 0x01	; 1
+  d4:	90 e0       	ldi	r25, 0x00	; 0
+  d6:	02 c0       	rjmp	.+4      	; 0xdc <GPIO_setupPinDirection+0x4c>
+  d8:	88 0f       	add	r24, r24
+  da:	99 1f       	adc	r25, r25
+  dc:	6a 95       	dec	r22
+  de:	e2 f7       	brpl	.-8      	; 0xd8 <GPIO_setupPinDirection+0x48>
+  e0:	80 95       	com	r24
+  e2:	82 23       	and	r24, r18
+  e4:	8a bb       	out	0x1a, r24	; 26
+  e6:	80 e0       	ldi	r24, 0x00	; 0
+  e8:	08 95       	ret
+  ea:	41 30       	cpi	r20, 0x01	; 1
+  ec:	61 f4       	brne	.+24     	; 0x106 <GPIO_setupPinDirection+0x76>
+  ee:	27 b3       	in	r18, 0x17	; 23
+  f0:	81 e0       	ldi	r24, 0x01	; 1
+  f2:	90 e0       	ldi	r25, 0x00	; 0
+  f4:	02 c0       	rjmp	.+4      	; 0xfa <GPIO_setupPinDirection+0x6a>
+  f6:	88 0f       	add	r24, r24
+  f8:	99 1f       	adc	r25, r25
+  fa:	6a 95       	dec	r22
+  fc:	e2 f7       	brpl	.-8      	; 0xf6 <GPIO_setupPinDirection+0x66>
+  fe:	82 2b       	or	r24, r18
+ 100:	87 bb       	out	0x17, r24	; 23
+ 102:	80 e0       	ldi	r24, 0x00	; 0
+ 104:	08 95       	ret
+ 106:	27 b3       	in	r18, 0x17	; 23
+ 108:	81 e0       	ldi	r24, 0x01	; 1
+ 10a:	90 e0       	ldi	r25, 0x00	; 0
+ 10c:	02 c0       	rjmp	.+4      	; 0x112 <GPIO_setupPinDirection+0x82>
+ 10e:	88 0f       	add	r24, r24
+ 110:	99 1f       	adc	r25, r25
+ 112:	6a 95       	dec	r22
+ 114:	e2 f7       	brpl	.-8      	; 0x10e <GPIO_setupPinDirection+0x7e>
+ 116:	80 95       	com	r24
+ 118:	82 23       	and	r24, r18
+ 11a:	87 bb       	out	0x17, r24	; 23
+ 11c:	80 e0       	ldi	r24, 0x00	; 0
+ 11e:	08 95       	ret
+ 120:	41 30       	cpi	r20, 0x01	; 1
+ 122:	61 f4       	brne	.+24     	; 0x13c <GPIO_setupPinDirection+0xac>
+ 124:	24 b3       	in	r18, 0x14	; 20
+ 126:	81 e0       	ldi	r24, 0x01	; 1
+ 128:	90 e0       	ldi	r25, 0x00	; 0
+ 12a:	02 c0       	rjmp	.+4      	; 0x130 <GPIO_setupPinDirection+0xa0>
+ 12c:	88 0f       	add	r24, r24
+ 12e:	99 1f       	adc	r25, r25
+ 130:	6a 95       	dec	r22
+ 132:	e2 f7       	brpl	.-8      	; 0x12c <GPIO_setupPinDirection+0x9c>
+ 134:	82 2b       	or	r24, r18
+ 136:	84 bb       	out	0x14, r24	; 20
+ 138:	80 e0       	ldi	r24, 0x00	; 0
+ 13a:	08 95       	ret
+ 13c:	24 b3       	in	r18, 0x14	; 20
+ 13e:	81 e0       	ldi	r24, 0x01	; 1
+ 140:	90 e0       	ldi	r25, 0x00	; 0
+ 142:	02 c0       	rjmp	.+4      	; 0x148 <GPIO_setupPinDirection+0xb8>
+ 144:	88 0f       	add	r24, r24
+ 146:	99 1f       	adc	r25, r25
+ 148:	6a 95       	dec	r22
+ 14a:	e2 f7       	brpl	.-8      	; 0x144 <GPIO_setupPinDirection+0xb4>
+ 14c:	80 95       	com	r24
+ 14e:	82 23       	and	r24, r18
+ 150:	84 bb       	out	0x14, r24	; 20
+ 152:	80 e0       	ldi	r24, 0x00	; 0
+ 154:	08 95       	ret
+ 156:	41 30       	cpi	r20, 0x01	; 1
+ 158:	61 f4       	brne	.+24     	; 0x172 <GPIO_setupPinDirection+0xe2>
+ 15a:	21 b3       	in	r18, 0x11	; 17
+ 15c:	81 e0       	ldi	r24, 0x01	; 1
+ 15e:	90 e0       	ldi	r25, 0x00	; 0
+ 160:	02 c0       	rjmp	.+4      	; 0x166 <GPIO_setupPinDirection+0xd6>
+ 162:	88 0f       	add	r24, r24
+ 164:	99 1f       	adc	r25, r25
+ 166:	6a 95       	dec	r22
+ 168:	e2 f7       	brpl	.-8      	; 0x162 <GPIO_setupPinDirection+0xd2>
+ 16a:	82 2b       	or	r24, r18
+ 16c:	81 bb       	out	0x11, r24	; 17
+ 16e:	80 e0       	ldi	r24, 0x00	; 0
+ 170:	08 95       	ret
+ 172:	21 b3       	in	r18, 0x11	; 17
+ 174:	81 e0       	ldi	r24, 0x01	; 1
+ 176:	90 e0       	ldi	r25, 0x00	; 0
+ 178:	02 c0       	rjmp	.+4      	; 0x17e <GPIO_setupPinDirection+0xee>
+ 17a:	88 0f       	add	r24, r24
+ 17c:	99 1f       	adc	r25, r25
+ 17e:	6a 95       	dec	r22
+ 180:	e2 f7       	brpl	.-8      	; 0x17a <GPIO_setupPinDirection+0xea>
+ 182:	80 95       	com	r24
+ 184:	82 23       	and	r24, r18
+ 186:	81 bb       	out	0x11, r24	; 17
+ 188:	80 e0       	ldi	r24, 0x00	; 0
+ 18a:	08 95       	ret
+ 18c:	81 e0       	ldi	r24, 0x01	; 1
+ 18e:	08 95       	ret
+ 190:	82 e0       	ldi	r24, 0x02	; 2
+ 192:	08 95       	ret
+ 194:	83 e0       	ldi	r24, 0x03	; 3
+ 196:	08 95       	ret
+ 198:	80 e0       	ldi	r24, 0x00	; 0
+ 19a:	08 95       	ret
+
+0000019c <GPIO_writePin>:
+ 19c:	68 30       	cpi	r22, 0x08	; 8
+ 19e:	08 f0       	brcs	.+2      	; 0x1a2 <GPIO_writePin+0x6>
+ 1a0:	7b c0       	rjmp	.+246    	; 0x298 <GPIO_writePin+0xfc>
+ 1a2:	84 30       	cpi	r24, 0x04	; 4
+ 1a4:	08 f0       	brcs	.+2      	; 0x1a8 <GPIO_writePin+0xc>
+ 1a6:	7a c0       	rjmp	.+244    	; 0x29c <GPIO_writePin+0x100>
+ 1a8:	42 30       	cpi	r20, 0x02	; 2
+ 1aa:	08 f0       	brcs	.+2      	; 0x1ae <GPIO_writePin+0x12>
+ 1ac:	79 c0       	rjmp	.+242    	; 0x2a0 <GPIO_writePin+0x104>
+ 1ae:	81 30       	cpi	r24, 0x01	; 1
+ 1b0:	11 f1       	breq	.+68     	; 0x1f6 <GPIO_writePin+0x5a>
+ 1b2:	30 f0       	brcs	.+12     	; 0x1c0 <GPIO_writePin+0x24>
+ 1b4:	82 30       	cpi	r24, 0x02	; 2
+ 1b6:	d1 f1       	breq	.+116    	; 0x22c <GPIO_writePin+0x90>
+ 1b8:	83 30       	cpi	r24, 0x03	; 3
+ 1ba:	09 f4       	brne	.+2      	; 0x1be <GPIO_writePin+0x22>
+ 1bc:	52 c0       	rjmp	.+164    	; 0x262 <GPIO_writePin+0xc6>
+ 1be:	72 c0       	rjmp	.+228    	; 0x2a4 <GPIO_writePin+0x108>
+ 1c0:	41 30       	cpi	r20, 0x01	; 1
+ 1c2:	61 f4       	brne	.+24     	; 0x1dc <GPIO_writePin+0x40>
+ 1c4:	2b b3       	in	r18, 0x1b	; 27
+ 1c6:	81 e0       	ldi	r24, 0x01	; 1
+ 1c8:	90 e0       	ldi	r25, 0x00	; 0
+ 1ca:	02 c0       	rjmp	.+4      	; 0x1d0 <GPIO_writePin+0x34>
+ 1cc:	88 0f       	add	r24, r24
+ 1ce:	99 1f       	adc	r25, r25
+ 1d0:	6a 95       	dec	r22
+ 1d2:	e2 f7       	brpl	.-8      	; 0x1cc <GPIO_writePin+0x30>
+ 1d4:	82 2b       	or	r24, r18
+ 1d6:	8b bb       	out	0x1b, r24	; 27
+ 1d8:	80 e0       	ldi	r24, 0x00	; 0
+ 1da:	08 95       	ret
+ 1dc:	2b b3       	in	r18, 0x1b	; 27
+ 1de:	81 e0       	ldi	r24, 0x01	; 1
+ 1e0:	90 e0       	ldi	r25, 0x00	; 0
+ 1e2:	02 c0       	rjmp	.+4      	; 0x1e8 <GPIO_writePin+0x4c>
+ 1e4:	88 0f       	add	r24, r24
+ 1e6:	99 1f       	adc	r25, r25
+ 1e8:	6a 95       	dec	r22
+ 1ea:	e2 f7       	brpl	.-8      	; 0x1e4 <GPIO_writePin+0x48>
+ 1ec:	80 95       	com	r24
+ 1ee:	82 23       	and	r24, r18
+ 1f0:	8b bb       	out	0x1b, r24	; 27
+ 1f2:	80 e0       	ldi	r24, 0x00	; 0
+ 1f4:	08 95       	ret
+ 1f6:	41 30       	cpi	r20, 0x01	; 1
+ 1f8:	61 f4       	brne	.+24     	; 0x212 <GPIO_writePin+0x76>
+ 1fa:	28 b3       	in	r18, 0x18	; 24
+ 1fc:	81 e0       	ldi	r24, 0x01	; 1
+ 1fe:	90 e0       	ldi	r25, 0x00	; 0
+ 200:	02 c0       	rjmp	.+4      	; 0x206 <GPIO_writePin+0x6a>
+ 202:	88 0f       	add	r24, r24
+ 204:	99 1f       	adc	r25, r25
+ 206:	6a 95       	dec	r22
+ 208:	e2 f7       	brpl	.-8      	; 0x202 <GPIO_writePin+0x66>
+ 20a:	82 2b       	or	r24, r18
+ 20c:	88 bb       	out	0x18, r24	; 24
+ 20e:	80 e0       	ldi	r24, 0x00	; 0
+ 210:	08 95       	ret
+ 212:	28 b3       	in	r18, 0x18	; 24
+ 214:	81 e0       	ldi	r24, 0x01	; 1
+ 216:	90 e0       	ldi	r25, 0x00	; 0
+ 218:	02 c0       	rjmp	.+4      	; 0x21e <GPIO_writePin+0x82>
+ 21a:	88 0f       	add	r24, r24
+ 21c:	99 1f       	adc	r25, r25
+ 21e:	6a 95       	dec	r22
+ 220:	e2 f7       	brpl	.-8      	; 0x21a <GPIO_writePin+0x7e>
+ 222:	80 95       	com	r24
+ 224:	82 23       	and	r24, r18
+ 226:	88 bb       	out	0x18, r24	; 24
+ 228:	80 e0       	ldi	r24, 0x00	; 0
+ 22a:	08 95       	ret
+ 22c:	41 30       	cpi	r20, 0x01	; 1
+ 22e:	61 f4       	brne	.+24     	; 0x248 <GPIO_writePin+0xac>
+ 230:	25 b3       	in	r18, 0x15	; 21
+ 232:	81 e0       	ldi	r24, 0x01	; 1
+ 234:	90 e0       	ldi	r25, 0x00	; 0
+ 236:	02 c0       	rjmp	.+4      	; 0x23c <GPIO_writePin+0xa0>
+ 238:	88 0f       	add	r24, r24
+ 23a:	99 1f       	adc	r25, r25
+ 23c:	6a 95       	dec	r22
+ 23e:	e2 f7       	brpl	.-8      	; 0x238 <GPIO_writePin+0x9c>
+ 240:	82 2b       	or	r24, r18
+ 242:	85 bb       	out	0x15, r24	; 21
+ 244:	80 e0       	ldi	r24, 0x00	; 0
+ 246:	08 95       	ret
+ 248:	25 b3       	in	r18, 0x15	; 21
+ 24a:	81 e0       	ldi	r24, 0x01	; 1
+ 24c:	90 e0       	ldi	r25, 0x00	; 0
+ 24e:	02 c0       	rjmp	.+4      	; 0x254 <GPIO_writePin+0xb8>
+ 250:	88 0f       	add	r24, r24
+ 252:	99 1f       	adc	r25, r25
+ 254:	6a 95       	dec	r22
+ 256:	e2 f7       	brpl	.-8      	; 0x250 <GPIO_writePin+0xb4>
+ 258:	80 95       	com	r24
+ 25a:	82 23       	and	r24, r18
+ 25c:	85 bb       	out	0x15, r24	; 21
+ 25e:	80 e0       	ldi	r24, 0x00	; 0
+ 260:	08 95       	ret
+ 262:	41 30       	cpi	r20, 0x01	; 1
+ 264:	61 f4       	brne	.+24     	; 0x27e <GPIO_writePin+0xe2>
+ 266:	22 b3       	in	r18, 0x12	; 18
+ 268:	81 e0       	ldi	r24, 0x01	; 1
+ 26a:	90 e0       	ldi	r25, 0x00	; 0
+ 26c:	02 c0       	rjmp	.+4      	; 0x272 <GPIO_writePin+0xd6>
+ 26e:	88 0f       	add	r24, r24
+ 270:	99 1f       	adc	r25, r25
+ 272:	6a 95       	dec	r22
+ 274:	e2 f7       	brpl	.-8      	; 0x26e <GPIO_writePin+0xd2>
+ 276:	82 2b       	or	r24, r18
+ 278:	82 bb       	out	0x12, r24	; 18
+ 27a:	80 e0       	ldi	r24, 0x00	; 0
+ 27c:	08 95       	ret
+ 27e:	22 b3       	in	r18, 0x12	; 18
+ 280:	81 e0       	ldi	r24, 0x01	; 1
+ 282:	90 e0       	ldi	r25, 0x00	; 0
+ 284:	02 c0       	rjmp	.+4      	; 0x28a <GPIO_writePin+0xee>
+ 286:	88 0f       	add	r24, r24
+ 288:	99 1f       	adc	r25, r25
+ 28a:	6a 95       	dec	r22
+ 28c:	e2 f7       	brpl	.-8      	; 0x286 <GPIO_writePin+0xea>
+ 28e:	80 95       	com	r24
+ 290:	82 23       	and	r24, r18
+ 292:	82 bb       	out	0x12, r24	; 18
+ 294:	80 e0       	ldi	r24, 0x00	; 0
+ 296:	08 95       	ret
+ 298:	81 e0       	ldi	r24, 0x01	; 1
+ 29a:	08 95       	ret
+ 29c:	82 e0       	ldi	r24, 0x02	; 2
+ 29e:	08 95       	ret
+ 2a0:	83 e0       	ldi	r24, 0x03	; 3
+ 2a2:	08 95       	ret
+ 2a4:	80 e0       	ldi	r24, 0x00	; 0
+ 2a6:	08 95       	ret
+
+000002a8 <GPIO_setupPortDirection>:
+	 * Check if the input number is greater than NUM_OF_PORTS value.
+	 * In this case the input is not valid port number
+	 */
+	uint8_t GPIO_Driver_Checker = NULL;
+
+	if((port_num >= NUM_OF_PORTS)) {
+ 2a8:	84 30       	cpi	r24, 0x04	; 4
+ 2aa:	c0 f4       	brcc	.+48     	; 0x2dc <GPIO_setupPortDirection+0x34>
+		GPIO_Driver_Checker = GPIO_WRONG_PORT_NUMBER;
+	}
+	else if((direction != PORT_INPUT) && (direction != PORT_OUTPUT)) {
+ 2ac:	9f ef       	ldi	r25, 0xFF	; 255
+ 2ae:	96 0f       	add	r25, r22
+ 2b0:	9e 3f       	cpi	r25, 0xFE	; 254
+ 2b2:	b0 f0       	brcs	.+44     	; 0x2e0 <GPIO_setupPortDirection+0x38>
+		GPIO_Driver_Checker = GPIO_WRONG_DIRECTION;
+	}
+	else {
+		/* Setup the port direction as required */
+		switch(port_num) {
+ 2b4:	81 30       	cpi	r24, 0x01	; 1
+ 2b6:	49 f0       	breq	.+18     	; 0x2ca <GPIO_setupPortDirection+0x22>
+ 2b8:	28 f0       	brcs	.+10     	; 0x2c4 <GPIO_setupPortDirection+0x1c>
+ 2ba:	82 30       	cpi	r24, 0x02	; 2
+ 2bc:	49 f0       	breq	.+18     	; 0x2d0 <GPIO_setupPortDirection+0x28>
+ 2be:	83 30       	cpi	r24, 0x03	; 3
+ 2c0:	51 f0       	breq	.+20     	; 0x2d6 <GPIO_setupPortDirection+0x2e>
+ 2c2:	10 c0       	rjmp	.+32     	; 0x2e4 <GPIO_setupPortDirection+0x3c>
+		case PORT_A:
+			DDRA = direction;
+ 2c4:	6a bb       	out	0x1a, r22	; 26
+			break;
+		case PORT_D:
+			DDRD = direction;
+			break;
+		}
+		GPIO_Driver_Checker = GPIO_OK;
+ 2c6:	80 e0       	ldi	r24, 0x00	; 0
+	else {
+		/* Setup the port direction as required */
+		switch(port_num) {
+		case PORT_A:
+			DDRA = direction;
+			break;
+ 2c8:	08 95       	ret
+		case PORT_B:
+			DDRB = direction;
+ 2ca:	67 bb       	out	0x17, r22	; 23
+			break;
+		case PORT_D:
+			DDRD = direction;
+			break;
+		}
+		GPIO_Driver_Checker = GPIO_OK;
+ 2cc:	80 e0       	ldi	r24, 0x00	; 0
+		case PORT_A:
+			DDRA = direction;
+			break;
+		case PORT_B:
+			DDRB = direction;
+			break;
+ 2ce:	08 95       	ret
+		case PORT_C:
+			DDRC = direction;
+ 2d0:	64 bb       	out	0x14, r22	; 20
+			break;
+		case PORT_D:
+			DDRD = direction;
+			break;
+		}
+		GPIO_Driver_Checker = GPIO_OK;
+ 2d2:	80 e0       	ldi	r24, 0x00	; 0
+		case PORT_B:
+			DDRB = direction;
+			break;
+		case PORT_C:
+			DDRC = direction;
+			break;
+ 2d4:	08 95       	ret
+		case PORT_D:
+			DDRD = direction;
+ 2d6:	61 bb       	out	0x11, r22	; 17
+			break;
+		}
+		GPIO_Driver_Checker = GPIO_OK;
+ 2d8:	80 e0       	ldi	r24, 0x00	; 0
+		case PORT_C:
+			DDRC = direction;
+			break;
+		case PORT_D:
+			DDRD = direction;
+			break;
+ 2da:	08 95       	ret
+	 * In this case the input is not valid port number
+	 */
+	uint8_t GPIO_Driver_Checker = NULL;
+
+	if((port_num >= NUM_OF_PORTS)) {
+		GPIO_Driver_Checker = GPIO_WRONG_PORT_NUMBER;
+ 2dc:	82 e0       	ldi	r24, 0x02	; 2
+ 2de:	08 95       	ret
+	}
+	else if((direction != PORT_INPUT) && (direction != PORT_OUTPUT)) {
+		GPIO_Driver_Checker = GPIO_WRONG_DIRECTION;
+ 2e0:	83 e0       	ldi	r24, 0x03	; 3
+ 2e2:	08 95       	ret
+			break;
+		case PORT_D:
+			DDRD = direction;
+			break;
+		}
+		GPIO_Driver_Checker = GPIO_OK;
+ 2e4:	80 e0       	ldi	r24, 0x00	; 0
+	}
+	return GPIO_Driver_Checker;
+}
+ 2e6:	08 95       	ret
+
+000002e8 <GPIO_writePort>:
+ * If the input port number is not correct, The function will not handle the request.
+ */
+GPIO_Error_t GPIO_writePort(uint8 port_num, uint8 value) {
+
+	uint8_t GPIO_Driver_Checker = NULL;
+	if((port_num >= NUM_OF_PORTS)) {
+ 2e8:	84 30       	cpi	r24, 0x04	; 4
+ 2ea:	b0 f4       	brcc	.+44     	; 0x318 <GPIO_writePort+0x30>
+		GPIO_Driver_Checker = GPIO_WRONG_PORT_NUMBER;
+	}
+	else if((value != LOGIC_HIGH) && (value != LOGIC_LOW)) {
+ 2ec:	62 30       	cpi	r22, 0x02	; 2
+ 2ee:	b0 f4       	brcc	.+44     	; 0x31c <GPIO_writePort+0x34>
+		GPIO_Driver_Checker = GPIO_WRONG_DIRECTION;
+	}
+	else {
+		/* Setup the port direction as required */
+		switch(port_num) {
+ 2f0:	81 30       	cpi	r24, 0x01	; 1
+ 2f2:	49 f0       	breq	.+18     	; 0x306 <GPIO_writePort+0x1e>
+ 2f4:	28 f0       	brcs	.+10     	; 0x300 <GPIO_writePort+0x18>
+ 2f6:	82 30       	cpi	r24, 0x02	; 2
+ 2f8:	49 f0       	breq	.+18     	; 0x30c <GPIO_writePort+0x24>
+ 2fa:	83 30       	cpi	r24, 0x03	; 3
+ 2fc:	51 f0       	breq	.+20     	; 0x312 <GPIO_writePort+0x2a>
+ 2fe:	10 c0       	rjmp	.+32     	; 0x320 <GPIO_writePort+0x38>
+		case PORT_A:
+			PORTA = value;
+ 300:	6b bb       	out	0x1b, r22	; 27
+			break;
+		case PORT_D:
+			PORTD = value;
+			break;
+		}
+		GPIO_Driver_Checker = GPIO_OK;
+ 302:	80 e0       	ldi	r24, 0x00	; 0
+	else {
+		/* Setup the port direction as required */
+		switch(port_num) {
+		case PORT_A:
+			PORTA = value;
+			break;
+ 304:	08 95       	ret
+		case PORT_B:
+			PORTB = value;
+ 306:	68 bb       	out	0x18, r22	; 24
+			break;
+		case PORT_D:
+			PORTD = value;
+			break;
+		}
+		GPIO_Driver_Checker = GPIO_OK;
+ 308:	80 e0       	ldi	r24, 0x00	; 0
+		case PORT_A:
+			PORTA = value;
+			break;
+		case PORT_B:
+			PORTB = value;
+			break;
+ 30a:	08 95       	ret
+		case PORT_C:
+			PORTC = value;
+ 30c:	65 bb       	out	0x15, r22	; 21
+			break;
+		case PORT_D:
+			PORTD = value;
+			break;
+		}
+		GPIO_Driver_Checker = GPIO_OK;
+ 30e:	80 e0       	ldi	r24, 0x00	; 0
+		case PORT_B:
+			PORTB = value;
+			break;
+		case PORT_C:
+			PORTC = value;
+			break;
+ 310:	08 95       	ret
+		case PORT_D:
+			PORTD = value;
+ 312:	62 bb       	out	0x12, r22	; 18
+			break;
+		}
+		GPIO_Driver_Checker = GPIO_OK;
+ 314:	80 e0       	ldi	r24, 0x00	; 0
+		case PORT_C:
+			PORTC = value;
+			break;
+		case PORT_D:
+			PORTD = value;
+			break;
+ 316:	08 95       	ret
+ */
+GPIO_Error_t GPIO_writePort(uint8 port_num, uint8 value) {
+
+	uint8_t GPIO_Driver_Checker = NULL;
+	if((port_num >= NUM_OF_PORTS)) {
+		GPIO_Driver_Checker = GPIO_WRONG_PORT_NUMBER;
+ 318:	82 e0       	ldi	r24, 0x02	; 2
+ 31a:	08 95       	ret
+	}
+	else if((value != LOGIC_HIGH) && (value != LOGIC_LOW)) {
+		GPIO_Driver_Checker = GPIO_WRONG_DIRECTION;
+ 31c:	83 e0       	ldi	r24, 0x03	; 3
+ 31e:	08 95       	ret
+			break;
+		case PORT_D:
+			PORTD = value;
+			break;
+		}
+		GPIO_Driver_Checker = GPIO_OK;
+ 320:	80 e0       	ldi	r24, 0x00	; 0
+	}
+	return GPIO_Driver_Checker;
+}
+ 322:	08 95       	ret
+
+00000324 <LCD_sendCommand>:
+		LCD_sendCommand(LCD_CURSOR_OFF);
+		LCD_sendCommand(LCD_CLEAR_DISPLAY);
+}
+
+
+void LCD_sendCommand(uint8 command) {
+ 324:	cf 93       	push	r28
+ 326:	c8 2f       	mov	r28, r24
+	// Set RS Pin to '0'
+	GPIO_writePin(LCD_INIT_PORT, LCD_RS, LOGIC_LOW);
+ 328:	40 e0       	ldi	r20, 0x00	; 0
+ 32a:	64 e0       	ldi	r22, 0x04	; 4
+ 32c:	83 e0       	ldi	r24, 0x03	; 3
+ 32e:	0e 94 ce 00 	call	0x19c	; 0x19c <GPIO_writePin>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 332:	89 ef       	ldi	r24, 0xF9	; 249
+ 334:	90 e0       	ldi	r25, 0x00	; 0
+ 336:	01 97       	sbiw	r24, 0x01	; 1
+ 338:	f1 f7       	brne	.-4      	; 0x336 <LCD_sendCommand+0x12>
+ 33a:	00 c0       	rjmp	.+0      	; 0x33c <LCD_sendCommand+0x18>
+ 33c:	00 00       	nop
+	_delay_ms(1);
+
+	// Set Enable Pin to '1'
+	GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_HIGH);
+ 33e:	41 e0       	ldi	r20, 0x01	; 1
+ 340:	65 e0       	ldi	r22, 0x05	; 5
+ 342:	83 e0       	ldi	r24, 0x03	; 3
+ 344:	0e 94 ce 00 	call	0x19c	; 0x19c <GPIO_writePin>
+ 348:	89 ef       	ldi	r24, 0xF9	; 249
+ 34a:	90 e0       	ldi	r25, 0x00	; 0
+ 34c:	01 97       	sbiw	r24, 0x01	; 1
+ 34e:	f1 f7       	brne	.-4      	; 0x34c <LCD_sendCommand+0x28>
+ 350:	00 c0       	rjmp	.+0      	; 0x352 <LCD_sendCommand+0x2e>
+ 352:	00 00       	nop
+	_delay_ms(1);
+
+	// Send command
+	GPIO_writePort(LCD_DATA_PORT, command);
+ 354:	6c 2f       	mov	r22, r28
+ 356:	82 e0       	ldi	r24, 0x02	; 2
+ 358:	0e 94 74 01 	call	0x2e8	; 0x2e8 <GPIO_writePort>
+ 35c:	89 ef       	ldi	r24, 0xF9	; 249
+ 35e:	90 e0       	ldi	r25, 0x00	; 0
+ 360:	01 97       	sbiw	r24, 0x01	; 1
+ 362:	f1 f7       	brne	.-4      	; 0x360 <LCD_sendCommand+0x3c>
+ 364:	00 c0       	rjmp	.+0      	; 0x366 <LCD_sendCommand+0x42>
+ 366:	00 00       	nop
+	_delay_ms(1);
+
+	// Set Enable Pin to '0'
+	GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
+ 368:	40 e0       	ldi	r20, 0x00	; 0
+ 36a:	65 e0       	ldi	r22, 0x05	; 5
+ 36c:	83 e0       	ldi	r24, 0x03	; 3
+ 36e:	0e 94 ce 00 	call	0x19c	; 0x19c <GPIO_writePin>
+ 372:	89 ef       	ldi	r24, 0xF9	; 249
+ 374:	90 e0       	ldi	r25, 0x00	; 0
+ 376:	01 97       	sbiw	r24, 0x01	; 1
+ 378:	f1 f7       	brne	.-4      	; 0x376 <LCD_sendCommand+0x52>
+ 37a:	00 c0       	rjmp	.+0      	; 0x37c <LCD_sendCommand+0x58>
+ 37c:	00 00       	nop
+	_delay_ms(1);
+}
+ 37e:	cf 91       	pop	r28
+ 380:	08 95       	ret
+
+00000382 <LCD_Init>:
+ * Setup the direction of the required pin input/output.
+ * If the input port number or pin number are not correct, The function will not handle the request.
+ */
+void LCD_Init(void) {
+		// Initialize RS Pin
+		GPIO_setupPinDirection(LCD_INIT_PORT, LCD_RS, PIN_OUTPUT);
+ 382:	41 e0       	ldi	r20, 0x01	; 1
+ 384:	64 e0       	ldi	r22, 0x04	; 4
+ 386:	83 e0       	ldi	r24, 0x03	; 3
+ 388:	0e 94 48 00 	call	0x90	; 0x90 <GPIO_setupPinDirection>
+
+		// Initialize Enable Pin
+		GPIO_setupPinDirection(LCD_INIT_PORT, LCD_ENABLE, PIN_OUTPUT);
+ 38c:	41 e0       	ldi	r20, 0x01	; 1
+ 38e:	65 e0       	ldi	r22, 0x05	; 5
+ 390:	83 e0       	ldi	r24, 0x03	; 3
+ 392:	0e 94 48 00 	call	0x90	; 0x90 <GPIO_setupPinDirection>
+
+		// Setup the port and pins for the data pins inside the LCD
+		GPIO_setupPortDirection(LCD_DATA_PORT, PORT_OUTPUT);
+ 396:	6f ef       	ldi	r22, 0xFF	; 255
+ 398:	82 e0       	ldi	r24, 0x02	; 2
+ 39a:	0e 94 54 01 	call	0x2a8	; 0x2a8 <GPIO_setupPortDirection>
+		GPIO_setupPortDirection(PORT_B, PORT_OUTPUT);
+ 39e:	6f ef       	ldi	r22, 0xFF	; 255
+ 3a0:	81 e0       	ldi	r24, 0x01	; 1
+ 3a2:	0e 94 54 01 	call	0x2a8	; 0x2a8 <GPIO_setupPortDirection>
+ 3a6:	87 e8       	ldi	r24, 0x87	; 135
+ 3a8:	93 e1       	ldi	r25, 0x13	; 19
+ 3aa:	01 97       	sbiw	r24, 0x01	; 1
+ 3ac:	f1 f7       	brne	.-4      	; 0x3aa <LCD_Init+0x28>
+ 3ae:	00 c0       	rjmp	.+0      	; 0x3b0 <LCD_Init+0x2e>
+ 3b0:	00 00       	nop
+
+		// LCD Power On Internal Delay is 15 mS
+		_delay_ms(20);
+
+		//Initializing Sending Commands
+		LCD_sendCommand(LCD_TWO_LINE_FOUR_BIT);
+ 3b2:	88 e2       	ldi	r24, 0x28	; 40
+ 3b4:	0e 94 92 01 	call	0x324	; 0x324 <LCD_sendCommand>
+		LCD_sendCommand(LCD_CURSOR_OFF);
+ 3b8:	8c e0       	ldi	r24, 0x0C	; 12
+ 3ba:	0e 94 92 01 	call	0x324	; 0x324 <LCD_sendCommand>
+		LCD_sendCommand(LCD_CLEAR_DISPLAY);
+ 3be:	81 e0       	ldi	r24, 0x01	; 1
+ 3c0:	0e 94 92 01 	call	0x324	; 0x324 <LCD_sendCommand>
+ 3c4:	08 95       	ret
+
+000003c6 <LCD_displayCharacters>:
+	GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
+	_delay_ms(1);
+}
+
+
+void LCD_displayCharacters(uint8 data) {
+ 3c6:	cf 93       	push	r28
+ 3c8:	c8 2f       	mov	r28, r24
+	// Set RS Pin to '1'
+	GPIO_writePin(LCD_INIT_PORT, LCD_RS, LOGIC_HIGH);
+ 3ca:	41 e0       	ldi	r20, 0x01	; 1
+ 3cc:	64 e0       	ldi	r22, 0x04	; 4
+ 3ce:	83 e0       	ldi	r24, 0x03	; 3
+ 3d0:	0e 94 ce 00 	call	0x19c	; 0x19c <GPIO_writePin>
+ 3d4:	89 ef       	ldi	r24, 0xF9	; 249
+ 3d6:	90 e0       	ldi	r25, 0x00	; 0
+ 3d8:	01 97       	sbiw	r24, 0x01	; 1
+ 3da:	f1 f7       	brne	.-4      	; 0x3d8 <LCD_displayCharacters+0x12>
+ 3dc:	00 c0       	rjmp	.+0      	; 0x3de <LCD_displayCharacters+0x18>
+ 3de:	00 00       	nop
+	_delay_ms(1);
+
+	// Set Enable Pin to '1'
+	GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_HIGH);
+ 3e0:	41 e0       	ldi	r20, 0x01	; 1
+ 3e2:	65 e0       	ldi	r22, 0x05	; 5
+ 3e4:	83 e0       	ldi	r24, 0x03	; 3
+ 3e6:	0e 94 ce 00 	call	0x19c	; 0x19c <GPIO_writePin>
+ 3ea:	89 ef       	ldi	r24, 0xF9	; 249
+ 3ec:	90 e0       	ldi	r25, 0x00	; 0
+ 3ee:	01 97       	sbiw	r24, 0x01	; 1
+ 3f0:	f1 f7       	brne	.-4      	; 0x3ee <LCD_displayCharacters+0x28>
+ 3f2:	00 c0       	rjmp	.+0      	; 0x3f4 <LCD_displayCharacters+0x2e>
+ 3f4:	00 00       	nop
+	_delay_ms(1);
+
+	// Send command
+	GPIO_writePort(LCD_DATA_PORT, data);
+ 3f6:	6c 2f       	mov	r22, r28
+ 3f8:	82 e0       	ldi	r24, 0x02	; 2
+ 3fa:	0e 94 74 01 	call	0x2e8	; 0x2e8 <GPIO_writePort>
+ 3fe:	89 ef       	ldi	r24, 0xF9	; 249
+ 400:	90 e0       	ldi	r25, 0x00	; 0
+ 402:	01 97       	sbiw	r24, 0x01	; 1
+ 404:	f1 f7       	brne	.-4      	; 0x402 <__EEPROM_REGION_LENGTH__+0x2>
+ 406:	00 c0       	rjmp	.+0      	; 0x408 <__EEPROM_REGION_LENGTH__+0x8>
+ 408:	00 00       	nop
+	_delay_ms(1);
+
+	// Set Enable Pin to '0'
+	GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
+ 40a:	40 e0       	ldi	r20, 0x00	; 0
+ 40c:	65 e0       	ldi	r22, 0x05	; 5
+ 40e:	83 e0       	ldi	r24, 0x03	; 3
+ 410:	0e 94 ce 00 	call	0x19c	; 0x19c <GPIO_writePin>
+ 414:	89 ef       	ldi	r24, 0xF9	; 249
+ 416:	90 e0       	ldi	r25, 0x00	; 0
+ 418:	01 97       	sbiw	r24, 0x01	; 1
+ 41a:	f1 f7       	brne	.-4      	; 0x418 <__EEPROM_REGION_LENGTH__+0x18>
+ 41c:	00 c0       	rjmp	.+0      	; 0x41e <__EEPROM_REGION_LENGTH__+0x1e>
+ 41e:	00 00       	nop
+	_delay_ms(1);
+}
+ 420:	cf 91       	pop	r28
+ 422:	08 95       	ret
+
+00000424 <LCD_displayString>:
+
+
+void LCD_displayString(const char *str) {
+ 424:	0f 93       	push	r16
+ 426:	1f 93       	push	r17
+ 428:	cf 93       	push	r28
+ 42a:	8c 01       	movw	r16, r24
+	uint8 i = 0;
+ 42c:	c0 e0       	ldi	r28, 0x00	; 0
+	while(str[i] != '\0') {
+ 42e:	03 c0       	rjmp	.+6      	; 0x436 <LCD_displayString+0x12>
+		LCD_displayCharacters(str[i]);
+ 430:	0e 94 e3 01 	call	0x3c6	; 0x3c6 <LCD_displayCharacters>
+		i++;
+ 434:	cf 5f       	subi	r28, 0xFF	; 255
+}
+
+
+void LCD_displayString(const char *str) {
+	uint8 i = 0;
+	while(str[i] != '\0') {
+ 436:	f8 01       	movw	r30, r16
+ 438:	ec 0f       	add	r30, r28
+ 43a:	f1 1d       	adc	r31, r1
+ 43c:	80 81       	ld	r24, Z
+ 43e:	81 11       	cpse	r24, r1
+ 440:	f7 cf       	rjmp	.-18     	; 0x430 <LCD_displayString+0xc>
+	}
+	/*
+	for (int i = 0 ; i < strlen(str) ; i++) {
+		LCD_displayCharacters(str[i]);
+	}*/
+}
+ 442:	cf 91       	pop	r28
+ 444:	1f 91       	pop	r17
+ 446:	0f 91       	pop	r16
+ 448:	08 95       	ret
+
+0000044a <_exit>:
+ 44a:	f8 94       	cli
+
+0000044c <__stop_program>:
+ 44c:	ff cf       	rjmp	.-2      	; 0x44c <__stop_program>
