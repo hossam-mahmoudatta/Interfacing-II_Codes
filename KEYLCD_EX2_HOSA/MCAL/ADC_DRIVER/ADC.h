@@ -22,7 +22,28 @@
  *                                								Definitions                                  					      *
  *******************************************************************************/
 
+
+
+
+
+/*******************************************************************************
+ *                              						Functions Prototypes                           					  *
+ *******************************************************************************/
+
+// Initializes and enables the ADC Module to start functionality
+void ADC_Init(void);
+
+
+ // Reads the content written to the selected channel of the ADC
+uint16 ADC_readChannel(uint8 channel_num);
+
+#endif /* ADC_H_ */
+
+
+
+
 /*************** ADMUX Register Definitions ***************/
+/*
 // Select REFS1:0 to choose volt reference, choose '01' for AVCC
 #define ADMUX_REFS1											PIN_7
 #define ADMUX_REFS0											PIN_6
@@ -36,8 +57,9 @@
 #define ADMUX_MUX2												PIN_2
 #define ADMUX_MUX1												PIN_1
 #define ADMUX_MUX0											PIN_0
-
+*/
 /*************** ADCSRA Register Definitions ***************/
+/*
 // ADC Enable, set it to '1' to enable the ADC
 #define ADCSRA_ADEN											PIN_7
 
@@ -57,19 +79,4 @@
 #define ADCSRA_ADPS2										PIN_2
 #define ADCSRA_ADPS1											PIN_1
 #define ADCSRA_ADPS0										PIN_0
-
-
-
-
-/*******************************************************************************
- *                              						Functions Prototypes                           					  *
- *******************************************************************************/
-
-// Initializes and enables the ADC Module to start functionality
-void ADC_Init(void);
-
-
- // Reads the content written to the selected channel of the ADC
-uint16 ADC_readChannel(uint8 channel_num);
-
-#endif /* ADC_H_ */
+*/

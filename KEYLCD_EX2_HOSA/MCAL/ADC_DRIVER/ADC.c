@@ -18,30 +18,31 @@
 
 // Initializes and enables the ADC Module to start functionality
 void ADC_Init(void) {
+
+	/* ADMUX Register Bits Description:
+	 * 7:6, REFS1:0 = 01 to choose AVCC = 5v as reference voltage
+	 * 5, ADLAR   = 0 right adjusted
+	 * 4:0, MUX4:0  = 00000 to choose channel 0 as initialization
+	 */
 	// Sets REFS1:0 to '01'
-	CLR_BIT(ADMUX, ADMUX_REFS1);
-	SET_BIT(ADMUX, ADMUX_REFS0);
+	ADMUX = (1 << REFS0);
 
-	// Sets MUX4:0 to 0 for Channel 0 selection
-	CLR_BIT(ADMUX, ADMUX_MUX4);
-	CLR_BIT(ADMUX, ADMUX_MUX3);
-	CLR_BIT(ADMUX, ADMUX_MUX2);
-	CLR_BIT(ADMUX, ADMUX_MUX1);
-	CLR_BIT(ADMUX, ADMUX_MUX0);
-
+	/* ADCSRA Register Bits Description:
+	 * ADEN = 1 Enable ADC
+	 * ADIE = 0 Disable ADC Interrupt
+	 * ADATE = 0 Disable Auto Trigger
+	 * ADPS2:0 = 111 to choose ADC_Clock = F_CPU/128 = 16Mhz/128 = 125Khz --> ADC must operate in range 50-200Khz
+	 */
 	// Enables ADC
-	SET_BIT(ADCSRA, ADCSRA_ADEN);
+	ADCSRA = (1 << ADEN);
 
-	// Disables ADC Interrupt
-	CLR_BIT(ADCSRA, ADCSRA_ADIE);
-
-	// Choose prescaler 128
-
-
-
+	// Choose Prescaler: 128
+	ADCSRA = (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
 }
 
 
  // Reads the content written to the selected channel of the ADC
-uint16 ADC_readChannel(uint8 channel_num);
+uint16 ADC_readChannel(uint8 channel_num) {
+
+}
 
