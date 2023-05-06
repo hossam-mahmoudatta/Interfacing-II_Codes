@@ -21,6 +21,7 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 APP \
+MCAL/ADC_DRIVER \
 MCAL/BUTTON_DRIVER \
 MCAL/GPIO_DRIVER \
 MCAL/KEYPAD_DRIVER \

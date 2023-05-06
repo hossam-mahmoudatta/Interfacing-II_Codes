@@ -42,21 +42,21 @@
 #define ADCSRA_ADEN											PIN_7
 
 // Starts the conversion, bit is '1' when conversion and turns into '0' when complete
-#define ADMUX_ADSC											PIN_6
+#define ADCSRA_ADSC											PIN_6
 
 // Auto Triggering, set it to '0', we won't use the automatic
-#define ADMUX_ADATE											PIN_5
+#define ADCSRA_ADATE										PIN_5
 
 // ADC Interrupt Flag, if we used interrupts with ADC, this is the flag we use
-#define ADMUX_ADIF												PIN_4
+#define ADCSRA_ADIF												PIN_4
 
 // ADC Interrupt Enable, Enables the interrupt if set to 1
-#define ADMUX_ADIE												PIN_3
+#define ADCSRA_ADIE											PIN_3
 
 // ADC Prescaler Config, choose the prescaler settings, set to '111' to be 128
-#define ADMUX_ADPS2											PIN_2
-#define ADMUX_ADPS1											PIN_1
-#define ADMUX_ADPS0											PIN_0
+#define ADCSRA_ADPS2										PIN_2
+#define ADCSRA_ADPS1											PIN_1
+#define ADCSRA_ADPS0										PIN_0
 
 
 

@@ -14,6 +14,7 @@ RM := rm -rf
 -include MCAL/KEYPAD_DRIVER/subdir.mk
 -include MCAL/GPIO_DRIVER/subdir.mk
 -include MCAL/BUTTON_DRIVER/subdir.mk
+-include MCAL/ADC_DRIVER/subdir.mk
 -include APP/subdir.mk
 -include subdir.mk
 -include objects.mk
