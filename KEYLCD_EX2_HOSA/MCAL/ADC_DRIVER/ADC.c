@@ -41,18 +41,30 @@ void ADC_Init(void) {
 }
 
 
- // Reads the content written to the selected channel of the ADC
+// Reads the content written to the selected channel of the ADC
 uint16 ADC_readChannel(uint8 channel_num) {
 
-	// Starts conversion
+	// Insert Channel Number in ADMUX Procedure
+
+	// Clears first 5 bits to zero
+	ADMUX &= 0xE0; // 0b1110 0000
+
+	// Mask the Channel No. Input with max channel No.
+	channel_num &= 0x07; // 0b0000 0111
+
+	// Insert Channel no. into ADMUX Register
+	ADMUX |= channel_num;
+
+	// Starts ADC Conversion
 	ADCSRA = (1 << ADSC);
 
-	// Busy wait untill ADIF = 1
+	// Busy wait (Polling) untill ADIF = 1
 	while ( BIT_IS_CLR(ADCSRA, ADIF) );
 
 	// sET FLAG BY 1 TO CLEAR
 	ADCSRA = (1 << ADIF);
 
+	// Read Data
 	return ADC;
 }
 
