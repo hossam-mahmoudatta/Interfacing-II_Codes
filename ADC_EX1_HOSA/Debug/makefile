@@ -8,13 +8,13 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include MCAL/SEVEN-SEGMENT_DRIVER/subdir.mk
--include MCAL/LED_DRIVER/subdir.mk
--include MCAL/LCD_DRIVER/subdir.mk
--include MCAL/KEYPAD_DRIVER/subdir.mk
 -include MCAL/GPIO_DRIVER/subdir.mk
--include MCAL/BUTTON_DRIVER/subdir.mk
 -include MCAL/ADC_DRIVER/subdir.mk
+-include ECUAL/SEVEN-SEGMENT_DRIVER/subdir.mk
+-include ECUAL/LED_DRIVER/subdir.mk
+-include ECUAL/LCD_DRIVER/subdir.mk
+-include ECUAL/KEYPAD_DRIVER/subdir.mk
+-include ECUAL/BUTTON_DRIVER/subdir.mk
 -include APP/subdir.mk
 -include subdir.mk
 -include objects.mk

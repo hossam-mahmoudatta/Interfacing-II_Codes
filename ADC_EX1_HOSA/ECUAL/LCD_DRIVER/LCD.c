@@ -30,8 +30,20 @@ void LCD_Init(void) {
 	_delay_ms(20);
 
 	// Initializing Sending Commands
-	LCD_sendCommand(LCD_TWO_LINE_EIGHT_BIT);
+	// Checks which BIT Mode, 4 or 8 line bit
+	if (LCD_BIT_MODE == 0) {
+		LCD_sendCommand(LCD_TWO_LINE_FOUR_BIT);
+	}
+	else if (LCD_BIT_MODE == 1) {
+		LCD_sendCommand(LCD_TWO_LINE_EIGHT_BIT);
+	}
+	else {
+		// Default value in case user entered something wrong
+		LCD_sendCommand(LCD_TWO_LINE_EIGHT_BIT);
+	}
+	// Makes the cursor off
 	LCD_sendCommand(LCD_CURSOR_OFF);
+	// Clears Display
 	LCD_sendCommand(LCD_CLEAR_DISPLAY);
 }
 
@@ -47,7 +59,20 @@ void LCD_sendCommand(uint8 command) {
 	_delay_ms(1);
 
 	// Inserts the command in the assigned PORT to be sent to the LCD
-	GPIO_writePort(LCD_DATA_PORT, command);
+	// uint8 BIT_MODE;
+	if (LCD_BIT_MODE == 0) {
+		SET_BIT( command, (LCD_FOUR_BIT_DATAPIN + 0) );
+		SET_BIT( command, (LCD_FOUR_BIT_DATAPIN + 1) );
+		SET_BIT( command, (LCD_FOUR_BIT_DATAPIN + 2) );
+		SET_BIT( command, (LCD_FOUR_BIT_DATAPIN + 3) );
+	}
+	else if (LCD_BIT_MODE == 1) {
+		GPIO_writePort(LCD_DATA_PORT, command);
+	}
+	else {
+		// Default value in case user entered something wrong
+		GPIO_writePort(LCD_DATA_PORT, command);
+	}
 	_delay_ms(1);
 
 	// Set Enable Pin to '0'
@@ -67,7 +92,20 @@ void LCD_displayCharacter(uint8 data) {
 	_delay_ms(1);
 
 	// Inserts the data in the assigned PORT to be sent to the LCD
-	GPIO_writePort(LCD_DATA_PORT, data);
+	// Inserts the data in the assigned PORT to be sent to the LCD
+	if (LCD_BIT_MODE == 0) {
+		SET_BIT( data, (LCD_FOUR_BIT_DATAPIN + 0) );
+		SET_BIT( data, (LCD_FOUR_BIT_DATAPIN + 1) );
+		SET_BIT( data, (LCD_FOUR_BIT_DATAPIN + 2) );
+		SET_BIT( data, (LCD_FOUR_BIT_DATAPIN + 3) );
+	}
+	else if (LCD_BIT_MODE == 1) {
+		GPIO_writePort(LCD_DATA_PORT, data);
+	}
+	else {
+		// Default value in case user entered something wrong
+		GPIO_writePort(LCD_DATA_PORT, data);
+	}
 	_delay_ms(1);
 
 	// Set Enable Pin to '0'
