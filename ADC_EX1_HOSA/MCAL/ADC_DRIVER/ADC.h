@@ -1,10 +1,10 @@
  /******************************************************************************
  *
- * Module: LCD Display
+ * Module: ADC (Analog to Digital Converter)
  *
- * File Name: LCD.h
+ * File Name: ADC.h
  *
- * Description: Header file for the AVR LCD Driver
+ * Description: Header file for the AVR ADC Driver
  *
  * Author: Hossam Mahmoud
  *
@@ -18,55 +18,65 @@
 #include "../../LIB/COMMON_MACROS.h"
 
 
-
 /*******************************************************************************
  *                                								Definitions                                  					      *
  *******************************************************************************/
 
-
-/*******************************************************************************
- *                               							Types Declaration                            						  *
- *******************************************************************************/
-
-#define LCD_DATA_PORT							PORT_C
-#define LCD_INIT_PORT								PORT_D
-
-#define LCD_RS											PIN_4
-#define LCD_ENABLE									PIN_5
-
-#define LCD_CLEAR_DISPLAY					0x01
-#define LCD_TWO_LINE_FOUR_BIT			0x28
-#define LCD_TWO_LINE_EIGHT_BIT			0x38
-#define LCD_CURSOR_OFF          				0x0C
-#define LCD_CURSOR_ON          				0x0E
-#define LCD_CURSOR_BLINKING          		0x0F
-#define LCD_CURSOR_LOCATION        		0x80
+#define ADC_MAX_VALUE 								1023
+#define ADC_REFERENCE_VOLT_VALUE 	5
 
 
 /*******************************************************************************
  *                              						Functions Prototypes                           					  *
  *******************************************************************************/
 
+// Initializes and enables the ADC Module to start functionality
+void ADC_Init(void);
+
+
+ // Reads the content written to the selected channel of the ADC
+uint16 ADC_readChannel(uint8 channel_num);
+
+#endif /* ADC_H_ */
+
+
+
+
+/*************** ADMUX Register Definitions ***************/
 /*
- * Description :
- * Setup the direction of the required pin input/output.
- * If the input port number or pin number are not correct, The function will not handle the request.
- */
-void LCD_Init(void);
+// Select REFS1:0 to choose volt reference, choose '01' for AVCC
+#define ADMUX_REFS1											PIN_7
+#define ADMUX_REFS0											PIN_6
 
-void LCD_sendCommand(uint8 command);
+// Set it to '0' for Right Adjust Result
+#define ADMUX_ADLAR											PIN_5
 
-void LCD_displayCharacter(uint8 data);
+// Analog Channel selection, ADC has 8 channels, choose ch0 = '00000'
+#define ADMUX_MUX4											PIN_4
+#define ADMUX_MUX3												PIN_3
+#define ADMUX_MUX2												PIN_2
+#define ADMUX_MUX1												PIN_1
+#define ADMUX_MUX0											PIN_0
+*/
+/*************** ADCSRA Register Definitions ***************/
+/*
+// ADC Enable, set it to '1' to enable the ADC
+#define ADCSRA_ADEN											PIN_7
 
-void LCD_displayString(const char *Str);
+// Starts the conversion, bit is '1' when conversion and turns into '0' when complete
+#define ADCSRA_ADSC											PIN_6
 
-void LCD_moveCursor(uint8 row,uint8 col);
+// Auto Triggering, set it to '0', we won't use the automatic
+#define ADCSRA_ADATE										PIN_5
 
-void LCD_displayStringRowColumn(uint8 row, uint8 col, const char *Str);
+// ADC Interrupt Flag, if we used interrupts with ADC, this is the flag we use
+#define ADCSRA_ADIF												PIN_4
 
-void LCD_intgerToString(int data);
+// ADC Interrupt Enable, Enables the interrupt if set to 1
+#define ADCSRA_ADIE											PIN_3
 
-void LCD_clearScreen(void);
-
-
-#endif /* LCD_H_ */
+// ADC Prescaler Config, choose the prescaler settings, set to '111' to be 128
+#define ADCSRA_ADPS2										PIN_2
+#define ADCSRA_ADPS1											PIN_1
+#define ADCSRA_ADPS0										PIN_0
+*/

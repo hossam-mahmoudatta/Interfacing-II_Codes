@@ -11,9 +11,9 @@
  *******************************************************************************/
 
 #include "KEYPAD.h"
-
 #include "avr/io.h" /* To use the IO Ports Registers */
 
+#define STD_KEYPAD
 #ifndef STD_KEYPAD
 
 	#if (KEYPAD_COL_NUM == 3)
@@ -51,12 +51,11 @@ void KEYPAD_Init(void) {
 }
 
 
-
 uint8 KEYPAD_getPressedKey(void) {
 	uint8 row, col;
 	while(1) {
 			for (row = 0 ; row < KEYPAD_ROW_NUM ; row++) {
-
+				// I set the pin by '1' for the row, and will iterate
 				GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN + row, PIN_OUTPUT);
 
 				/* Set/Clear the row output pin */
@@ -85,9 +84,8 @@ uint8 KEYPAD_getPressedKey(void) {
 		}
 }
 
-
-#ifndef STANDARD_KEYPAD
-
+// Whats the use for this #idndef STD Keypad stuff?
+#ifndef STD_KEYPAD
 	#if (KEYPAD_COL_NUM == 3)
 	 // Update the keypad pressed button value with the correct one in keypad 4x3 shape
 		static uint8 KEYPAD_4x3_adjustKeyNumber(uint8 button_number) {
@@ -149,6 +147,6 @@ uint8 KEYPAD_getPressedKey(void) {
 		}
 	#endif
 
-#endif /* STANDARD_KEYPAD */
+#endif /* STD_KEYPAD */
 
 
