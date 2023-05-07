@@ -1,3 +1,4 @@
+LaunchTargetManager/configs/ADC_EX1_HOSA\ Debug=org.eclipse.launchbar.core.launchTargetType.local\:Local
 LaunchTargetManager/configs/Exercise1\ Debug=org.eclipse.launchbar.core.launchTargetType.local\:Local
 LaunchTargetManager/configs/GPIO_CHALLENGE1_HOSA=org.eclipse.launchbar.core.launchTargetType.local\:Local
 LaunchTargetManager/configs/GPIO_EX1_HOSA\ Debug=org.eclipse.launchbar.core.launchTargetType.local\:Local

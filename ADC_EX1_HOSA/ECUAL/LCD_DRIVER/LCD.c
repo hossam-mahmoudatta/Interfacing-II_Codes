@@ -23,24 +23,34 @@ void LCD_Init(void) {
 	// Initialize Enable Pin
 	GPIO_setupPinDirection(LCD_INIT_PORT, LCD_ENABLE, PIN_OUTPUT);
 
-	// Setup the port and pins for the data pins inside the LCD
-	GPIO_setupPortDirection(LCD_DATA_PORT, PORT_OUTPUT);
-
 	// LCD Power On Internal Delay is 15 mS
 	_delay_ms(20);
 
 	// Initializing Sending Commands
 	// Checks which BIT Mode, 4 or 8 line bit
-	if (LCD_BIT_MODE == 0) {
+	if (LCD_BIT_MODE == 4) {
+		GPIO_setupPinDirection(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 0), PIN_OUTPUT);
+		GPIO_setupPinDirection(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 1), PIN_OUTPUT);
+		GPIO_setupPinDirection(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 2), PIN_OUTPUT);
+		GPIO_setupPinDirection(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 3), PIN_OUTPUT);
+
+		LCD_sendCommand(LCD_TWO_LINE_FOUR_BIT_INIT1);
+		LCD_sendCommand(LCD_TWO_LINE_FOUR_BIT_INIT2);
 		LCD_sendCommand(LCD_TWO_LINE_FOUR_BIT);
 	}
-	else if (LCD_BIT_MODE == 1) {
+	else if (LCD_BIT_MODE == 8) {
+		// Setup the port and pins for the data pins inside the LCD
+		GPIO_setupPortDirection(LCD_DATA_PORT, PORT_OUTPUT);
+
 		LCD_sendCommand(LCD_TWO_LINE_EIGHT_BIT);
 	}
 	else {
 		// Default value in case user entered something wrong
+		// Setup the port and pins for the data pins inside the LCD
+		GPIO_setupPortDirection(LCD_DATA_PORT, PORT_OUTPUT);
 		LCD_sendCommand(LCD_TWO_LINE_EIGHT_BIT);
 	}
+
 	// Makes the cursor off
 	LCD_sendCommand(LCD_CURSOR_OFF);
 	// Clears Display
@@ -60,24 +70,48 @@ void LCD_sendCommand(uint8 command) {
 
 	// Inserts the command in the assigned PORT to be sent to the LCD
 	// uint8 BIT_MODE;
-	if (LCD_BIT_MODE == 0) {
-		SET_BIT( command, (LCD_FOUR_BIT_DATAPIN + 0) );
-		SET_BIT( command, (LCD_FOUR_BIT_DATAPIN + 1) );
-		SET_BIT( command, (LCD_FOUR_BIT_DATAPIN + 2) );
-		SET_BIT( command, (LCD_FOUR_BIT_DATAPIN + 3) );
+	if (LCD_BIT_MODE == 4) {
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 0), GET_BIT( command, 4 ));
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 1), GET_BIT( command, 5 ));
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 2), GET_BIT( command, 6 ));
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 3), GET_BIT( command, 7 ));
+		_delay_ms(1);
+
+		// Clear Enable Pin to '0'
+		GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
+		_delay_ms(1); /* delay for processing Th = 13ns */
+
+		// Set Enable Pin to '1'
+		GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_HIGH);
+		_delay_ms(1); /* delay for processing Tpw - Tdws = 190ns */
+
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 0), GET_BIT( command, 0 ));
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 1), GET_BIT( command, 1 ));
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 2), GET_BIT( command, 2 ));
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 3), GET_BIT( command, 3 ));
+		_delay_ms(1); /* delay for processing Tdsw = 100ns */
+
+		// Clear Enable Pin to '0'
+		GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
+		_delay_ms(1); /* delay for processing Th = 13ns */
 	}
-	else if (LCD_BIT_MODE == 1) {
+	else if (LCD_BIT_MODE == 8) {
 		GPIO_writePort(LCD_DATA_PORT, command);
+		_delay_ms(1);
+
+		// Clear Enable Pin to '0'
+		GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
+		_delay_ms(1); /* delay for processing Th = 13ns */
 	}
 	else {
 		// Default value in case user entered something wrong
 		GPIO_writePort(LCD_DATA_PORT, command);
-	}
-	_delay_ms(1);
+		_delay_ms(1);
 
-	// Set Enable Pin to '0'
-	GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
-	_delay_ms(1);
+		// Clear Enable Pin to '0'
+		GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
+		_delay_ms(1); /* delay for processing Th = 13ns */
+	}
 }
 
 
@@ -93,24 +127,48 @@ void LCD_displayCharacter(uint8 data) {
 
 	// Inserts the data in the assigned PORT to be sent to the LCD
 	// Inserts the data in the assigned PORT to be sent to the LCD
-	if (LCD_BIT_MODE == 0) {
-		SET_BIT( data, (LCD_FOUR_BIT_DATAPIN + 0) );
-		SET_BIT( data, (LCD_FOUR_BIT_DATAPIN + 1) );
-		SET_BIT( data, (LCD_FOUR_BIT_DATAPIN + 2) );
-		SET_BIT( data, (LCD_FOUR_BIT_DATAPIN + 3) );
+	if (LCD_BIT_MODE == 4) {
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 0), GET_BIT( data, 4 ));
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 1), GET_BIT( data, 5 ));
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 2), GET_BIT( data, 6 ));
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 3), GET_BIT( data, 7 ));
+		_delay_ms(1);
+
+		// Clear Enable Pin to '0'
+		GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
+		_delay_ms(1); /* delay for processing Th = 13ns */
+
+		// Set Enable Pin to '1'
+		GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_HIGH);
+		_delay_ms(1); /* delay for processing Tpw - Tdws = 190ns */
+
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 0), GET_BIT( data, 0 ));
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 1), GET_BIT( data, 1 ));
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 2), GET_BIT( data, 2 ));
+		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 3), GET_BIT( data, 3 ));
+		_delay_ms(1); /* delay for processing Tdsw = 100ns */
+
+		// Clear Enable Pin to '0'
+		GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
+		_delay_ms(1); /* delay for processing Th = 13ns */
 	}
-	else if (LCD_BIT_MODE == 1) {
+	else if (LCD_BIT_MODE == 8) {
 		GPIO_writePort(LCD_DATA_PORT, data);
+		_delay_ms(1);
+
+		// Clear Enable Pin to '0'
+		GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
+		_delay_ms(1); /* delay for processing Th = 13ns */
 	}
 	else {
 		// Default value in case user entered something wrong
 		GPIO_writePort(LCD_DATA_PORT, data);
-	}
-	_delay_ms(1);
+		_delay_ms(1);
 
-	// Set Enable Pin to '0'
-	GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
-	_delay_ms(1);
+		// Clear Enable Pin to '0'
+		GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
+		_delay_ms(1); /* delay for processing Th = 13ns */
+	}
 }
 
 
