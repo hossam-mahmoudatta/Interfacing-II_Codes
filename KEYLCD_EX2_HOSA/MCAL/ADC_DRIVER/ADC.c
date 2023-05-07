@@ -44,5 +44,15 @@ void ADC_Init(void) {
  // Reads the content written to the selected channel of the ADC
 uint16 ADC_readChannel(uint8 channel_num) {
 
+	// Starts conversion
+	ADCSRA = (1 << ADSC);
+
+	// Busy wait untill ADIF = 1
+	while ( BIT_IS_CLR(ADCSRA, ADIF) );
+
+	// sET FLAG BY 1 TO CLEAR
+	ADCSRA = (1 << ADIF);
+
+	return ADC;
 }
 

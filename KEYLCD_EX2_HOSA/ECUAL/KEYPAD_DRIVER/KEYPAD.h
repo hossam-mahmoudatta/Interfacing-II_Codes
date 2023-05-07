@@ -13,7 +13,7 @@
 #ifndef KEYPAD_H_
 #define KEYPAD_H_
 
-#include "../GPIO_DRIVER/GPIO.h"
+#include "../../MCAL/GPIO_DRIVER/GPIO.h"
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/COMMON_MACROS.h"
 
