@@ -48,6 +48,7 @@ void LCD_Init(void) {
 		// Default value in case user entered something wrong
 		// Setup the port and pins for the data pins inside the LCD
 		GPIO_setupPortDirection(LCD_DATA_PORT, PORT_OUTPUT);
+
 		LCD_sendCommand(LCD_TWO_LINE_EIGHT_BIT);
 	}
 

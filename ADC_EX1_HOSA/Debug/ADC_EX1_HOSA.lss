@@ -3799,7 +3799,7 @@ _delay_loop_2(uint16_t __count)
 		LCD_sendCommand(LCD_TWO_LINE_FOUR_BIT);
     1910:	88 e2       	ldi	r24, 0x28	; 40
     1912:	0e 94 9a 0c 	call	0x1934	; 0x1934 <LCD_sendCommand>
-		GPIO_setupPortDirection(LCD_DATA_PORT, PORT_OUTPUT);
+
 		LCD_sendCommand(LCD_TWO_LINE_EIGHT_BIT);
 	}
 
