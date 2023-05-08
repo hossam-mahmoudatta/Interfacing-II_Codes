@@ -24,8 +24,16 @@ void ADC_Init(void) {
 	 * 5, ADLAR   = 0 right adjusted
 	 * 4:0, MUX4:0  = 00000 to choose channel 0 as initialization
 	 */
-	CLR_BIT(ADMUX, REFS1);
-	SET_BIT(ADMUX, REFS0);
+	#if (ADC_REF_MODE == 0)
+		CLR_BIT(ADMUX, REFS1);
+		CLR_BIT(ADMUX, REFS0);
+	#elif (ADC_REF_MODE == 1)
+		CLR_BIT(ADMUX, REFS1);
+		SET_BIT(ADMUX, REFS0);
+	#elif (ADC_REF_MODE == 3)
+		SET_BIT(ADMUX, REFS1);
+		SET_BIT(ADMUX, REFS0);
+	#endif
 
 	CLR_BIT(ADMUX, ADLAR);
 
@@ -42,7 +50,13 @@ void ADC_Init(void) {
 	 * ADPS2:0 = 111 to choose ADC_Clock = F_CPU/128 = 16Mhz/128 = 125Khz --> ADC must operate in range 50-200Khz
 	 */
 	SET_BIT(ADCSRA, ADEN);
-	CLR_BIT(ADCSRA, ADIE);
+
+	#if (ADC_INTERRUPT_MODE == 0)
+		CLR_BIT(ADCSRA, ADIE);
+	#elif (ADC_INTERRUPT_MODE == 1)
+		SET_BIT(ADCSRA, ADIE);
+	#endif
+
 	CLR_BIT(ADCSRA, ADATE);
 	SET_BIT(ADCSRA, ADPS2);
 	SET_BIT(ADCSRA, ADPS1);

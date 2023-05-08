@@ -26,8 +26,13 @@
 #define ADC_REFERENCE_VOLT_VALUE 	5
 
 #define ADC_REF_MODE									0
-#if ( !( (ADC_REF_MODE >= 0) && (ADC_REF_MODE <= 3) ) )
+#if ( (ADC_REF_MODE != 0) && (ADC_REF_MODE != 1) && (ADC_REF_MODE != 3) )
 	#error "Reference Selection Bit is wrong"
+#endif
+
+#define ADC_INTERRUPT_MODE									0
+#if ( (ADC_INTERRUPT_MODE != 0) && (ADC_INTERRUPT_MODE != 1) )
+	#error "INTERRUPT CONFIG Bit is wrong"
 #endif
 
 /*******************************************************************************

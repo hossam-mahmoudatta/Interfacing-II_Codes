@@ -2832,12 +2832,12 @@ void ADC_Init(void) {
     1372:	cf 93       	push	r28
     1374:	cd b7       	in	r28, 0x3d	; 61
     1376:	de b7       	in	r29, 0x3e	; 62
-	/* ADMUX Register Bits Description:
 	 * 7:6, REFS1:0 = 01 to choose AVCC = 5v as reference voltage
 	 * 5, ADLAR   = 0 right adjusted
 	 * 4:0, MUX4:0  = 00000 to choose channel 0 as initialization
 	 */
-	CLR_BIT(ADMUX, REFS1);
+	#if (ADC_REF_MODE == 0)
+		CLR_BIT(ADMUX, REFS1);
     1378:	a7 e2       	ldi	r26, 0x27	; 39
     137a:	b0 e0       	ldi	r27, 0x00	; 0
     137c:	e7 e2       	ldi	r30, 0x27	; 39
@@ -2845,14 +2845,18 @@ void ADC_Init(void) {
     1380:	80 81       	ld	r24, Z
     1382:	8f 77       	andi	r24, 0x7F	; 127
     1384:	8c 93       	st	X, r24
-	SET_BIT(ADMUX, REFS0);
+		CLR_BIT(ADMUX, REFS0);
     1386:	a7 e2       	ldi	r26, 0x27	; 39
     1388:	b0 e0       	ldi	r27, 0x00	; 0
     138a:	e7 e2       	ldi	r30, 0x27	; 39
     138c:	f0 e0       	ldi	r31, 0x00	; 0
     138e:	80 81       	ld	r24, Z
-    1390:	80 64       	ori	r24, 0x40	; 64
+    1390:	8f 7b       	andi	r24, 0xBF	; 191
     1392:	8c 93       	st	X, r24
+	#elif (ADC_REF_MODE == 3)
+		SET_BIT(ADMUX, REFS1);
+		SET_BIT(ADMUX, REFS0);
+	#endif
 
 	CLR_BIT(ADMUX, ADLAR);
     1394:	a7 e2       	ldi	r26, 0x27	; 39
