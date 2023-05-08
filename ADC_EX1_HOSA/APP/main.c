@@ -27,6 +27,7 @@ int main(void) {
 	while (1) {
 		RESULT_VALUE = ADC_readChannel(0);
 		LCD_moveCursor(0, 12);
+
 		if (RESULT_VALUE >= 1000) {
 			LCD_intgerToString(RESULT_VALUE);
 		}
@@ -36,6 +37,3 @@ int main(void) {
 		}
 	}
 }
-
-
-
