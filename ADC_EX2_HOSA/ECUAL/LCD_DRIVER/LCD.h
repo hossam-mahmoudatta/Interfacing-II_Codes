@@ -22,13 +22,13 @@
  *                                								Definitions                                  					      *
  *******************************************************************************/
 
-#define LCD_DATA_PORT								PORT_A
-#define LCD_INIT_PORT									PORT_A
+#define LCD_DATA_PORT								PORT_C
+#define LCD_INIT_PORT									PORT_D
 
-#define LCD_RS												PIN_1
-#define LCD_ENABLE										PIN_2
+#define LCD_RS												PIN_4
+#define LCD_ENABLE										PIN_5
 
-#define LCD_BIT_MODE									4			// if '4', then its 4 BIT Mode, if '8' then its 8 BIT Mode
+#define LCD_BIT_MODE									8			// if '4', then its 4 BIT Mode, if '8' then its 8 BIT Mode
 
 #if((LCD_BIT_MODE != 4) && (LCD_BIT_MODE != 8))
 	#error "Number of Data bits should be equal to 4 or 8"
