@@ -2836,7 +2836,7 @@ void ADC_Init(void) {
 	 * 5, ADLAR   = 0 right adjusted
 	 * 4:0, MUX4:0  = 00000 to choose channel 0 as initialization
 	 */
-	#if (ADC_REF_MODE == 0)
+	#if (ADC_REF_MODE == 0) // AREF
 		CLR_BIT(ADMUX, REFS1);
     1378:	a7 e2       	ldi	r26, 0x27	; 39
     137a:	b0 e0       	ldi	r27, 0x00	; 0
@@ -2853,7 +2853,7 @@ void ADC_Init(void) {
     138e:	80 81       	ld	r24, Z
     1390:	8f 7b       	andi	r24, 0xBF	; 191
     1392:	8c 93       	st	X, r24
-	#elif (ADC_REF_MODE == 3)
+	#elif (ADC_REF_MODE == 3) // INTERNAL 2.56
 		SET_BIT(ADMUX, REFS1);
 		SET_BIT(ADMUX, REFS0);
 	#endif
@@ -2920,23 +2920,30 @@ void ADC_Init(void) {
     13f0:	80 81       	ld	r24, Z
     13f2:	80 68       	ori	r24, 0x80	; 128
     13f4:	8c 93       	st	X, r24
-	CLR_BIT(ADCSRA, ADIE);
+	CLR_BIT(ADCSRA, ADATE);
     13f6:	a6 e2       	ldi	r26, 0x26	; 38
     13f8:	b0 e0       	ldi	r27, 0x00	; 0
     13fa:	e6 e2       	ldi	r30, 0x26	; 38
     13fc:	f0 e0       	ldi	r31, 0x00	; 0
     13fe:	80 81       	ld	r24, Z
-    1400:	87 7f       	andi	r24, 0xF7	; 247
+    1400:	8f 7d       	andi	r24, 0xDF	; 223
     1402:	8c 93       	st	X, r24
-	CLR_BIT(ADCSRA, ADATE);
+
+	#if (ADC_INTERRUPT_MODE == 0)
+		CLR_BIT(ADCSRA, ADIE);
     1404:	a6 e2       	ldi	r26, 0x26	; 38
     1406:	b0 e0       	ldi	r27, 0x00	; 0
     1408:	e6 e2       	ldi	r30, 0x26	; 38
     140a:	f0 e0       	ldi	r31, 0x00	; 0
     140c:	80 81       	ld	r24, Z
-    140e:	8f 7d       	andi	r24, 0xDF	; 223
+    140e:	87 7f       	andi	r24, 0xF7	; 247
     1410:	8c 93       	st	X, r24
-	SET_BIT(ADCSRA, ADPS2);
+	#elif (ADC_PRESCALER_MODE == 5) // 32
+		SET_BIT(ADCSRA, ADPS2);
+		CLR_BIT(ADCSRA, ADPS1);
+		SET_BIT(ADCSRA, ADPS0);
+	#elif (ADC_PRESCALER_MODE == 6) // 64
+		SET_BIT(ADCSRA, ADPS2);
     1412:	a6 e2       	ldi	r26, 0x26	; 38
     1414:	b0 e0       	ldi	r27, 0x00	; 0
     1416:	e6 e2       	ldi	r30, 0x26	; 38
@@ -2944,7 +2951,7 @@ void ADC_Init(void) {
     141a:	80 81       	ld	r24, Z
     141c:	84 60       	ori	r24, 0x04	; 4
     141e:	8c 93       	st	X, r24
-	SET_BIT(ADCSRA, ADPS1);
+		SET_BIT(ADCSRA, ADPS1);
     1420:	a6 e2       	ldi	r26, 0x26	; 38
     1422:	b0 e0       	ldi	r27, 0x00	; 0
     1424:	e6 e2       	ldi	r30, 0x26	; 38
@@ -2952,14 +2959,19 @@ void ADC_Init(void) {
     1428:	80 81       	ld	r24, Z
     142a:	82 60       	ori	r24, 0x02	; 2
     142c:	8c 93       	st	X, r24
-	SET_BIT(ADCSRA, ADPS0);
+		CLR_BIT(ADCSRA, ADPS0);
     142e:	a6 e2       	ldi	r26, 0x26	; 38
     1430:	b0 e0       	ldi	r27, 0x00	; 0
     1432:	e6 e2       	ldi	r30, 0x26	; 38
     1434:	f0 e0       	ldi	r31, 0x00	; 0
     1436:	80 81       	ld	r24, Z
-    1438:	81 60       	ori	r24, 0x01	; 1
+    1438:	8e 7f       	andi	r24, 0xFE	; 254
     143a:	8c 93       	st	X, r24
+		SET_BIT(ADCSRA, ADPS2);
+		SET_BIT(ADCSRA, ADPS1);
+		SET_BIT(ADCSRA, ADPS0);
+	#endif
+
 }
     143c:	cf 91       	pop	r28
     143e:	df 91       	pop	r29

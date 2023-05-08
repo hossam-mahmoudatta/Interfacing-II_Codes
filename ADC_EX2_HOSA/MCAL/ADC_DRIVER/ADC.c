@@ -24,13 +24,13 @@ void ADC_Init(void) {
 	 * 5, ADLAR   = 0 right adjusted
 	 * 4:0, MUX4:0  = 00000 to choose channel 0 as initialization
 	 */
-	#if (ADC_REF_MODE == 0)
+	#if (ADC_REF_MODE == 0) // AREF
 		CLR_BIT(ADMUX, REFS1);
 		CLR_BIT(ADMUX, REFS0);
-	#elif (ADC_REF_MODE == 1)
+	#elif (ADC_REF_MODE == 1) // AVCC
 		CLR_BIT(ADMUX, REFS1);
 		SET_BIT(ADMUX, REFS0);
-	#elif (ADC_REF_MODE == 3)
+	#elif (ADC_REF_MODE == 3) // INTERNAL 2.56
 		SET_BIT(ADMUX, REFS1);
 		SET_BIT(ADMUX, REFS0);
 	#endif
@@ -50,6 +50,7 @@ void ADC_Init(void) {
 	 * ADPS2:0 = 111 to choose ADC_Clock = F_CPU/128 = 16Mhz/128 = 125Khz --> ADC must operate in range 50-200Khz
 	 */
 	SET_BIT(ADCSRA, ADEN);
+	CLR_BIT(ADCSRA, ADATE);
 
 	#if (ADC_INTERRUPT_MODE == 0)
 		CLR_BIT(ADCSRA, ADIE);
@@ -57,10 +58,28 @@ void ADC_Init(void) {
 		SET_BIT(ADCSRA, ADIE);
 	#endif
 
-	CLR_BIT(ADCSRA, ADATE);
-	SET_BIT(ADCSRA, ADPS2);
-	SET_BIT(ADCSRA, ADPS1);
-	SET_BIT(ADCSRA, ADPS0);
+	#if (ADC_PRESCALER_MODE == 3) // 8
+		CLR_BIT(ADCSRA, ADPS2);
+		SET_BIT(ADCSRA, ADPS1);
+		SET_BIT(ADCSRA, ADPS0);
+	#elif (ADC_PRESCALER_MODE == 4) //16
+		SET_BIT(ADCSRA, ADPS2);
+		CLR_BIT(ADCSRA, ADPS1);
+		CLR_BIT(ADCSRA, ADPS0);
+	#elif (ADC_PRESCALER_MODE == 5) // 32
+		SET_BIT(ADCSRA, ADPS2);
+		CLR_BIT(ADCSRA, ADPS1);
+		SET_BIT(ADCSRA, ADPS0);
+	#elif (ADC_PRESCALER_MODE == 6) // 64
+		SET_BIT(ADCSRA, ADPS2);
+		SET_BIT(ADCSRA, ADPS1);
+		CLR_BIT(ADCSRA, ADPS0);
+	#elif (ADC_PRESCALER_MODE == 7) // 128
+		SET_BIT(ADCSRA, ADPS2);
+		SET_BIT(ADCSRA, ADPS1);
+		SET_BIT(ADCSRA, ADPS0);
+	#endif
+
 }
 
 
