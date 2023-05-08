@@ -23,7 +23,7 @@
  *******************************************************************************/
 
 #define ADC_MAX_VALUE 								1023
-#define ADC_REFERENCE_VOLT_VALUE 	5
+#define ADC_AREF    										5
 
 #define ADC_REF_MODE									0
 #if ( (ADC_REF_MODE != 0) && (ADC_REF_MODE != 1) && (ADC_REF_MODE != 3) )
