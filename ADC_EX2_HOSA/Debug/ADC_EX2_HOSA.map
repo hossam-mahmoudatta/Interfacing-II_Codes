@@ -54,6 +54,7 @@ LOAD c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/li
 LOAD ./MCAL/GPIO_DRIVER/GPIO.o
 LOAD ./MCAL/ADC_DRIVER/ADC.o
 LOAD ./ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o
+LOAD ./ECUAL/LM35_SENSOR_DRIVER/LM35.o
 LOAD ./ECUAL/LED_DRIVER/LED.o
 LOAD ./ECUAL/LCD_DRIVER/LCD.o
 LOAD ./ECUAL/KEYPAD_DRIVER/KEYPAD.o
@@ -231,6 +232,7 @@ LOAD c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .text          0x00000082        0x0 ./MCAL/GPIO_DRIVER/GPIO.o
  .text          0x00000082        0x0 ./MCAL/ADC_DRIVER/ADC.o
  .text          0x00000082        0x0 ./ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o
+ .text          0x00000082        0x0 ./ECUAL/LM35_SENSOR_DRIVER/LM35.o
  .text          0x00000082        0x0 ./ECUAL/LED_DRIVER/LED.o
  .text          0x00000082        0x0 ./ECUAL/LCD_DRIVER/LCD.o
  .text          0x00000082        0x0 ./ECUAL/KEYPAD_DRIVER/KEYPAD.o
@@ -396,6 +398,7 @@ LOAD c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .data          0x00800060        0x0 ./MCAL/GPIO_DRIVER/GPIO.o
  .data          0x00800060        0x0 ./MCAL/ADC_DRIVER/ADC.o
  .data          0x00800060        0x0 ./ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o
+ .data          0x00800060        0x0 ./ECUAL/LM35_SENSOR_DRIVER/LM35.o
  .data          0x00800060        0x0 ./ECUAL/LED_DRIVER/LED.o
  .data          0x00800060        0x0 ./ECUAL/LCD_DRIVER/LCD.o
  .data          0x00800060        0x0 ./ECUAL/KEYPAD_DRIVER/KEYPAD.o
@@ -436,6 +439,7 @@ LOAD c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .bss           0x00800076        0x0 ./MCAL/GPIO_DRIVER/GPIO.o
  .bss           0x00800076        0x0 ./MCAL/ADC_DRIVER/ADC.o
  .bss           0x00800076        0x0 ./ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o
+ .bss           0x00800076        0x0 ./ECUAL/LM35_SENSOR_DRIVER/LM35.o
  .bss           0x00800076        0x0 ./ECUAL/LED_DRIVER/LED.o
  .bss           0x00800076        0x0 ./ECUAL/LCD_DRIVER/LCD.o
  .bss           0x00800076        0x0 ./ECUAL/KEYPAD_DRIVER/KEYPAD.o
@@ -488,27 +492,29 @@ LOAD c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x2fdc
+.stab           0x00000000     0x30b4
  *(.stab)
  .stab          0x00000000      0xbc4 ./MCAL/GPIO_DRIVER/GPIO.o
  .stab          0x00000bc4      0x378 ./MCAL/ADC_DRIVER/ADC.o
                                 0x534 (size before relaxing)
  .stab          0x00000f3c      0x588 ./ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o
                                 0x744 (size before relaxing)
- .stab          0x000014c4      0x540 ./ECUAL/LED_DRIVER/LED.o
+ .stab          0x000014c4       0xd8 ./ECUAL/LM35_SENSOR_DRIVER/LM35.o
+                                 0xe4 (size before relaxing)
+ .stab          0x0000159c      0x540 ./ECUAL/LED_DRIVER/LED.o
                                 0x6fc (size before relaxing)
- .stab          0x00001a04      0xbd0 ./ECUAL/LCD_DRIVER/LCD.o
+ .stab          0x00001adc      0xbd0 ./ECUAL/LCD_DRIVER/LCD.o
                                 0xd8c (size before relaxing)
- .stab          0x000025d4      0x360 ./ECUAL/KEYPAD_DRIVER/KEYPAD.o
+ .stab          0x000026ac      0x360 ./ECUAL/KEYPAD_DRIVER/KEYPAD.o
                                 0x51c (size before relaxing)
- .stab          0x00002934      0x3c0 ./ECUAL/BUTTON_DRIVER/BUTTON.o
+ .stab          0x00002a0c      0x3c0 ./ECUAL/BUTTON_DRIVER/BUTTON.o
                                 0x57c (size before relaxing)
- .stab          0x00002cf4      0x2e8 ./APP/main.o
+ .stab          0x00002dcc      0x2e8 ./APP/main.o
                                 0x498 (size before relaxing)
 
-.stabstr        0x00000000     0x180d
+.stabstr        0x00000000     0x1830
  *(.stabstr)
- .stabstr       0x00000000     0x180d ./MCAL/GPIO_DRIVER/GPIO.o
+ .stabstr       0x00000000     0x1830 ./MCAL/GPIO_DRIVER/GPIO.o
 
 .stab.excl
  *(.stab.excl)
