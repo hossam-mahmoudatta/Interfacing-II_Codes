@@ -11,9 +11,7 @@
  *******************************************************************************/
 
 #include "GPIO.h"
-
 #include "avr/io.h" /* To use the IO Ports Registers */
-
 
 /*
  * Description :
@@ -29,16 +27,19 @@ GPIO_Error_t GPIO_setupPinDirection(uint8 port_num, uint8 pin_num, GPIO_PinDirec
 	uint8_t GPIO_Driver_Checker = NULL;
 
 	if((pin_num >= NUM_OF_PINS_PER_PORT)) {
+		// Checks if the entered pin number is invalid or not
 		GPIO_Driver_Checker = GPIO_WRONG_PIN_NUMBER;
 	}
 	else if((port_num >= NUM_OF_PORTS)) {
+		// Checks if the entered port number is invalid or not
 		GPIO_Driver_Checker = GPIO_WRONG_PORT_NUMBER;
 	}
 	else if((direction != PIN_INPUT) && (direction != PIN_OUTPUT)) {
+		// Checks if the entered direction is invalid or not
 		GPIO_Driver_Checker = GPIO_WRONG_DIRECTION;
 	}
 	else {
-		/* Setup the pin direction as required */
+		// Setup the pin direction as required
 		switch(port_num) {
 		case PORT_A:
 			if(direction == PIN_OUTPUT) {
@@ -77,6 +78,7 @@ GPIO_Error_t GPIO_setupPinDirection(uint8 port_num, uint8 pin_num, GPIO_PinDirec
 	}
 	return GPIO_Driver_Checker;
 }
+
 
 /*
  * Description :
@@ -137,6 +139,11 @@ GPIO_Error_t GPIO_writePin(uint8 port_num, uint8 pin_num, uint8 value) {
 }
 
 
+/*
+ * Description :
+ * Toggles a certain pin when requested.
+ * If the input port number or pin number are not correct, The function will return an error.
+ */
 GPIO_Error_t GPIO_togglePin(uint8 port_num, uint8 pin_num) {
 	uint8_t GPIO_Driver_Checker = NULL;
 
@@ -167,11 +174,10 @@ GPIO_Error_t GPIO_togglePin(uint8 port_num, uint8 pin_num) {
 }
 
 
-
 /*
  * Description :
  * Read and return the value for the required pin, it should be Logic High or Logic Low.
- * If the input port number or pin number are not correct, The function will return Logic Low.
+ * If the input port number or pin number are not correct, The function will return an error.
  */
 uint8 GPIO_readPin(uint8 port_num, uint8 pin_num) {
 	uint8 pin_value = LOGIC_LOW;
@@ -185,14 +191,17 @@ uint8 GPIO_readPin(uint8 port_num, uint8 pin_num) {
 
 	if((pin_num >= NUM_OF_PINS_PER_PORT)) {
 		GPIO_Driver_Checker = GPIO_WRONG_PIN_NUMBER;
+		return GPIO_Driver_Checker;
 	}
 	else if((port_num >= NUM_OF_PORTS)) {
 		GPIO_Driver_Checker = GPIO_WRONG_PORT_NUMBER;
+		return GPIO_Driver_Checker;
 	}
 	else {
 		/* Read the pin value as required */
 		switch(port_num) {
 		case PORT_A:
+			// Checks if the bit equals '1' or not
 			if(BIT_IS_SET(PINA,pin_num)) {
 				pin_value = LOGIC_HIGH;
 			}
@@ -272,6 +281,7 @@ GPIO_Error_t GPIO_setupPortDirection(uint8 port_num, GPIO_PortDirectionType dire
 	return GPIO_Driver_Checker;
 }
 
+
 /*
  * Description :
  * Write the value on the required port.
@@ -280,7 +290,6 @@ GPIO_Error_t GPIO_setupPortDirection(uint8 port_num, GPIO_PortDirectionType dire
  * If the input port number is not correct, The function will not handle the request.
  */
 GPIO_Error_t GPIO_writePort(uint8 port_num, uint8 value) {
-
 	uint8_t GPIO_Driver_Checker = NULL;
 	if((port_num >= NUM_OF_PORTS)) {
 		GPIO_Driver_Checker = GPIO_WRONG_PORT_NUMBER;
@@ -306,6 +315,7 @@ GPIO_Error_t GPIO_writePort(uint8 port_num, uint8 value) {
 	return GPIO_Driver_Checker;
 }
 
+
 /*
  * Description :
  * Read and return the value of the required port.
@@ -321,6 +331,7 @@ uint8 GPIO_readPort(uint8 port_num) {
 	else {
 		switch(port_num) {
 		case PORT_A:
+			// Why value equals PINA?
 			value = PINA;
 			break;
 		case PORT_B:

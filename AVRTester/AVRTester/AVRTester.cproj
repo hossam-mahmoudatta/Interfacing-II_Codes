@@ -133,19 +133,55 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="APP\" />
+    <Folder Include="ECUAL\" />
+    <Folder Include="ECUAL\BUTTON_DRIVER\" />
+    <Folder Include="ECUAL\KEYPAD_DRIVER\" />
+    <Folder Include="ECUAL\LCD_DRIVER\" />
+    <Folder Include="ECUAL\LED_DRIVER\" />
+    <Folder Include="ECUAL\SEVEN-SEGMENT_DRIVER\" />
+    <Folder Include="MCAL\" />
+    <Folder Include="MCAL\ADC_DRIVER\" />
+    <Folder Include="MCAL\GPIO_DRIVER\" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="APP\main.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="LIB\COMMON_MACROS.h">
+    <Compile Include="ECUAL\BUTTON_DRIVER\BUTTON.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="LIB\STD_TYPES.h">
+    <Compile Include="ECUAL\BUTTON_DRIVER\BUTTON.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="MCAL\BUTTON_DRIVER\BUTTON.c">
+    <Compile Include="ECUAL\KEYPAD_DRIVER\KEYPAD.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="MCAL\BUTTON_DRIVER\BUTTON.h">
+    <Compile Include="ECUAL\KEYPAD_DRIVER\KEYPAD.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ECUAL\LCD_DRIVER\LCD.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ECUAL\LCD_DRIVER\LCD.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ECUAL\LED_DRIVER\LED.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ECUAL\LED_DRIVER\LED.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ECUAL\SEVEN-SEGMENT_DRIVER\SEGMENT.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ECUAL\SEVEN-SEGMENT_DRIVER\SEGMENT.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ADC_DRIVER\ADC.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ADC_DRIVER\ADC.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\GPIO_DRIVER\GPIO.c">
@@ -154,41 +190,6 @@
     <Compile Include="MCAL\GPIO_DRIVER\GPIO.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="MCAL\KEYPAD_DRIVER\KEYPAD.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\KEYPAD_DRIVER\KEYPAD.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\LCD_DRIVER\LCD.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\LCD_DRIVER\LCD.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\LED_DRIVER\LED.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\LED_DRIVER\LED.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\SEVEN-SEGMENT_DRIVER\SEGMENT.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\SEVEN-SEGMENT_DRIVER\SEGMENT.h">
-      <SubType>compile</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="APP\" />
-    <Folder Include="LIB\" />
-    <Folder Include="MCAL\" />
-    <Folder Include="MCAL\BUTTON_DRIVER\" />
-    <Folder Include="MCAL\GPIO_DRIVER\" />
-    <Folder Include="MCAL\KEYPAD_DRIVER\" />
-    <Folder Include="MCAL\LCD_DRIVER\" />
-    <Folder Include="MCAL\LED_DRIVER\" />
-    <Folder Include="MCAL\SEVEN-SEGMENT_DRIVER\" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

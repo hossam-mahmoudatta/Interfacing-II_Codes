@@ -12,11 +12,10 @@
 //#include "../ECUAL/KEYPAD_DRIVER/KEYPAD.h"
 #include "../ECUAL/LCD_DRIVER/LCD.h"
 #include "../MCAL/ADC_DRIVER/ADC.h"
-
+#define F_CPU 1000000
 int main(void) {
 	// Initializes the screen
 	LCD_Init();
-	uint16 RESULT_VALUE;
 
 	// Initializes the ADC Module
 	ADC_Init();
@@ -25,9 +24,15 @@ int main(void) {
 	LCD_displayString("ADC Value = ");
 
 	while (1) {
-		RESULT_VALUE = ADC_readChannel(0);
+		uint16 RESULT_VALUE = 0;
 		LCD_moveCursor(0, 12);
-
+		//LCD_displayString("Hosa");
+		//_delay_ms(6000);
+		//LCD_clearScreen();
+		RESULT_VALUE = ADC_readChannel(0);
+		//LCD_moveCursor(0, 12);
+		//LCD_displayString("Nona");
+		//LCD_clearScreen();
 		if (RESULT_VALUE >= 1000) {
 			LCD_intgerToString(RESULT_VALUE);
 		}

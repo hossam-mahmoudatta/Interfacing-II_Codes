@@ -11,6 +11,7 @@
 //#include "../ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.h"
 //#include "../ECUAL/KEYPAD_DRIVER/KEYPAD.h"
 #include "../ECUAL/LCD_DRIVER/LCD.h"
+#define F_CPU 1000000
 
 int main(void) {
 	// Initializes the screen
@@ -20,7 +21,10 @@ int main(void) {
 	//LCD_displayString("ENG Mohd Tarek");
 	LCD_displayStringRowColumn(0, 2, "kdjflksdjfslakdj");
 	LCD_displayStringRowColumn(1, 6, "Hehe");
-
+	_delay_ms(4000);
+	LCD_clearScreen();
+	LCD_displayStringRowColumn(0, 1, "Hosa is great");
+		LCD_displayStringRowColumn(1, 6, "Hehe");
 	while (1) {
 
 	}
