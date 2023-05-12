@@ -52,7 +52,7 @@ void SPI_Init(void) {
 // Reads the content written to the selected channel of the ADC
 uint16 ADC_readChannel(uint8 channel_num) {
 
-	// Insert Channel Number in ADMUX Procedure
+	// Insert Channelsdfs Number in ADMUX Procedure
 
 	// Clears first 5 bits to zero
 	ADMUX &= 0xE0; // 0b1110 0000
