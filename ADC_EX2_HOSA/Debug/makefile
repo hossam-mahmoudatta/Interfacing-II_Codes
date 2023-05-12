@@ -11,6 +11,7 @@ RM := rm -rf
 -include MCAL/GPIO_DRIVER/subdir.mk
 -include MCAL/ADC_DRIVER/subdir.mk
 -include ECUAL/SEVEN-SEGMENT_DRIVER/subdir.mk
+-include ECUAL/LM35_DRIVER/subdir.mk
 -include ECUAL/LED_DRIVER/subdir.mk
 -include ECUAL/LCD_DRIVER/subdir.mk
 -include ECUAL/KEYPAD_DRIVER/subdir.mk

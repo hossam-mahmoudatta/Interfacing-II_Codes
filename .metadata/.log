@@ -11261,3 +11261,494 @@ org.eclipse.core.runtime.CoreException: attempt to set description for a project
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
 !SUBENTRY 1 org.eclipse.cdt.core 4 -1 2023-05-12 21:31:29.796
 !MESSAGE attempt to set description for a project which does not exist or not open
+
+!ENTRY org.eclipse.cdt.core 4 0 2023-05-12 21:34:02.813
+!MESSAGE Error: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.jobs 4 2 2023-05-12 21:34:02.814
+!MESSAGE An internal error occurred during: "C/C++ Indexer".
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.core 4 0 2023-05-12 21:34:13.494
+!MESSAGE Error: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.jobs 4 2 2023-05-12 21:34:13.494
+!MESSAGE An internal error occurred during: "C/C++ Indexer".
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.core 4 0 2023-05-12 21:34:17.616
+!MESSAGE Error: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.jobs 4 2 2023-05-12 21:34:17.617
+!MESSAGE An internal error occurred during: "C/C++ Indexer".
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.ui 4 0 2023-05-12 21:35:06.889
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.core.resources.IResource.getAdapter(java.lang.Class)" because "resource" is null
+	at org.eclipse.linuxtools.internal.changelog.core.editors.GNUHyperlinkDetector.detectHyperlinks(GNUHyperlinkDetector.java:120)
+	at org.eclipse.ui.texteditor.HyperlinkDetectorRegistry$HyperlinkDetectorDelegate.detectHyperlinks(HyperlinkDetectorRegistry.java:81)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:289)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:262)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.mouseMove(HyperlinkManager.java:457)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:216)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4256)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1066)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4054)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3642)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:643)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:550)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:171)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+
+!ENTRY org.eclipse.ui 4 0 2023-05-12 21:35:06.891
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.core.resources.IResource.getAdapter(java.lang.Class)" because "resource" is null
+	at org.eclipse.linuxtools.internal.changelog.core.editors.GNUHyperlinkDetector.detectHyperlinks(GNUHyperlinkDetector.java:120)
+	at org.eclipse.ui.texteditor.HyperlinkDetectorRegistry$HyperlinkDetectorDelegate.detectHyperlinks(HyperlinkDetectorRegistry.java:81)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:289)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:262)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.mouseMove(HyperlinkManager.java:457)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:216)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4256)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1066)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4054)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3642)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:643)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:550)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:171)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+
+!ENTRY org.eclipse.ui 4 0 2023-05-12 21:35:06.898
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.core.resources.IResource.getAdapter(java.lang.Class)" because "resource" is null
+	at org.eclipse.linuxtools.internal.changelog.core.editors.GNUHyperlinkDetector.detectHyperlinks(GNUHyperlinkDetector.java:120)
+	at org.eclipse.ui.texteditor.HyperlinkDetectorRegistry$HyperlinkDetectorDelegate.detectHyperlinks(HyperlinkDetectorRegistry.java:81)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:289)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:262)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.mouseMove(HyperlinkManager.java:457)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:216)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4256)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1066)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4054)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3642)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:643)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:550)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:171)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+
+!ENTRY org.eclipse.ui 4 0 2023-05-12 21:35:06.906
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.core.resources.IResource.getAdapter(java.lang.Class)" because "resource" is null
+	at org.eclipse.linuxtools.internal.changelog.core.editors.GNUHyperlinkDetector.detectHyperlinks(GNUHyperlinkDetector.java:120)
+	at org.eclipse.ui.texteditor.HyperlinkDetectorRegistry$HyperlinkDetectorDelegate.detectHyperlinks(HyperlinkDetectorRegistry.java:81)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:289)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:262)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.mouseMove(HyperlinkManager.java:457)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:216)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4256)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1066)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4054)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3642)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:643)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:550)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:171)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+
+!ENTRY org.eclipse.ui 4 0 2023-05-12 21:35:06.914
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.core.resources.IResource.getAdapter(java.lang.Class)" because "resource" is null
+	at org.eclipse.linuxtools.internal.changelog.core.editors.GNUHyperlinkDetector.detectHyperlinks(GNUHyperlinkDetector.java:120)
+	at org.eclipse.ui.texteditor.HyperlinkDetectorRegistry$HyperlinkDetectorDelegate.detectHyperlinks(HyperlinkDetectorRegistry.java:81)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:289)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:262)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.mouseMove(HyperlinkManager.java:457)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:216)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4256)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1066)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4054)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3642)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:643)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:550)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:171)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+
+!ENTRY org.eclipse.ui 4 0 2023-05-12 21:35:06.922
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.core.resources.IResource.getAdapter(java.lang.Class)" because "resource" is null
+	at org.eclipse.linuxtools.internal.changelog.core.editors.GNUHyperlinkDetector.detectHyperlinks(GNUHyperlinkDetector.java:120)
+	at org.eclipse.ui.texteditor.HyperlinkDetectorRegistry$HyperlinkDetectorDelegate.detectHyperlinks(HyperlinkDetectorRegistry.java:81)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:289)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:262)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.mouseMove(HyperlinkManager.java:457)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:216)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4256)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1066)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4054)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3642)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:643)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:550)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:171)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+
+!ENTRY org.eclipse.ui 4 0 2023-05-12 21:35:06.930
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.core.resources.IResource.getAdapter(java.lang.Class)" because "resource" is null
+	at org.eclipse.linuxtools.internal.changelog.core.editors.GNUHyperlinkDetector.detectHyperlinks(GNUHyperlinkDetector.java:120)
+	at org.eclipse.ui.texteditor.HyperlinkDetectorRegistry$HyperlinkDetectorDelegate.detectHyperlinks(HyperlinkDetectorRegistry.java:81)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:289)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:262)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.mouseMove(HyperlinkManager.java:457)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:216)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4256)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1066)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4054)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3642)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:643)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:550)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:171)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+
+!ENTRY org.eclipse.ui 4 0 2023-05-12 21:35:06.938
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.core.resources.IResource.getAdapter(java.lang.Class)" because "resource" is null
+	at org.eclipse.linuxtools.internal.changelog.core.editors.GNUHyperlinkDetector.detectHyperlinks(GNUHyperlinkDetector.java:120)
+	at org.eclipse.ui.texteditor.HyperlinkDetectorRegistry$HyperlinkDetectorDelegate.detectHyperlinks(HyperlinkDetectorRegistry.java:81)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:289)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:262)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.mouseMove(HyperlinkManager.java:457)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:216)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4256)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1066)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4054)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3642)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:643)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:550)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:171)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+
+!ENTRY org.eclipse.cdt.core 4 0 2023-05-12 21:47:45.476
+!MESSAGE Error: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.jobs 4 2 2023-05-12 21:47:45.477
+!MESSAGE An internal error occurred during: "C/C++ Indexer".
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.core 4 0 2023-05-12 21:49:05.981
+!MESSAGE Error: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.jobs 4 2 2023-05-12 21:49:05.982
+!MESSAGE An internal error occurred during: "C/C++ Indexer".
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.core 4 0 2023-05-12 21:49:06.607
+!MESSAGE Error: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.jobs 4 2 2023-05-12 21:49:06.607
+!MESSAGE An internal error occurred during: "C/C++ Indexer".
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.core 4 0 2023-05-12 21:50:05.596
+!MESSAGE Error: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.jobs 4 2 2023-05-12 21:50:05.597
+!MESSAGE An internal error occurred during: "C/C++ Indexer".
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.core 4 0 2023-05-12 21:50:12.385
+!MESSAGE Error: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.jobs 4 2 2023-05-12 21:50:12.386
+!MESSAGE An internal error occurred during: "C/C++ Indexer".
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.cdt.internal.core.pdom.PDOMProxy cannot be cast to class org.eclipse.cdt.internal.core.index.IWritableIndexFragment (org.eclipse.cdt.internal.core.pdom.PDOMProxy and org.eclipse.cdt.internal.core.index.IWritableIndexFragment are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @434896b0)
+	at org.eclipse.cdt.internal.core.index.IndexFactory.getWritableIndex(IndexFactory.java:99)
+	at org.eclipse.cdt.internal.core.pdom.PDOMManager.getWritableIndex(PDOMManager.java:1251)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.createIndex(PDOMIndexerTask.java:206)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:536)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-05-12 21:51:29.975
+!MESSAGE Indexed 'ADC_EX2_HOSA' (9 sources, 22 headers) in 0.168 sec: 267 declarations; 1,861 references; 0 unresolved inclusions; 1 syntax errors; 0 unresolved names (0%)
