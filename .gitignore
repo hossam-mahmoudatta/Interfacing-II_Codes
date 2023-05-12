@@ -19,3 +19,6 @@
 .metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources
 .metadata/.plugins/org.eclipse.core.runtime/.settings/com.genuitec.eclipse.theming.ui.prefs
 .metadata/version.ini
+.metadata/.log
+.metadata/.plugins/com.genuitec.eclipse.devstyle/recent.json
+.metadata/.plugins/com.genuitec.eclipse.monitor/myeclipse-usage.properties
