@@ -28,7 +28,7 @@ void USART_Init(void) {
 	  */
 	// Why same bits, because they are mapped into the same place in mEMORY, but they are 2 different registers
 
-	/* USART Control and Status Register A – UCSRA
+	/* UCSRA - USART Control and Status Register A
 	  *  Bit 7 – RXC: USART Receive Complete, when it receives data, the flag = 0
 	  *  Bit 6 – TXC: USART Transmit Complete
 	  *  Bit 5 – UDRE: USART Data Register Empty, when the register is empty, the flag will be set to '1'
@@ -39,7 +39,9 @@ void USART_Init(void) {
 	  *  Bit 0 – MPCM: Multi-processor Communication Mode
 	  */
 
-	/* USART Control and Status Register B – UCSRB
+
+
+	/* UCSRB - USART Control and Status Register B
 	  *  Bit 7 – RXCIE: RX Complete Interrupt Enable, how to make using interrupt?
 	  *  Bit 6 – TXCIE: TX Complete Interrupt Enable
 	  *  Bit 5 – UDRIE: USART Data Register Empty Interrupt Enable, when the register is empty, the flag will be set to '1'
@@ -50,7 +52,7 @@ void USART_Init(void) {
 	  *  Bit 0 – TXB8: Transmit Data Bit 8, Enables the ninth bit of data, but remember that the UDR is 8 bits
 	  */
 
-	// USART Control and Status Register C – UCSRC
+	// UCSRC - USART Control and Status Register C
 	// Bit 7 – URSEL: Register Select, i must set it to '1'
 	// Bit 6 – UMSEL: USART Mode Select, '0' for Asynchronous
 	// BIT 5:4: UPM1:0, Parity Mode, I will use it as disable parity, so '00'
@@ -89,7 +91,7 @@ void USART_Init(void) {
 	// Tweak the Frame
 	// Set the baud rate
 
-
+	uint16 UBBR_Value = 0;
 }
 
 
