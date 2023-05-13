@@ -6,6 +6,7 @@
  */
 #include <util/delay.h>
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include "../ECUAL/LED_DRIVER/LED.h"
 #include "../ECUAL/BUTTON_DRIVER/BUTTON.h"
 #include "../MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.h"
@@ -18,8 +19,8 @@ int main(void) {
 
 	// Initializes LED Driver
 	LED_Init(PORT_C, PIN_0);
+	LED_Off(PORT_C, PIN_0);
 
-	LED_On(PORT_C, PIN_0);
 
 	// Initializes Button Driver
 	BUTTON_Init(PORT_D, PIN_2);
@@ -27,18 +28,14 @@ int main(void) {
 
 	// Initializes External Interrupt Driver
 	EXT_INTERRUPT_Init();
-	EXT_INTERRUPT_SetCallBack(EXT_INTERRUPT_INT0_ISR);
 
 	while (1) {
 
 	}
 }
 
-void EXT_INTERRUPT_INT0_ISR (void) {
-	LED_Toggle(PORT_C, PIN_0);
-}
-/*
+// The Interrupt Service Routine that will execute the Interrupt
 ISR (INT0_vect) {
 	LED_Toggle(PORT_C, PIN_0);
 }
-*/
+

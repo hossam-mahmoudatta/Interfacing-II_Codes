@@ -34,25 +34,44 @@ LINKER_SCRIPT_DEP:=
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
 ../APP/ \
+../Debug/ \
+../Debug/APP/ \
+../Debug/LIB/ \
+../Debug/MCAL/ \
+../Debug/MCAL/BUTTON_DRIVER/ \
+../Debug/MCAL/GPIO_DRIVER/ \
+../Debug/MCAL/KEYPAD_DRIVER/ \
+../Debug/MCAL/LCD_DRIVER/ \
+../Debug/MCAL/LED_DRIVER/ \
+../Debug/MCAL/SEVEN-SEGMENT_DRIVER/ \
+../ECUAL/ \
+../ECUAL/BUTTON_DRIVER/ \
+../ECUAL/KEYPAD_DRIVER/ \
+../ECUAL/LCD_DRIVER/ \
+../ECUAL/LED_DRIVER/ \
+../ECUAL/LM35_DRIVER/ \
+../ECUAL/SEVEN-SEGMENT_DRIVER/ \
 ../LIB/ \
 ../MCAL/ \
-../MCAL/BUTTON_DRIVER/ \
+../MCAL/ADC_DRIVER/ \
+../MCAL/EXT_INTERRUPT_DRIVER/ \
 ../MCAL/GPIO_DRIVER/ \
-../MCAL/KEYPAD_DRIVER/ \
-../MCAL/LCD_DRIVER/ \
-../MCAL/LED_DRIVER/ \
-../MCAL/SEVEN-SEGMENT_DRIVER/
+../MCAL/ICU_DRIVER/
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../APP/main.c \
-../MCAL/BUTTON_DRIVER/BUTTON.c \
+../ECUAL/BUTTON_DRIVER/BUTTON.c \
+../ECUAL/KEYPAD_DRIVER/KEYPAD.c \
+../ECUAL/LCD_DRIVER/LCD.c \
+../ECUAL/LED_DRIVER/LED.c \
+../ECUAL/LM35_DRIVER/LM35.c \
+../ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.c \
+../MCAL/ADC_DRIVER/ADC.c \
+../MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.c \
 ../MCAL/GPIO_DRIVER/GPIO.c \
-../MCAL/KEYPAD_DRIVER/KEYPAD.c \
-../MCAL/LCD_DRIVER/LCD.c \
-../MCAL/LED_DRIVER/LED.c \
-../MCAL/SEVEN-SEGMENT_DRIVER/SEGMENT.c
+../MCAL/ICU_DRIVER/ICU.c
 
 
 PREPROCESSING_SRCS += 
@@ -63,39 +82,55 @@ ASM_SRCS +=
 
 OBJS +=  \
 APP/main.o \
-MCAL/BUTTON_DRIVER/BUTTON.o \
+ECUAL/BUTTON_DRIVER/BUTTON.o \
+ECUAL/KEYPAD_DRIVER/KEYPAD.o \
+ECUAL/LCD_DRIVER/LCD.o \
+ECUAL/LED_DRIVER/LED.o \
+ECUAL/LM35_DRIVER/LM35.o \
+ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o \
+MCAL/ADC_DRIVER/ADC.o \
+MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.o \
 MCAL/GPIO_DRIVER/GPIO.o \
-MCAL/KEYPAD_DRIVER/KEYPAD.o \
-MCAL/LCD_DRIVER/LCD.o \
-MCAL/LED_DRIVER/LED.o \
-MCAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o
+MCAL/ICU_DRIVER/ICU.o
 
 OBJS_AS_ARGS +=  \
 APP/main.o \
-MCAL/BUTTON_DRIVER/BUTTON.o \
+ECUAL/BUTTON_DRIVER/BUTTON.o \
+ECUAL/KEYPAD_DRIVER/KEYPAD.o \
+ECUAL/LCD_DRIVER/LCD.o \
+ECUAL/LED_DRIVER/LED.o \
+ECUAL/LM35_DRIVER/LM35.o \
+ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o \
+MCAL/ADC_DRIVER/ADC.o \
+MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.o \
 MCAL/GPIO_DRIVER/GPIO.o \
-MCAL/KEYPAD_DRIVER/KEYPAD.o \
-MCAL/LCD_DRIVER/LCD.o \
-MCAL/LED_DRIVER/LED.o \
-MCAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o
+MCAL/ICU_DRIVER/ICU.o
 
 C_DEPS +=  \
 APP/main.d \
-MCAL/BUTTON_DRIVER/BUTTON.d \
+ECUAL/BUTTON_DRIVER/BUTTON.d \
+ECUAL/KEYPAD_DRIVER/KEYPAD.d \
+ECUAL/LCD_DRIVER/LCD.d \
+ECUAL/LED_DRIVER/LED.d \
+ECUAL/LM35_DRIVER/LM35.d \
+ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.d \
+MCAL/ADC_DRIVER/ADC.d \
+MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.d \
 MCAL/GPIO_DRIVER/GPIO.d \
-MCAL/KEYPAD_DRIVER/KEYPAD.d \
-MCAL/LCD_DRIVER/LCD.d \
-MCAL/LED_DRIVER/LED.d \
-MCAL/SEVEN-SEGMENT_DRIVER/SEGMENT.d
+MCAL/ICU_DRIVER/ICU.d
 
 C_DEPS_AS_ARGS +=  \
 APP/main.d \
-MCAL/BUTTON_DRIVER/BUTTON.d \
+ECUAL/BUTTON_DRIVER/BUTTON.d \
+ECUAL/KEYPAD_DRIVER/KEYPAD.d \
+ECUAL/LCD_DRIVER/LCD.d \
+ECUAL/LED_DRIVER/LED.d \
+ECUAL/LM35_DRIVER/LM35.d \
+ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.d \
+MCAL/ADC_DRIVER/ADC.d \
+MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.d \
 MCAL/GPIO_DRIVER/GPIO.d \
-MCAL/KEYPAD_DRIVER/KEYPAD.d \
-MCAL/LCD_DRIVER/LCD.d \
-MCAL/LED_DRIVER/LED.d \
-MCAL/SEVEN-SEGMENT_DRIVER/SEGMENT.d
+MCAL/ICU_DRIVER/ICU.d
 
 OUTPUT_FILE_PATH +=AVRTester.elf
 
@@ -118,7 +153,56 @@ APP/main.o: ../APP/main.c
 	@echo Finished building: $<
 	
 
-MCAL/BUTTON_DRIVER/BUTTON.o: ../MCAL/BUTTON_DRIVER/BUTTON.c
+ECUAL/BUTTON_DRIVER/BUTTON.o: ../ECUAL/BUTTON_DRIVER/BUTTON.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+ECUAL/KEYPAD_DRIVER/KEYPAD.o: ../ECUAL/KEYPAD_DRIVER/KEYPAD.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+ECUAL/LCD_DRIVER/LCD.o: ../ECUAL/LCD_DRIVER/LCD.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+ECUAL/LED_DRIVER/LED.o: ../ECUAL/LED_DRIVER/LED.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+ECUAL/LM35_DRIVER/LM35.o: ../ECUAL/LM35_DRIVER/LM35.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o: ../ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+MCAL/ADC_DRIVER/ADC.o: ../MCAL/ADC_DRIVER/ADC.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.o: ../MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -132,28 +216,7 @@ MCAL/GPIO_DRIVER/GPIO.o: ../MCAL/GPIO_DRIVER/GPIO.c
 	@echo Finished building: $<
 	
 
-MCAL/KEYPAD_DRIVER/KEYPAD.o: ../MCAL/KEYPAD_DRIVER/KEYPAD.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-MCAL/LCD_DRIVER/LCD.o: ../MCAL/LCD_DRIVER/LCD.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-MCAL/LED_DRIVER/LED.o: ../MCAL/LED_DRIVER/LED.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-MCAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o: ../MCAL/SEVEN-SEGMENT_DRIVER/SEGMENT.c
+MCAL/ICU_DRIVER/ICU.o: ../MCAL/ICU_DRIVER/ICU.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

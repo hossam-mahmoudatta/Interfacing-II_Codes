@@ -1,9 +1,9 @@
  /******************************************************************************
  *
- * Module: GPIO (General Purpose I/O
+ * Module: GPIO (General Purpose I/O)
  *
  * File Name: GPIO.h
- * uPDATED ON: MAY 3RD
+ * uPDATED ON: MAY 6TH
  * Description: Header file for the AVR GPIO Driver
  *
  * Author: Hossam Mahmoud
@@ -18,9 +18,10 @@
 
 
 /*******************************************************************************
- *                                									Definitions                                  					           		  *
+ *                                								Definitions                                  					      *
  *******************************************************************************/
-#define NUM_OF_PORTS           4
+
+#define NUM_OF_PORTS           		 4
 #define NUM_OF_PINS_PER_PORT   8
 
 #define PORT_A		     0
@@ -37,8 +38,9 @@
 #define PIN_6                6
 #define PIN_7                7
 
+
 /*******************************************************************************
- *                               							Types Declaration                            									  *
+ *                               						Enums Declaration                            						  *
  *******************************************************************************/
 
 typedef enum {
@@ -58,37 +60,41 @@ typedef enum GPIO_Error_t {
 
 
 /*******************************************************************************
- *                              Functions Prototypes                           *
+ *                              						Functions Prototypes                           					  *
  *******************************************************************************/
 
 /*
  * Description :
  * Setup the direction of the required pin input/output.
- * If the input port number or pin number are not correct, The function will not handle the request.
+ * If the input port number or pin number are not correct, The function will return an error.
  */
 GPIO_Error_t GPIO_setupPinDirection(uint8 port_num, uint8 pin_num, GPIO_PinDirectionType direction);
+
 
 /*
  * Description :
  * Write the value Logic High or Logic Low on the required pin.
- * If the input port number or pin number are not correct, The function will not handle the request.
+ * If the input port number or pin number are not correct, The function will return an error.
  * If the pin is input, this function will enable/disable the internal pull-up resistor.
  */
 GPIO_Error_t GPIO_writePin(uint8 port_num, uint8 pin_num, uint8 value);
 
+
 /*
  * Description :
- * Read and return the value for the required pin, it should be Logic High or Logic Low.
- * If the input port number or pin number are not correct, The function will return Logic Low.
+ * Toggles a certain pin when requested.
+ * If the input port number or pin number are not correct, The function will return an error.
  */
 GPIO_Error_t GPIO_togglePin(uint8 port_num, uint8 pin_num);
+
 
 /*
  * Description :
  * Read and return the value for the required pin, it should be Logic High or Logic Low.
- * If the input port number or pin number are not correct, The function will return Logic Low.
+ * If the input port number or pin number are not correct, The function will return an error.
  */
 uint8 GPIO_readPin(uint8 port_num, uint8 pin_num);
+
 
 /*
  * Description :
@@ -99,6 +105,7 @@ uint8 GPIO_readPin(uint8 port_num, uint8 pin_num);
  */
 GPIO_Error_t GPIO_setupPortDirection(uint8 port_num, uint8 direction);
 
+
 /*
  * Description :
  * Write the value on the required port.
@@ -108,11 +115,13 @@ GPIO_Error_t GPIO_setupPortDirection(uint8 port_num, uint8 direction);
  */
 GPIO_Error_t GPIO_writePort(uint8 port_num, uint8 value);
 
+
 /*
  * Description :
  * Read and return the value of the required port.
  * If the input port number is not correct, The function will return ZERO value.
  */
 uint8 GPIO_readPort(uint8 port_num);
+
 
 #endif /* GPIO_H_ */

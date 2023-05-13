@@ -25,8 +25,8 @@ typedef unsigned char boolean;
 	#define TRUE        (1u)
 #endif
 
-#define LOGIC_HIGH        (1u)
-#define LOGIC_LOW        (0u)
+#define LOGIC_HIGH        1 //(1u)
+#define LOGIC_LOW        0 //(0u)
 
 #define NULL_PTR    ((void*)0)
 #define NULL    (0)

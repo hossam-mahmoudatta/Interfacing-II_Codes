@@ -36,6 +36,6 @@
 #define BIT_IS_SET(VAR, BIT) (VAR & (1 << BIT))
 
 /* Check if a specific bit is cleared in any register and return true if yes */
-#define BIT_IS_CLEAR(VAR, BIT) ( !(VAR & (1 << BIT)))
+#define BIT_IS_CLR(VAR, BIT) ( !(VAR & (1 << BIT)))
 
 #endif

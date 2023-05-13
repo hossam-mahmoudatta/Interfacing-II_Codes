@@ -6979,7 +6979,7 @@ int main(void) {
     2d56:	0e 94 b8 09 	call	0x1370	; 0x1370 <ADC_Init>
 
 	// Displays messages
-	LCD_displayString("ADC Value = ");
+	LCD_displayString("ADC Value : ");
     2d5a:	80 e6       	ldi	r24, 0x60	; 96
     2d5c:	90 e0       	ldi	r25, 0x00	; 0
     2d5e:	0e 94 3e 15 	call	0x2a7c	; 0x2a7c <LCD_displayString>

@@ -22,7 +22,7 @@ int main(void) {
 	ADC_Init();
 
 	// Displays messages
-	LCD_displayString("ADC Value = ");
+	LCD_displayString("ADC Value : ");
 
 	while (1) {
 		RESULT_VALUE = ADC_readChannel(0);
