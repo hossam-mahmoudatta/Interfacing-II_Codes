@@ -92,6 +92,7 @@ void USART_Init(void) {
 	// Set the baud rate
 
 	uint16 UBBR_Value = 0;
+
 }
 
 
