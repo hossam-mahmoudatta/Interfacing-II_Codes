@@ -37,7 +37,15 @@
 // Initializing the mode for the interrupts
 #define EXT_INTERRUPT_0_MODE						EXT_INTERRUPT_Rising_Edge
 #define EXT_INTERRUPT_1_MODE						EXT_INTERRUPT_Falling_Edge
-#define EXT_INTERRUPT_2_MODE						EXT_INTERRUPT_Falling_Edge
+#define EXT_INTERRUPT_2_MODE						EXT_INTERRUPT_INT2_Falling_Edge
+
+// Seeing if the INT is enabled or disabled
+#define EXT_INTERRUPT_Disable_State			0
+#define EXT_INTERRUPT_Enable_State				1
+
+#define EXT_INTERRUPT_INT0_INIT_STATE		EXT_INTERRUPT_Enable_State
+#define EXT_INTERRUPT_INT1_INIT_STATE		EXT_INTERRUPT_Disable_State
+#define EXT_INTERRUPT_INT2_INIT_STATE		EXT_INTERRUPT_Disable_State
 
 
 /*******************************************************************************
@@ -47,20 +55,8 @@
 // Initialize External Interrupt
 void EXT_INTERRUPT_Init(void);
 
-// Enable External Interrupt 0 ISR
-void EXT_INTERRUPT_Enable_INT0(void);
-
-// Disable External Interrupt 0 ISR
-void EXT_INTERRUPT_Disable_INT0(void);
-
-// Enable External Global Interrupt
-void EXT_INTERRUPT_EnableGlobalInterrupt(void);
-
-// Disable External Global Interrupt
-void EXT_INTERRUPT_DisableGlobalInterrupt(void);
-
-// We'll add for the other INTs but later
-
+// Disable External Interrupt ISR
+void EXT_INTERRUPT_DeInit(void);
 
 //The function that will be called in the EXT INT
 void (*CallBackPtr) (void);
