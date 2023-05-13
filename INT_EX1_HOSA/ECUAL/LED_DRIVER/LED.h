@@ -22,6 +22,10 @@
  *                                									Definitions                                  					           		  *
  *******************************************************************************/
 
+#define LED_NEGATIVE_LOGIC				0
+#define LED_POSITIVE_LOGIC				1
+
+#define LED_MODE									LED_NEGATIVE_LOGIC
 
 /*******************************************************************************
  *                               							Types Declaration                            									  *

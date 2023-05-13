@@ -10,7 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include MCAL/ICU_DRIVER/subdir.mk
 -include MCAL/GPIO_DRIVER/subdir.mk
--include MCAL/EXT-INTERRUPT_DRIVER/subdir.mk
+-include MCAL/EXT_INTERRUPT_DRIVER/subdir.mk
 -include MCAL/ADC_DRIVER/subdir.mk
 -include ECUAL/SEVEN-SEGMENT_DRIVER/subdir.mk
 -include ECUAL/LM35_DRIVER/subdir.mk
@@ -54,6 +54,9 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 LSS += \
 INT_EX1_HOSA.lss \
 
+FLASH_IMAGE += \
+INT_EX1_HOSA.hex \
+
 SIZEDUMMY += \
 sizedummy \
 
@@ -78,6 +81,12 @@ INT_EX1_HOSA.lss: INT_EX1_HOSA.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+INT_EX1_HOSA.hex: INT_EX1_HOSA.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+	@echo 'Create Flash image (ihex format)'
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex INT_EX1_HOSA.elf  "INT_EX1_HOSA.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 sizedummy: INT_EX1_HOSA.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'
 	-avr-size --format=avr --mcu=atmega16 INT_EX1_HOSA.elf
@@ -86,10 +95,10 @@ sizedummy: INT_EX1_HOSA.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 
 # Other Targets
 clean:
-	-$(RM) $(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) INT_EX1_HOSA.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) INT_EX1_HOSA.elf
 	-@echo ' '
 
-secondary-outputs: $(LSS) $(SIZEDUMMY)
+secondary-outputs: $(LSS) $(FLASH_IMAGE) $(SIZEDUMMY)
 
 .PHONY: all clean dependents main-build
 

@@ -10,8 +10,8 @@
  *
  *******************************************************************************/
 
-#ifndef EXT-INTERRUPT_H_
-#define EXT-INTERRUPT_H_
+#ifndef EXT_INTERRUPT_H_
+#define EXT_INTERRUPT_H_
 
 #include "../GPIO_DRIVER/GPIO.h"
 #include "../../LIB/STD_TYPES.h"
@@ -67,9 +67,11 @@ void EXT_INTERRUPT_SetCallBack(void (*CopyFuncPtr) (void));
 //
 void __vector_1(void);
 
+void EXT_INTERRUPT_INT0_ISR (void);
+
+//void INT0_vect (void) {}
 
 //void vector (void) __attribute__ ((signal, __INTR_ATTRS)) __VA_ARGS__;
-//void INT0_vect (void) {}
 
 
 

@@ -10,7 +10,7 @@
  *
  *******************************************************************************/
 
-#include "EXT-INTERRUPT.h"
+#include "EXT_INTERRUPT.h"
 
 #include "avr/io.h" /* To use the IO Ports Registers */
 #include <util/delay.h>
@@ -60,7 +60,7 @@ void EXT_INTERRUPT_Init(void) {
 		// Enabling the INT0 bit inside GICR
 		SET_BIT(GICR, INT1);
 
-		// Setup Pin PD2 "INT0" to Input
+		// Setup Pin PD3 "INT1" to Input
 		GPIO_setupPinDirection(PORT_D, PIN_3, PIN_INPUT);
 
 		// Initializing the ISC0X bits
@@ -86,7 +86,7 @@ void EXT_INTERRUPT_Init(void) {
 		// Enabling the INT0 bit inside GICR
 		SET_BIT(GICR, INT2);
 
-		// Setup Pin PD2 "INT0" to Input
+		// Setup Pin PB2 "INT2" to Input
 		GPIO_setupPinDirection(PORT_B, PIN_2, PIN_INPUT);
 
 		// Initializing the ISC0X bits
@@ -122,9 +122,27 @@ void EXT_INTERRUPT_DeInit(void) {
 	#endif
 
 	CLR_BIT(SREG, SREG_I_BIT);
+}
 
+//The function that will be called in the EXT INT
+void (*CallBackPtr) (void) = NULL;
+
+// External Interrupt Call Back Function
+void EXT_INTERRUPT_SetCallBack(void (*CopyFuncPtr) (void)) {
+	CallBackPtr = CopyFuncPtr;
 }
 
 
+
+void __vector_1(void) __attribute__((signal, used));
+// Previous prototype __attribute__((signal, used));
+// is to tell the compiler that I will use this function
+// but not now, so don't optimize and delete it.
+
+void __vector_1(void) {
+	if(CallBackPtr != NULL) {
+		CallBackPtr();
+	}
+}
 
 

@@ -56,8 +56,13 @@ LED_Error_t LED_On(uint8 port_num, uint8 pin_num) {
 		}
 		else {
 			/* Setup the pin direction as required */
-			GPIO_writePin(port_num, pin_num, LOGIC_HIGH);
-			LED_Driver_Checker = LED_OK;
+			#if (LED_MODE == LED_NEGATIVE_LOGIC)
+				GPIO_writePin(port_num, pin_num, LOGIC_LOW);
+				LED_Driver_Checker = LED_OK;
+			#elif (LED_MODE == LED_POSITIVE_LOGIC)
+				GPIO_writePin(port_num, pin_num, LOGIC_HIGH);
+				LED_Driver_Checker = LED_OK;
+			#endif
 		}
 		return LED_Driver_Checker;
 }
@@ -78,8 +83,13 @@ LED_Error_t LED_Off(uint8 port_num, uint8 pin_num) {
 		}
 		else {
 			/* Setup the pin direction as required */
-			GPIO_writePin(port_num, pin_num, LOGIC_LOW);
-			LED_Driver_Checker = LED_OK;
+			#if (LED_MODE == LED_NEGATIVE_LOGIC)
+				GPIO_writePin(port_num, pin_num, LOGIC_HIGH);
+				LED_Driver_Checker = LED_OK;
+			#elif (LED_MODE == LED_POSITIVE_LOGIC)
+				GPIO_writePin(port_num, pin_num, LOGIC_LOW);
+				LED_Driver_Checker = LED_OK;
+			#endif
 		}
 		return LED_Driver_Checker;
 }
