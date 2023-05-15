@@ -31,9 +31,11 @@
  *******************************************************************************/
 
 // Initializes and enables the ADC Module to start functionality
-void USART_Init(void);
+void USART_Init(uint32 baudRate);
 
-uint8 USART_sendByte(const uint8 data);
+uint8 USART_sendByte1(const uint8 data);
+
+uint8 USART_sendByte2(const uint8 data);
 
 uint8 USART_receiveByte(void);
 

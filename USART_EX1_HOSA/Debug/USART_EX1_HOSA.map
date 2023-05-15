@@ -2,6 +2,8 @@ Archive member included because of file (symbol)
 
 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
                               ./ECUAL/LM35_DRIVER/LM35.o (__mulsi3)
+c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                              ./MCAL/USART_DRIVER/USART.o (__udivmodsi4)
 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
                               c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o (exit)
 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
@@ -169,7 +171,7 @@ LOAD c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x353a
+.text           0x00000000     0x3678
  *(.vectors)
  .vectors       0x00000000       0x54 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
                 0x00000000                __vectors
@@ -258,6 +260,7 @@ LOAD c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .text          0x00000092        0x0 ./ECUAL/BUTTON_DRIVER/BUTTON.o
  .text          0x00000092        0x0 ./APP/main.o
  .text          0x00000092        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+ .text          0x00000092        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
  .text          0x00000092        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  .text          0x00000092        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
  .text          0x00000092       0x58 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fixunssfsi.o)
@@ -298,131 +301,140 @@ LOAD c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x00000e2e                . = ALIGN (0x2)
  *(.text.*)
  .text.USART_Init
-                0x00000e2e       0x18 ./MCAL/USART_DRIVER/USART.o
+                0x00000e2e      0x116 ./MCAL/USART_DRIVER/USART.o
                 0x00000e2e                USART_Init
- .text.ADC_readChannel
-                0x00000e46       0x6e ./MCAL/USART_DRIVER/USART.o
-                0x00000e46                ADC_readChannel
+ .text.USART_sendByte
+                0x00000f44       0x28 ./MCAL/USART_DRIVER/USART.o
+                0x00000f44                USART_sendByte
+ .text.USART_sendByte2
+                0x00000f6c       0x24 ./MCAL/USART_DRIVER/USART.o
+                0x00000f6c                USART_sendByte2
+ .text.USART_receiveByte
+                0x00000f90       0x1e ./MCAL/USART_DRIVER/USART.o
+                0x00000f90                USART_receiveByte
  .text.ICU_Init
-                0x00000eb4       0xd4 ./MCAL/ICU_DRIVER/ICU.o
-                0x00000eb4                ICU_Init
+                0x00000fae       0xd4 ./MCAL/ICU_DRIVER/ICU.o
+                0x00000fae                ICU_Init
  .text.GPIO_setupPinDirection
-                0x00000f88      0x1f8 ./MCAL/GPIO_DRIVER/GPIO.o
-                0x00000f88                GPIO_setupPinDirection
+                0x00001082      0x1f8 ./MCAL/GPIO_DRIVER/GPIO.o
+                0x00001082                GPIO_setupPinDirection
  .text.GPIO_writePin
-                0x00001180      0x1f8 ./MCAL/GPIO_DRIVER/GPIO.o
-                0x00001180                GPIO_writePin
+                0x0000127a      0x1f8 ./MCAL/GPIO_DRIVER/GPIO.o
+                0x0000127a                GPIO_writePin
  .text.GPIO_togglePin
-                0x00001378      0x11c ./MCAL/GPIO_DRIVER/GPIO.o
-                0x00001378                GPIO_togglePin
+                0x00001472      0x11c ./MCAL/GPIO_DRIVER/GPIO.o
+                0x00001472                GPIO_togglePin
  .text.GPIO_readPin
-                0x00001494      0x156 ./MCAL/GPIO_DRIVER/GPIO.o
-                0x00001494                GPIO_readPin
+                0x0000158e      0x156 ./MCAL/GPIO_DRIVER/GPIO.o
+                0x0000158e                GPIO_readPin
  .text.GPIO_setupPortDirection
-                0x000015ea       0xaa ./MCAL/GPIO_DRIVER/GPIO.o
-                0x000015ea                GPIO_setupPortDirection
+                0x000016e4       0xaa ./MCAL/GPIO_DRIVER/GPIO.o
+                0x000016e4                GPIO_setupPortDirection
  .text.GPIO_writePort
-                0x00001694       0x98 ./MCAL/GPIO_DRIVER/GPIO.o
-                0x00001694                GPIO_writePort
+                0x0000178e       0x98 ./MCAL/GPIO_DRIVER/GPIO.o
+                0x0000178e                GPIO_writePort
  .text.GPIO_readPort
-                0x0000172c       0x96 ./MCAL/GPIO_DRIVER/GPIO.o
-                0x0000172c                GPIO_readPort
+                0x00001826       0x96 ./MCAL/GPIO_DRIVER/GPIO.o
+                0x00001826                GPIO_readPort
  .text.EXT_INTERRUPT_Init
-                0x000017c2       0x6c ./MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.o
-                0x000017c2                EXT_INTERRUPT_Init
+                0x000018bc       0x6c ./MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.o
+                0x000018bc                EXT_INTERRUPT_Init
  .text.EXT_INTERRUPT_DeInit
-                0x0000182e       0x2a ./MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.o
-                0x0000182e                EXT_INTERRUPT_DeInit
+                0x00001928       0x2a ./MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.o
+                0x00001928                EXT_INTERRUPT_DeInit
  .text.EXT_INTERRUPT_SetCallBack
-                0x00001858       0x24 ./MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.o
-                0x00001858                EXT_INTERRUPT_SetCallBack
+                0x00001952       0x24 ./MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.o
+                0x00001952                EXT_INTERRUPT_SetCallBack
  .text.ADC_Init
-                0x0000187c       0xd2 ./MCAL/ADC_DRIVER/ADC.o
-                0x0000187c                ADC_Init
+                0x00001976       0xd2 ./MCAL/ADC_DRIVER/ADC.o
+                0x00001976                ADC_Init
  .text.ADC_readChannel
-                0x0000194e       0x6e ./MCAL/ADC_DRIVER/ADC.o
+                0x00001a48       0x6e ./MCAL/ADC_DRIVER/ADC.o
+                0x00001a48                ADC_readChannel
  .text.SEGMENT_Init
-                0x000019bc       0x50 ./ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o
-                0x000019bc                SEGMENT_Init
+                0x00001ab6       0x50 ./ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o
+                0x00001ab6                SEGMENT_Init
  .text.SEGMENT_DISPLAY
-                0x00001a0c      0x27a ./ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o
-                0x00001a0c                SEGMENT_DISPLAY
+                0x00001b06      0x27a ./ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o
+                0x00001b06                SEGMENT_DISPLAY
  .text.LM35_getTemperature
-                0x00001c86       0x6e ./ECUAL/LM35_DRIVER/LM35.o
-                0x00001c86                LM35_getTemperature
+                0x00001d80       0x6e ./ECUAL/LM35_DRIVER/LM35.o
+                0x00001d80                LM35_getTemperature
  .text.LED_Init
-                0x00001cf4       0x44 ./ECUAL/LED_DRIVER/LED.o
-                0x00001cf4                LED_Init
- .text.LED_On   0x00001d38       0x44 ./ECUAL/LED_DRIVER/LED.o
-                0x00001d38                LED_On
- .text.LED_Off  0x00001d7c       0x44 ./ECUAL/LED_DRIVER/LED.o
-                0x00001d7c                LED_Off
+                0x00001dee       0x44 ./ECUAL/LED_DRIVER/LED.o
+                0x00001dee                LED_Init
+ .text.LED_On   0x00001e32       0x44 ./ECUAL/LED_DRIVER/LED.o
+                0x00001e32                LED_On
+ .text.LED_Off  0x00001e76       0x44 ./ECUAL/LED_DRIVER/LED.o
+                0x00001e76                LED_Off
  .text.LED_Toggle
-                0x00001dc0       0x42 ./ECUAL/LED_DRIVER/LED.o
-                0x00001dc0                LED_Toggle
+                0x00001eba       0x42 ./ECUAL/LED_DRIVER/LED.o
+                0x00001eba                LED_Toggle
  .text.LCD_Init
-                0x00001e02      0x164 ./ECUAL/LCD_DRIVER/LCD.o
-                0x00001e02                LCD_Init
+                0x00001efc      0x164 ./ECUAL/LCD_DRIVER/LCD.o
+                0x00001efc                LCD_Init
  .text.LCD_sendCommand
-                0x00001f66      0x8a4 ./ECUAL/LCD_DRIVER/LCD.o
-                0x00001f66                LCD_sendCommand
+                0x00002060      0x8a4 ./ECUAL/LCD_DRIVER/LCD.o
+                0x00002060                LCD_sendCommand
  .text.LCD_displayCharacter
-                0x0000280a      0x8a4 ./ECUAL/LCD_DRIVER/LCD.o
-                0x0000280a                LCD_displayCharacter
+                0x00002904      0x8a4 ./ECUAL/LCD_DRIVER/LCD.o
+                0x00002904                LCD_displayCharacter
  .text.LCD_displayString
-                0x000030ae       0x52 ./ECUAL/LCD_DRIVER/LCD.o
-                0x000030ae                LCD_displayString
+                0x000031a8       0x52 ./ECUAL/LCD_DRIVER/LCD.o
+                0x000031a8                LCD_displayString
  .text.LCD_moveCursor
-                0x00003100       0x84 ./ECUAL/LCD_DRIVER/LCD.o
-                0x00003100                LCD_moveCursor
+                0x000031fa       0x84 ./ECUAL/LCD_DRIVER/LCD.o
+                0x000031fa                LCD_moveCursor
  .text.LCD_displayStringRowColumn
-                0x00003184       0x32 ./ECUAL/LCD_DRIVER/LCD.o
-                0x00003184                LCD_displayStringRowColumn
+                0x0000327e       0x32 ./ECUAL/LCD_DRIVER/LCD.o
+                0x0000327e                LCD_displayStringRowColumn
  .text.LCD_intgerToString
-                0x000031b6       0x46 ./ECUAL/LCD_DRIVER/LCD.o
-                0x000031b6                LCD_intgerToString
+                0x000032b0       0x46 ./ECUAL/LCD_DRIVER/LCD.o
+                0x000032b0                LCD_intgerToString
  .text.LCD_clearScreen
-                0x000031fc       0x14 ./ECUAL/LCD_DRIVER/LCD.o
-                0x000031fc                LCD_clearScreen
+                0x000032f6       0x14 ./ECUAL/LCD_DRIVER/LCD.o
+                0x000032f6                LCD_clearScreen
  .text.KEYPAD_Init
-                0x00003210       0x54 ./ECUAL/KEYPAD_DRIVER/KEYPAD.o
-                0x00003210                KEYPAD_Init
+                0x0000330a       0x54 ./ECUAL/KEYPAD_DRIVER/KEYPAD.o
+                0x0000330a                KEYPAD_Init
  .text.KEYPAD_getPressedKey
-                0x00003264       0x8a ./ECUAL/KEYPAD_DRIVER/KEYPAD.o
-                0x00003264                KEYPAD_getPressedKey
+                0x0000335e       0x8a ./ECUAL/KEYPAD_DRIVER/KEYPAD.o
+                0x0000335e                KEYPAD_getPressedKey
  .text.BUTTON_Init
-                0x000032ee       0x44 ./ECUAL/BUTTON_DRIVER/BUTTON.o
-                0x000032ee                BUTTON_Init
+                0x000033e8       0x44 ./ECUAL/BUTTON_DRIVER/BUTTON.o
+                0x000033e8                BUTTON_Init
  .text.BUTTON_Read
-                0x00003332       0x48 ./ECUAL/BUTTON_DRIVER/BUTTON.o
-                0x00003332                BUTTON_Read
- .text.main     0x0000337a       0x2e ./APP/main.o
-                0x0000337a                main
+                0x0000342c       0x48 ./ECUAL/BUTTON_DRIVER/BUTTON.o
+                0x0000342c                BUTTON_Read
+ .text.main     0x00003474       0x2e ./APP/main.o
+                0x00003474                main
  .text.__vector_1
-                0x000033a8       0x58 ./APP/main.o
-                0x000033a8                __vector_1
- .text.libgcc   0x00003400       0x3e c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
-                0x00003400                __mulsi3
- .text.libgcc   0x0000343e        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x0000343e        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x0000343e       0x38 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x0000343e                __prologue_saves__
- .text.libgcc   0x00003476       0x36 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x00003476                __epilogue_restores__
- .text.libgcc   0x000034ac        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                0x000034a2       0x58 ./APP/main.o
+                0x000034a2                __vector_1
+ .text.libgcc   0x000034fa       0x3e c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+                0x000034fa                __mulsi3
+ .text.libgcc   0x00003538       0x44 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x00003538                __udivmodsi4
+ .text.libgcc   0x0000357c        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x0000357c        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x0000357c       0x38 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x0000357c                __prologue_saves__
+ .text.libgcc   0x000035b4       0x36 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x000035b4                __epilogue_restores__
+ .text.libgcc   0x000035ea        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
  .text.avr-libc
-                0x000034ac       0x42 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(itoa.o)
-                0x000034ac                itoa
+                0x000035ea       0x42 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(itoa.o)
+                0x000035ea                itoa
  .text.avr-libc
-                0x000034ee       0x20 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strrev.o)
-                0x000034ee                strrev
- .text.libgcc   0x0000350e       0x28 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
-                0x0000350e                __udivmodhi4
-                0x00003536                . = ALIGN (0x2)
+                0x0000362c       0x20 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strrev.o)
+                0x0000362c                strrev
+ .text.libgcc   0x0000364c       0x28 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                0x0000364c                __udivmodhi4
+                0x00003674                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00003536        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00003536                exit
-                0x00003536                _exit
+ .fini9         0x00003674        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00003674                exit
+                0x00003674                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -441,11 +453,11 @@ LOAD c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00003536        0x4 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00003674        0x4 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000353a                _etext = .
+                0x00003678                _etext = .
 
-.data           0x00800060      0x108 load address 0x0000353a
+.data           0x00800060      0x108 load address 0x00003678
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
@@ -462,6 +474,7 @@ LOAD c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .data          0x00800060        0x0 ./ECUAL/BUTTON_DRIVER/BUTTON.o
  .data          0x00800060        0x0 ./APP/main.o
  .data          0x00800060        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+ .data          0x00800060        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
  .data          0x00800060        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  .data          0x00800060        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
  .data          0x00800060        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fixunssfsi.o)
@@ -512,6 +525,7 @@ LOAD c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .bss           0x00800168        0x0 ./ECUAL/BUTTON_DRIVER/BUTTON.o
  .bss           0x00800168        0x0 ./APP/main.o
  .bss           0x00800168        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+ .bss           0x00800168        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
  .bss           0x00800168        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  .bss           0x00800168        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
  .bss           0x00800168        0x0 c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fixunssfsi.o)
@@ -541,8 +555,8 @@ LOAD c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x00800168                CallBackPtr
  *(COMMON)
                 0x0080016a                PROVIDE (__bss_end, .)
-                0x0000353a                __data_load_start = LOADADDR (.data)
-                0x00003642                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00003678                __data_load_start = LOADADDR (.data)
+                0x00003780                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080016a        0x0
                 0x0080016a                PROVIDE (__noinit_start, .)
@@ -567,35 +581,35 @@ LOAD c:/program files/eclipse/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x4164
+.stab           0x00000000     0x423c
  *(.stab)
- .stab          0x00000000      0x4bc ./MCAL/USART_DRIVER/USART.o
- .stab          0x000004bc      0x33c ./MCAL/ICU_DRIVER/ICU.o
+ .stab          0x00000000      0x594 ./MCAL/USART_DRIVER/USART.o
+ .stab          0x00000594      0x33c ./MCAL/ICU_DRIVER/ICU.o
                                 0x4f8 (size before relaxing)
- .stab          0x000007f8      0xa08 ./MCAL/GPIO_DRIVER/GPIO.o
+ .stab          0x000008d0      0xa08 ./MCAL/GPIO_DRIVER/GPIO.o
                                 0xbc4 (size before relaxing)
- .stab          0x00001200      0x324 ./MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.o
+ .stab          0x000012d8      0x324 ./MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.o
                                 0x4e0 (size before relaxing)
- .stab          0x00001524      0x378 ./MCAL/ADC_DRIVER/ADC.o
+ .stab          0x000015fc      0x378 ./MCAL/ADC_DRIVER/ADC.o
                                 0x534 (size before relaxing)
- .stab          0x0000189c      0x588 ./ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o
+ .stab          0x00001974      0x588 ./ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.o
                                 0x744 (size before relaxing)
- .stab          0x00001e24      0x2b8 ./ECUAL/LM35_DRIVER/LM35.o
+ .stab          0x00001efc      0x2b8 ./ECUAL/LM35_DRIVER/LM35.o
                                 0x474 (size before relaxing)
- .stab          0x000020dc      0x540 ./ECUAL/LED_DRIVER/LED.o
+ .stab          0x000021b4      0x540 ./ECUAL/LED_DRIVER/LED.o
                                 0x6fc (size before relaxing)
- .stab          0x0000261c     0x111c ./ECUAL/LCD_DRIVER/LCD.o
+ .stab          0x000026f4     0x111c ./ECUAL/LCD_DRIVER/LCD.o
                                0x12d8 (size before relaxing)
- .stab          0x00003738      0x360 ./ECUAL/KEYPAD_DRIVER/KEYPAD.o
+ .stab          0x00003810      0x360 ./ECUAL/KEYPAD_DRIVER/KEYPAD.o
                                 0x51c (size before relaxing)
- .stab          0x00003a98      0x3c0 ./ECUAL/BUTTON_DRIVER/BUTTON.o
+ .stab          0x00003b70      0x3c0 ./ECUAL/BUTTON_DRIVER/BUTTON.o
                                 0x57c (size before relaxing)
- .stab          0x00003e58      0x30c ./APP/main.o
+ .stab          0x00003f30      0x30c ./APP/main.o
                                 0x4bc (size before relaxing)
 
-.stabstr        0x00000000     0x1dca
+.stabstr        0x00000000     0x1e20
  *(.stabstr)
- .stabstr       0x00000000     0x1dca ./MCAL/USART_DRIVER/USART.o
+ .stabstr       0x00000000     0x1e20 ./MCAL/USART_DRIVER/USART.o
 
 .stab.excl
  *(.stab.excl)
