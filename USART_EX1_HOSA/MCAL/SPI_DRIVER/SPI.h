@@ -1,29 +1,33 @@
  /******************************************************************************
  *
- * Module: USART (Universal Synchronous Asynchronous Receiver Transmitter)
+ * Module: SPI (Serial Peripheral Interface)
  *
- * File Name: USART.h
+ * File Name: SPI.h
  *
- * Description: Header file for the AVR USART Driver
+ * Description: Header file for the AVR SPI Driver
  *
  * Author: Hossam Mahmoud
  *
  *******************************************************************************/
 
-#ifndef USART_H_
-#define USART_H_
+#ifndef SPI_H_
+#define SPI_H_
 
 #include "../GPIO_DRIVER/GPIO.h"
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/COMMON_MACROS.h"
 
+#define SS 		PIN_4
+#define MOSI 	PIN_5
+#define MISO 	PIN_6
+#define SCK 		PIN_7
 
 /*******************************************************************************
  *                              						Functions Prototypes                           					  *
  *******************************************************************************/
 
-// Initializes and enables the USART Module to start functionality
-void USART_Init(uint32 baudRate);
+// Initializes and enables the SPI Module to start functionality
+void SPI_Init(void);
 
 // Responsible for the USART to send a byte
 void USART_sendByte(const uint8 data);

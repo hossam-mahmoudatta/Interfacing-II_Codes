@@ -15,8 +15,12 @@
 #include "common_macros.h" /* To use the macros like SET_BIT */
 #include "avr/io.h" /* To use the SPI Registers */
 
+#define SS 		PIN_4
+#define MOSI 	PIN_5
+#define MISO 	PIN_6
+#define SCK 		PIN_7
 /*******************************************************************************
- *                      Functions Definitions                                  *
+ *                      							Functions Definitions                                  					  *
  *******************************************************************************/
 
 /*

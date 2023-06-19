@@ -1,10 +1,10 @@
  /******************************************************************************
  *
- * Module: ADC (Analog to Digital Converter)
+ * Module: USART (Universal Synchronous Asynchronous Receiver Transmitter)
  *
- * File Name: ADC.c
+ * File Name: USART.c
  *
- * Description: Source file for the AVR ADC Driver
+ * Description: Source file for the AVR USART Driver
  *
  * Author: Hossam Mahmoud
  *
@@ -107,28 +107,37 @@ void USART_Init(uint32 baudRate) {
 }
 
 
-// Reads the content written to the selected channel of the ADC
-uint8 USART_sendByte(const uint8 data) {
+// Responsible for the USART to send a byte
+void USART_sendByte(const uint8 data) {
 	/* UCSRA - USART Control and Status Register A
 	  *  Bit 6 – TXC: USART Transmit Complete
+	  *  Bit 5 – UDRE: USART Data Register Empty
+	  *
+	  *  UDRE flag is set when the TX Buffer (UDR) is empty and ready
+	  *  for transmitting a new byte waiting untill this flag is set to '1'
 	  */
+	while(BIT_IS_CLR(UCSRA,UDRE)) {
+		// Polling (Busy Wait)
+	}
 
-	while ( BIT_IS_CLR(UCSRA, TXC) );
+	/*
+	 * Put the required data in the UDR register and also clear the UDRE flag as
+	 * the UDR register is not empty now
+	 */
+	UDR = data;
+
+	/************************* Another Method *************************
+	UDR = data;
+	while( BIT_IS_CLR(UCSRA, TXC) ){
+
+	} // Wait until the transmission is complete TXC = 1
+	SET_BIT(UCSRA,TXC); // Clear the TXC flag
 	// This is waiting for the flag to be set to '0' to know that I received data
+	*******************************************************************/
 }
 
-uint8 USART_sendByte2(const uint8 data) {
-	/* UCSRA - USART Control and Status Register A
-	  *  Bit 7 – RXC: USART Receive Complete, when it receives data, the flag = 0
-	  */
 
-	while ( BIT_IS_CLR(UCSRA, RXC) );
-	// This is waiting for the flag to be set to '0' to know that I received data
-
-	// When reading
-	return UDR;
-}
-
+// Responsible for the USART to receive a byte
 uint8 USART_receiveByte(void) {
 	/* UCSRA - USART Control and Status Register A
 	  *  Bit 7 – RXC: USART Receive Complete, when it receives data, the flag = 0
@@ -139,6 +148,29 @@ uint8 USART_receiveByte(void) {
 
 	// When reading
 	return UDR;
+}
+
+
+// Responsible for the USART to send an array of bytes, a string
+void USART_sendString(const uint8 *str) {
+	uint8 i = 0;
+	while (str[i] != '\0') {
+		USART_sendByte(str[i]);
+		i++;
+	}
+}
+
+
+// Responsible for the USART to receive an array of bytes, a string
+void USART_receiveString(uint8 *str) {
+	uint8 i = 0;
+	str[i] = USART_receiveByte();
+
+	while (str[i] != '#') {
+		i++;
+		str[i] = USART_receiveByte();
+	}
+	str[i] = '\0'; // replacing the '#' with '\0'
 }
 
 
