@@ -18,6 +18,7 @@
 
 // Initializes and enables the Master mode for the SPI Module to start functionality
 void SPI_initMaster(void) {
+	// First: Configure the Pins for Master or Slaves
 	/* Configure SPI Master Pins
 	 *	SS (PB4)   	--> 	Output
 	 *	MOSI (PB5) --> 	Output
@@ -93,15 +94,13 @@ void SPI_initSlave(void) {
 }
 
 
-// Responsible for the USART to send a byte
-void USART_sendByte(const uint8 data) {
-	/* UCSRA - USART Control and Status Register A
-	  *  Bit 6 – TXC: USART Transmit Complete
-	  *  Bit 5 – UDRE: USART Data Register Empty
-	  *
-	  *  UDRE flag is set when the TX Buffer (UDR) is empty and ready
-	  *  for transmitting a new byte waiting untill this flag is set to '1'
+// Responsible for the SPI to send & receive a byte
+void SPI_sendReceiveByte(const uint8 data) {
+	/* SPDR - SPI Data Register
+	  *  Bit 7..0 – MSB .. LSB Data
 	  */
+
+
 	while(BIT_IS_CLR(UCSRA,UDRE)) {
 		// Polling (Busy Wait)
 	}
@@ -111,15 +110,6 @@ void USART_sendByte(const uint8 data) {
 	 * the UDR register is not empty now
 	 */
 	UDR = data;
-
-	/************************* Another Method *************************
-	UDR = data;
-	while( BIT_IS_CLR(UCSRA, TXC) ){
-
-	} // Wait until the transmission is complete TXC = 1
-	SET_BIT(UCSRA,TXC); // Clear the TXC flag
-	// This is waiting for the flag to be set to '0' to know that I received data
-	*******************************************************************/
 }
 
 
