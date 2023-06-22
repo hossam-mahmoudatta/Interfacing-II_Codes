@@ -11,6 +11,7 @@ RM := rm -rf
 -include MCAL/USART_DRIVER/subdir.mk
 -include MCAL/SPI_DRIVER/subdir.mk
 -include MCAL/ICU_DRIVER/subdir.mk
+-include MCAL/I2C_DRIVER/subdir.mk
 -include MCAL/GPIO_DRIVER/subdir.mk
 -include MCAL/EXT_INTERRUPT_DRIVER/subdir.mk
 -include MCAL/ADC_DRIVER/subdir.mk

@@ -1,56 +1,64 @@
  /******************************************************************************
  *
- * Module: SPI (Serial Peripheral Interface)
+ * Module: I2C (Inter Integrated Circuit)
  *
- * File Name: SPI.h
+ * File Name: I2C.h
  *
- * Description: Source file for the AVR SPI Driver
+ * Description: Header file for the AVR I2C Driver
  *
  * Author: Hossam Mahmoud
  *
  *******************************************************************************/
 
-#include "SPI.h"
+#include "I2C.h"
 
 #include "avr/io.h" /* To use the IO Ports Registers */
 #include <util/delay.h>
 
+/* TWBR - TWI Bit Rate Register
+  *  Bit 7..0 – TWBR: TWI Bit Rate Register
+  */
 
-// Initializes and enables the Master mode for the SPI Module to start functionality
-void SPI_initMaster(void) {
-	// First: Configure the Pins for Master or Slaves
-	/* Configure SPI Master Pins
-	 *	SS (PB4)   	--> 	Output
-	 *	MOSI (PB5) --> 	Output
-	 *	MISO (PB6) --> 	Input
-	 *	SCK (PB7) 	--> 	Output
-	 */
+/* TWCR - TWI Control Register
+  *  Bit 7 – TWINT: TWI Interrupt Flag
+  *  Bit 6 – TWEA: TWI Enable Acknowledge Bit
+  *  Bit 5 – TWSTA: TWI Start Condition Bit
+  *  Bit 4 – TWSTO: TWI Stop Condition Bit
+  *  Bit 3 – TWWC: TWI Write Collision Flag
+  *  Bit 2 – TWEN: TWI Enable Bit
+  *  Bit 1 – RES: Reserved Bit
+  *  Bit 0 – TWIE: TWI Interrupt Enable
+  */
+
+/* TWSR - TWI Status Register
+  *  Bit 7..3 – TWS: TWI Status
+  *  Bit 2 – Res: Reserved Bit
+  *  Bit 1..0 – TWPS: TWI Prescaler Bits
+  */
+
+/* TWDR - TWI Data Register
+  *  Bit 7..0 – TWDR: TWI Data Register
+  */
+
+/* TWAR - TWI (Slave) Address Register
+  *  Bit 7..1 – TWA: TWI (Slave) Address Register
+  *  Bit 0 – TWGCE: TWI General Call Recognition Enable Bit
+  */
+
+
+// Initializes and enables the Master mode for the TWI Module to start functionality
+void I2C_init(void) {
+
 	GPIO_setupPinDirection(PORT_B, SS, PIN_OUTPUT);
 	GPIO_setupPinDirection(PORT_B, MOSI, PIN_OUTPUT);
 	GPIO_setupPinDirection(PORT_B, MISO, PIN_INPUT);
 	GPIO_setupPinDirection(PORT_B, SCK, PIN_OUTPUT);
-
-	/* SPCR - SPI Control Register
-	  *  Bit 7 – SPIE: SPI Interrupt Enable
-	  *  Bit 6 – SPE: SPI Enable
-	  *  Bit 5 – DORD: Data Order
-	  *  Bit 4 – MSTR: Master/Slave Select
-	  *  Bit 3 – CPOL: Clock Polarity
-	  *  Bit 2 – CPHA: Clock Phase
-	  *  Bits 1, 0 – SPR1, SPR0: SPI Clock Rate Select 1 and 0
-	  */
 
 	SET_BIT(SPCR, SPE); // Enabling the SPI Module
 	SET_BIT(SPCR, MSTR); // Enabling the Master / Slave Mode; I will choose Master
 	CLR_BIT(SPCR, SPR1); // Choosing the SCK rate, Fosc / 4
 	CLR_BIT(SPCR, SPR0); // So SPR1, SPR0 = '00'
 
-	/* SPSR - SPI Status Register
-	  *  Bit 7 – SPIF: SPI Interrupt Flag
-	  *  Bit 6 – WCOL: Write COLlision Flag
-	  *  Bit 5..1 – Res: Reserved Bits
-	  *  Bit 0 – SPI2X: Double SPI Speed Bit
-	  */
 	CLR_BIT(SPSR, SPI2X); // Make SPI2X = '0' to support the Fosc / 4
 
 }

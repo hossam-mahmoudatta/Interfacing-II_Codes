@@ -1,27 +1,25 @@
  /******************************************************************************
  *
- * Module: SPI (Serial Peripheral Interface)
+ * Module: I2C (Inter Integrated Circuit)
  *
- * File Name: SPI.h
+ * File Name: I2C.h
  *
- * Description: Header file for the AVR SPI Driver
+ * Description: Header file for the AVR I2C Driver
  *
  * Author: Hossam Mahmoud
  *
  *******************************************************************************/
 
-#ifndef SPI_H_
-#define SPI_H_
+#ifndef I2C_H_
+#define I2C_H_
 
 #include "../GPIO_DRIVER/GPIO.h"
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/COMMON_MACROS.h"
 
-// A better naming for the SPI Connection pins
-#define SS 		PIN_4
-#define MOSI 	PIN_5
-#define MISO 	PIN_6
-#define SCK 		PIN_7
+// A better naming for the I2C Connection pins
+#define SCL 		PIN_0
+#define SDA 		PIN_1
 #define SPI_DEF_DATA_VAL 0xFF // The default data value in the SPDR
 
 /*******************************************************************************
@@ -29,11 +27,17 @@
  *******************************************************************************/
 
 // Initializes and enables the SPI Module to start functionality
-void SPI_initMaster(void);
-void SPI_initSlave(void);
+void I2C_init(void);
+void I2C_start(void);
+void I2C_stop(void);
+void I2C_writeByte(void);
+void I2C_readByteWithACK(void);
+void I2C_readByteWithNACK(void);
+void I2C_getStatus(void);
+
 
 // Responsible for the SPI to send & receive a byte
-uint8 SPI_sendReceiveByte(uint8 data);
+void SPI_sendReceiveByte(const uint8 data);
 
 // Responsible for the SPI to send an array of bytes, a string
 void SPI_sendString(const uint8 *str);
