@@ -14,40 +14,11 @@
  *                              					 Application Libraries                                					  *
  *******************************************************************************/
 
-#include "I2C.h"
+#include "TIMER.h"
 
 #include "avr/io.h" /* To use the IO Ports Registers */
 #include <util/delay.h>
 
-/* TWBR - TWI Bit Rate Register
-  *  Bit 7..0 – TWBR: TWI Bit Rate Register
-  */
-
-/* TWCR - TWI Control Register
-  *  Bit 7 – TWINT: TWI Interrupt Flag
-  *  Bit 6 – TWEA: TWI Enable Acknowledge Bit
-  *  Bit 5 – TWSTA: TWI Start Condition Bit
-  *  Bit 4 – TWSTO: TWI Stop Condition Bit
-  *  Bit 3 – TWWC: TWI Write Collision Flag
-  *  Bit 2 – TWEN: TWI Enable Bit
-  *  Bit 1 – RES: Reserved Bit
-  *  Bit 0 – TWIE: TWI Interrupt Enable
-  */
-
-/* TWSR - TWI Status Register
-  *  Bit 7..3 – TWS: TWI Status
-  *  Bit 2 – Res: Reserved Bit
-  *  Bit 1..0 – TWPS: TWI Prescaler Bits
-  */
-
-/* TWDR - TWI Data Register
-  *  Bit 7..0 – TWDR: TWI Data Register
-  */
-
-/* TWAR - TWI (Slave) Address Register
-  *  Bit 7..1 – TWA: TWI (Slave) Address Register
-  *  Bit 0 – TWGCE: TWI General Call Recognition Enable Bit
-  */
 
 /*******************************************************************************
  *                              					Module Implementation                              					  *
