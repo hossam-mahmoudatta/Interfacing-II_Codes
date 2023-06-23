@@ -27,14 +27,14 @@
  *                               							Types Declaration                            	 					  *
  *******************************************************************************/
 
-#define KEYPAD_COL_NUM			3
-#define KEYPAD_ROW_NUM			4
+#define KEYPAD_COL_NUM								3
+#define KEYPAD_ROW_NUM								4
 
-#define KEYPAD_COL_PORT			PORT_B
-#define KEYPAD_ROW_PORT			PORT_B
+#define KEYPAD_COL_PORT							PORT_B
+#define KEYPAD_ROW_PORT							PORT_B
 
-#define KEYPAD_FIRSTCOL_PIN		PIN_0
-#define KEYPAD_FIRSTROW_PIN		PIN_4
+#define KEYPAD_FIRSTCOL_PIN						PIN_0
+#define KEYPAD_FIRSTROW_PIN						PIN_4
 
 #define KEYPAD_BUTTON_PRESSED				LOGIC_LOW
 #define KEYPAD_BUTTON_RELEASED			LOGIC_HIGH

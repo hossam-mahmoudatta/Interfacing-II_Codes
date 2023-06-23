@@ -9,6 +9,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include MCAL/USART_DRIVER/subdir.mk
+-include MCAL/TIMER_DRIVER/subdir.mk
 -include MCAL/SPI_DRIVER/subdir.mk
 -include MCAL/ICU_DRIVER/subdir.mk
 -include MCAL/I2C_DRIVER/subdir.mk
