@@ -13,7 +13,7 @@
 #ifndef EEPROM_H_
 #define EEPROM_H_
 
-#include "../GPIO_DRIVER/GPIO.h"
+#include "../../MCAL/GPIO_DRIVER/GPIO.h"
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/COMMON_MACROS.h"
 
@@ -24,12 +24,10 @@
  *                              						Functions Prototypes                           					  *
  *******************************************************************************/
 
-void EEPROM_writeByte(uint16 u16Address, uint8 u8Data);
+uint8 EEPROM_writeByte(uint16 u16Address, uint8 u8Data);
 
 
-void EEPROM_readByte(uint16 u16Address, uint8 *u8Data);
-
-
+uint8 EEPROM_readByte(uint16 u16Address, uint8 *u8Data);
 
 
 #endif /* EEPROM_H_ */

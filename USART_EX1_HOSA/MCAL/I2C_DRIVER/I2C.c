@@ -48,100 +48,75 @@
 
 // Initializes and enables the Master mode for the TWI Module to start functionality
 void I2C_init(void) {
-
-	GPIO_setupPinDirection(PORT_B, SS, PIN_OUTPUT);
-	GPIO_setupPinDirection(PORT_B, MOSI, PIN_OUTPUT);
-	GPIO_setupPinDirection(PORT_B, MISO, PIN_INPUT);
-	GPIO_setupPinDirection(PORT_B, SCK, PIN_OUTPUT);
-
-	SET_BIT(SPCR, SPE); // Enabling the SPI Module
-	SET_BIT(SPCR, MSTR); // Enabling the Master / Slave Mode; I will choose Master
-	CLR_BIT(SPCR, SPR1); // Choosing the SCK rate, Fosc / 4
-	CLR_BIT(SPCR, SPR0); // So SPR1, SPR0 = '00'
-
-	CLR_BIT(SPSR, SPI2X); // Make SPI2X = '0' to support the Fosc / 4
-
-}
-
-
-// Initializes and enables the Slave mode for the SPI Module to start functionality
-void SPI_initSlave(void) {
-	/* Configure SPI Slave Pins
-	 *	SS (PB4)   	--> 	Input
-	 *	MOSI (PB5) --> 	Input
-	 *	MISO (PB6) --> 	Output
-	 *	SCK (PB7) 	--> 	Input
+	/* For TWBR
+	 * SCL Freq = (F_CPU) / (16 + 2 * TWBR * 4^TWPS)
+	 * In the previous equation, I have two unknowns, the TWBR & TWPS
+	 * Its the prescaler bits.. so what to choose?
+	 * I know that the SCL is 400 KHz, & F_CPU is 8 MHz
+	 * I can control TWPS & let it, TWPS = 0, so TWBR = 2
 	 */
-	GPIO_setupPinDirection(PORT_B, SS, PIN_INPUT);
-	GPIO_setupPinDirection(PORT_B, MOSI, PIN_INPUT);
-	GPIO_setupPinDirection(PORT_B, MISO, PIN_OUTPUT);
-	GPIO_setupPinDirection(PORT_B, SCK, PIN_INPUT);
-
-	/* SPCR - SPI Control Register
-	  *  Bit 7 – SPIE: SPI Interrupt Enable
-	  *  Bit 6 – SPE: SPI Enable
-	  *  Bit 5 – DORD: Data Order
-	  *  Bit 4 – MSTR: Master/Slave Select
-	  *  Bit 3 – CPOL: Clock Polarity
-	  *  Bit 2 – CPHA: Clock Phase
-	  *  Bits 1, 0 – SPR1, SPR0: SPI Clock Rate Select 1 and 0
-	  */
-	SET_BIT(SPCR, SPE); // Enabling the SPI Module
-	CLR_BIT(SPCR, MSTR); // Enabling the Master / Slave Mode; I will choose Master
-	CLR_BIT(SPCR, SPR1); // Choosing the SCK rate, Fosc / 4
-	CLR_BIT(SPCR, SPR0); // So SPR1, SPR0 = '00'
-
-	/* SPSR - SPI Status Register
-	  *  Bit 7 – SPIF: SPI Interrupt Flag
-	  *  Bit 6 – WCOL: Write COLlision Flag
-	  *  Bit 5..1 – Res: Reserved Bits
-	  *  Bit 0 – SPI2X: Double SPI Speed Bit
-	  */
-	CLR_BIT(SPSR, SPI2X); // Make SPI2X = '0' to support the Fosc / 4
+	TWSR = 0x00;
+	TWBR = 0x02;
+	TWAR = I2C_SLAVE_ADDR; // Slave Address
+	TWCR = (1 << TWEN); // Enabling the I2C Module
 
 }
 
+// Responsible for the SPI to send an array of bytes, a string
+void I2C_start(void) {
+	// Again enabling the I2C Module, Set the Start Condition, Clearing the TWINT Flag
+	/* But why I'm not using the normal set bit technique?
+	 * Because I don't want to keep old data, & I want the information always set by me
+	 */
+	TWCR = (1 << TWEN) | (1 << TWINT) | (1 << TWSTA);
 
-// Responsible for the SPI to send & receive a byte
-uint8 SPI_sendReceiveByte(uint8 data) {
-
-	SPDR = data;
-
-	while(BIT_IS_CLR(SPSR, SPIF)) {
-		// Polling (Busy Wait)
-		/* Waiting for the flag is set, it is set when data transmission
-		 * flag is set, Master will set SS to low to generate clock on SCK pin
-		 */
+	while(BIT_IS_CLR(TWCR, TWINT)) {
+		// Busy Wait for TWINT set in TWCR Register
+		// to ensure that start bit is send successfully
 	}
-
-	// after SPIF is set, then I return the data
-	return SPDR;
 }
 
-void SPI_sendString(const uint8 *str) {
-	uint8 i = 0;
-	uint8 receivedData = 0;
-
-	while (str[i] != '\0') {
-		// receivedData contains the data from the other device
-		receivedData = SPI_sendReceiveByte(str[i]);
-		i++;
-	}
-
+// Responsible for the SPI to receive an array of bytes, a string
+void I2C_stop(void) {
+	TWCR = (1 << TWEN) | (1 << TWINT) | (1 << TWSTO);
 }
 
+// Responsible for the SPI to receive an array of bytes, a string
+void I2C_writeByte(uint8 data) {
+	TWCR = (1 << TWEN) | (1 << TWINT);
+	TWDR = data;
 
-void SPI_receiveString(uint8 *str) {
-	uint8 i = 0;
-	// Receives and stores the first byte
-	str[i] = SPI_sendReceiveByte(SPI_DEF_DATA_VAL);
-
-
-	while (str[i] != '#') {
-		i++; // why the incrementer above?
-		str[i] = SPI_sendReceiveByte(SPI_DEF_DATA_VAL);
+	while(BIT_IS_CLR(TWCR, TWINT)) {
+		// Busy Wait for TWINT set in TWCR Register
+		// to ensure that data is sent successfully
 	}
+}
 
-	str[i] = '\0'; // replacing the '#' with '\0'
+// Responsible for the SPI to receive an array of bytes, a string
+uint8 I2C_readByteWithACK(void) {
+	TWCR = (1 << TWEN) | (1 << TWINT) | (1 << TWEA);
 
+	while(BIT_IS_CLR(TWCR, TWINT)) {
+		// Busy Wait for TWINT set in TWCR Register
+		// to ensure that data is sent successfully
+	}
+	return TWDR;
+}
+
+// Responsible for the SPI to receive an array of bytes, a string
+uint8 I2C_readByteWithNACK(void) {
+	TWCR = (1 << TWEN) | (1 << TWINT);
+
+	while(BIT_IS_CLR(TWCR, TWINT)) {
+		// Busy Wait for TWINT set in TWCR Register
+		// to ensure that data is sent successfully
+	}
+	return TWDR;
+}
+
+// Responsible for the SPI to receive an array of bytes, a string
+uint8 I2C_getStatus(void) {
+	uint8 I2CStatus;
+	I2CStatus = TWSR & I2C_INITIALSTATUS;
+	return I2CStatus;
 }
