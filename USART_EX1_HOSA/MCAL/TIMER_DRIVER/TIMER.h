@@ -27,59 +27,39 @@
 
 #define TIMER0 							0
 #define TIMER1  							1
-#define TIMER2   						2
+#define TIMER2   							2
 
-#define TIMER_SELECT    		TIMER0
+#define TIMER_SELECT    			TIMER0
 
-#define PRESCALER_1024 		1024
-#define PRESCALER_256  		256
+#define PRESCALER_1024 			1024
+#define PRESCALER_256  			256
 #define PRESCALER_64   			64
-#define PRESCALER_8    			8
-#define PRESCALER_0    			1
+#define PRESCALER_8    				8
+#define PRESCALER_0    				1
 #define NO_CLOCK   					0
 
-#define PRESCALER_VALUE    PRESCALER_1024
+#define PRESCALER_VALUE    	PRESCALER_1024
 
-#define NORMAL_MODE 			0
-#define COMPARE_MODE  		2
-#define PWM_MODE   				3
+#define NORMAL_MODE 				0
+#define COMPARE_MODE  			2
+#define PWM_MODE   					3
 
-#define TIMER_MODE    			NORMAL_MODE
+#define TIMER_MODE    				NORMAL_MODE
 
-#define CTC_NORMAL				0	// OC0 is disconnected
+#define CTC_NORMAL					0	// OC0 is disconnected
 #define CTC_TOGGLE  				1	// Toggle OC0
-#define CTC_CLEAR   				2	// Clear OC0
-#define CTC_SET   					3	// Set OC0
+#define CTC_CLEAR   					2	// Clear OC0
+#define CTC_SET   						3	// Set OC0
 
-#define CTC_MODE    				CTC_TOGGLE
+#define CTC_MODE    					CTC_TOGGLE
 
-#define FASTPWM_NORMAL	0	// OC0 is disconnected
-#define FASTPWM_NOINVERT 2	// Non Inverting OC0
-#define FASTPWM_INVERT   	3	// Inverting OC0
+#define FASTPWM_NORMAL		0	// OC0 is disconnected
+#define FASTPWM_NOINVERT 	2	// Non Inverting OC0
+#define FASTPWM_INVERT   		3	// Inverting OC0
 
 #define FASTPWM_MODE    		FASTPWM_NOINVERT
 
 
-
-
-// A better naming for the I2C Connection pins
-#define SCL 								PIN_0
-#define SDA 								PIN_1
-#define I2C_SLAVE_ADDR 		0x02	// Slave Address = 0b00000010
-#define I2C_INITIALSTATUS 	0xF8	// Masking to eliminate 1st 3 bits & get last 5 bits 0b11111000
-
-// I2C Status Bits in the TWSR Register, found in tables 74 & 75 in the Data sheet
-#define I2C_START         				0x08 	// start has been sent
-#define I2C_REP_START     			0x10 	// repeated start
-#define I2C_MT_SLA_W_ACK 	0x18 	// Master transmit ( slave address + Write request ) to slave + ACK received from slave.
-#define I2C_MT_SLA_W_NACK 	0x20 	// Master transmit ( slave address + Write request ) to slave + Not ACK received from slave.
-#define I2C_MT_DATA_ACK		0x28 	// Master transmit data + ACK has been received from Slave.
-#define I2C_MT_DATA_NACK   	0x30 	// Master transmit data + Not ACK has been received from Slave.
-#define I2C_ARBIT_LOST   			0x38 	// Arbitration lost in (Slave + Write) or Data bytes
-#define I2C_MT_SLA_R_ACK  	0x40 	// Master transmit ( slave address + Read request ) to slave + ACK received from slave.
-#define I2C_MT_SLA_R_NACK  	0x48 	// Master transmit ( slave address + Read request ) to slave + Not ACK received from slave.
-#define I2C_MR_DATA_ACK   		0x50 	// Master received data + received ACK from slave.
-#define I2C_MR_DATA_NACK 	0x58 	// Master received data + received Not ACK from slave.
 
 
 /* TCCR0 - Timer0 Control Register
@@ -183,28 +163,34 @@
 
 // Initializes and enables the SPI Module to start functionality
 void Timer0_Init(void);
+void Timer0_setPrescaler(void);
+void Timer0_setMode(void);
+void Timer0_normalMode(void);
+void Timer0_compareMode(void);
+void Timer0_fastPWMMode(void);
+
 void Timer1_Init(void);
+void Timer1_setPrescaler(void);
+void Timer1_setMode(void);
+void Timer1_normalMode(void);
+void Timer1_compareMode(void);
+void Timer1_fastPWMMode(void);
+
 void Timer2_Init(void);
+void Timer2_setPrescaler(void);
+void Timer2_setMode(void);
+void Timer2_normalMode(void);
+void Timer2_compareMode(void);
+void Timer2_fastPWMMode(void);
 
 void Timer_setDelay(float32 timeDelay);
 
+void Timer_Start(void);
+void Timer_Stop(void);
+void Timer_setInterrupt(void);
+void Timer_clearInterrupt(void);
+void Timer_getCounterValue(void);
+void Timer_setOutputCompare(void);
 
-// Responsible for the SPI to send an array of bytes, a string
-void I2C_start(void);
-
-// Responsible for the SPI to receive an array of bytes, a string
-void I2C_stop(void);
-
-// Responsible for the SPI to receive an array of bytes, a string
-void I2C_writeByte(uint8 data);
-
-// Responsible for the SPI to receive an array of bytes, a string
-uint8 I2C_readByteWithACK(void);
-
-// Responsible for the SPI to receive an array of bytes, a string
-uint8 I2C_readByteWithNACK(void);
-
-// Responsible for the SPI to receive an array of bytes, a string
-uint8 I2C_getStatus(void);
 
 #endif /* TIMER_H_ */

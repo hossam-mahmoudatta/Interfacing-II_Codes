@@ -26,16 +26,17 @@
 #define GET_BIT(VAR, BIT) (((VAR) >> (BIT)) & 0x01)
 // #define GET_BIT(REG,BIT) ( ( REG & (1<<BIT) ) >> BIT ) // Another Algorithm
 
+/* Check if a specific bit is set in any register and return true if yes */
+#define BIT_IS_SET(VAR, BIT) (VAR & (1 << BIT))
+
+/* Check if a specific bit is cleared in any register and return true if yes */
+#define BIT_IS_CLR(VAR, BIT) ( !(VAR & (1 << BIT)))
+
 /* Rotate right the register value with specific number of rotates */
 #define ROR(VAR, NUM) (VAR = (VAR >> NUM) | (VAR << (8 - NUM)))
 
 /* Rotate left the register value with specific number of rotates */
 #define ROL(VAR, NUM) (VAR = (VAR << NUM) | (VAR >> (8 - NUM)))
 
-/* Check if a specific bit is set in any register and return true if yes */
-#define BIT_IS_SET(VAR, BIT) (VAR & (1 << BIT))
-
-/* Check if a specific bit is cleared in any register and return true if yes */
-#define BIT_IS_CLR(VAR, BIT) ( !(VAR & (1 << BIT)))
 
 #endif
