@@ -4186,3 +4186,24 @@ C Model Exception: C Model Status [Element TIMER.c does not exist.]
 	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
 !SUBENTRY 1 org.eclipse.cdt.core 4 969 2023-06-24 01:29:57.329
 !MESSAGE Element TIMER.c does not exist.
+
+!ENTRY org.eclipse.core.jobs 4 2 2023-06-26 00:40:15.839
+!MESSAGE An internal error occurred during: "Update validate job".
+!STACK 0
+java.lang.IllegalStateException: Attempt to access stopped agent: org.eclipse.equinox.internal.p2.core.ProvisioningAgent@278e9a94
+	at org.eclipse.equinox.internal.p2.core.ProvisioningAgent.checkRunning(ProvisioningAgent.java:86)
+	at org.eclipse.equinox.internal.p2.core.ProvisioningAgent.getService(ProvisioningAgent.java:50)
+	at org.eclipse.equinox.p2.core.IProvisioningAgent.getService(IProvisioningAgent.java:86)
+	at org.eclipse.equinox.p2.engine.ProvisioningContext.getLoadedMetadataRepositories(ProvisioningContext.java:200)
+	at org.eclipse.equinox.p2.engine.ProvisioningContext.getMetadata(ProvisioningContext.java:299)
+	at org.eclipse.equinox.internal.p2.director.SimplePlanner.gatherAvailableInstallableUnits(SimplePlanner.java:357)
+	at org.eclipse.equinox.internal.p2.director.SimplePlanner.getSolutionFor(SimplePlanner.java:434)
+	at org.eclipse.equinox.internal.p2.director.SimplePlanner.generatePlan(SimplePlanner.java:835)
+	at org.eclipse.equinox.internal.p2.director.SimplePlanner.getProvisioningPlan(SimplePlanner.java:533)
+	at org.eclipse.equinox.internal.p2.operations.PlannerResolutionJob.runModal(PlannerResolutionJob.java:80)
+	at org.eclipse.equinox.internal.p2.operations.SearchForUpdatesResolutionJob.runModal(SearchForUpdatesResolutionJob.java:50)
+	at org.eclipse.equinox.p2.operations.ProfileChangeOperation.resolveModal(ProfileChangeOperation.java:118)
+	at org.eclipse.equinox.internal.p2.ui.sdk.scheduler.AutomaticUpdater.updatesAvailable(AutomaticUpdater.java:112)
+	at org.eclipse.equinox.internal.p2.ui.sdk.scheduler.AutomaticUpdater.updatesAvailable(AutomaticUpdater.java:91)
+	at org.eclipse.equinox.internal.p2.ui.sdk.scheduler.AutomaticUpdater$2.run(AutomaticUpdater.java:349)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)

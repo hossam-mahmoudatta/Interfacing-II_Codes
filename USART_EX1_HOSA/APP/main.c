@@ -28,6 +28,7 @@
 //#include "../MCAL/I2C_DRIVER/I2C.h"
 //#include "../MCAL/ICU_DRIVER/ICU.h"
 //#include "../MCAL/SPI_DRIVER/SPI.h"
+//#include "../MCAL/TIMER_DRIVER/TIMER.h"
 //#include "../MCAL/USART_DRIVER/USART.h"
 #include "../MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.h"
 

@@ -18,6 +18,7 @@
 
 #include "avr/io.h" /* To use the IO Ports Registers */
 #include <util/delay.h>
+#include <math.h>
 
 
 /*******************************************************************************
@@ -91,7 +92,7 @@ void Timer0_setMode(void) {
 }
 
 void Timer0_normalMode(void) {
-	CLR_BIT(TCCR0, FOC0);
+	SET_BIT(TCCR0, FOC0);
 	CLR_BIT(TCCR0, WGM00);
 	CLR_BIT(TCCR0, WGM01);
 	CLR_BIT(TCCR0, COM01);
@@ -99,7 +100,7 @@ void Timer0_normalMode(void) {
 }
 
 void Timer0_compareMode(void) {
-	CLR_BIT(TCCR0, FOC0);
+	SET_BIT(TCCR0, FOC0);
 	CLR_BIT(TCCR0, WGM00);
 	SET_BIT(TCCR0, WGM01);
 #if (CTC_MODE == CTC_NORMAL)
@@ -206,6 +207,8 @@ void Timer1_normalMode(void) {
 	CLR_BIT(TCCR1A, COM1A0);
 	CLR_BIT(TCCR1A, COM1B1);
 	CLR_BIT(TCCR1A, COM1B0);
+	SET_BIT(TCCR1A, FOC1A);
+	SET_BIT(TCCR1A, FOC1B);
 	CLR_BIT(TCCR1B, WGM13);
 	CLR_BIT(TCCR1B, WGM12);
 	CLR_BIT(TCCR1A, WGM11);
@@ -213,6 +216,8 @@ void Timer1_normalMode(void) {
 }
 
 void Timer1_compareMode(void) {
+	SET_BIT(TCCR1A, FOC1A);
+	SET_BIT(TCCR1A, FOC1B);
 	CLR_BIT(TCCR1B, WGM13);
 	SET_BIT(TCCR1B, WGM12);
 	CLR_BIT(TCCR1A, WGM11);
@@ -332,6 +337,7 @@ void Timer2_setMode(void) {
 }
 
 void Timer2_normalMode(void) {
+	SET_BIT(TCCR2, FOC2);
 	CLR_BIT(TCCR2, WGM20);
 	CLR_BIT(TCCR2, WGM21);
 	CLR_BIT(TCCR2, COM21);
@@ -339,6 +345,7 @@ void Timer2_normalMode(void) {
 }
 
 void Timer2_compareMode(void) {
+	SET_BIT(TCCR2, FOC2);
 	CLR_BIT(TCCR2, WGM20);
 	SET_BIT(TCCR2, WGM21);
 #if (CTC_MODE == CTC_NORMAL)
@@ -407,15 +414,24 @@ void Timer_setDelay(float32 timeDelay) {
 	uint8 overFlowCounter = 0;
 
 	Tick_Time = PRESCALER_VALUE / (float)F_CPU;
-	MaxDelay_Time = Tick_Time * 8;
-	overflowAmount = floor((timeDelay) / (MaxDelay_Time));
+	MaxDelay_Time = Tick_Time * 256; 		// 2^n = 256
+	overflowAmount = ceil((timeDelay) / (MaxDelay_Time));
+	//overflowAmount = floor((timeDelay) / (MaxDelay_Time));
 
 #if (TIMER_SELECT == TIMER0)
-	// Using the Timer Overflow Flag
+	// Using the Timer Overflow Flag TOV
 	TCNT0 = 0x00;
+	while (overFlowCounter < overflowAmount) {
+		while (BIT_IS_CLR(TIFR, TOV0)) {
+			// This function is a Busy Wait
+		}
+		overFlowCounter++;
+		SET_BIT(TIFR, TOV0);
+	}
+	overFlowCounter = 0;
+	TCCR0 = 0x00;
 
-
-
+// Using the Timer Output Compare Flag OCF0
 //	TCNT0 = 0x00;
 //	while (overFlowCounter < overflowAmount) {
 //		while (BIT_IS_CLR(TIFR, OCF0)) {
