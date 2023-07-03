@@ -16,8 +16,12 @@
 #include <util/delay.h>
 
 
+
+
 // Initializes and enables the USART Module to start functionality
-void USART_Init(uint32 baudRate) {
+//void USART_Init(uint32 baudRate)
+
+void USART_Init(const USART_ConfigType *USART_ConfigPtr) {
 	// why uint32? to support the largest baud rate
 	// to create a UART driver, I have 4 main parameters
 	// Parity, Stop Bit, Data size, Baud Rate
@@ -54,7 +58,7 @@ void USART_Init(uint32 baudRate) {
 	// Bit 7 – URSEL: Register Select, i must set it to '1'
 	// Bit 6 – UMSEL: USART Mode Select, '0' for Asynchronous
 	// BIT 5:4: UPM1:0, Parity Mode, I will use it as disable parity, so '00'
-	// BIT 3: TXEN, Trans Enable, set to 1
+	// Bit 3 – USBS: Stop Bit Select
 	// BIT 2:1: UCSZ1:0, Character Size, I will choose '011' to be 8 bits
 	// BIT 0: UCPOL, clock polarity, chooses if I choose on rising or falling edge, but since
 	// Im using asynchronous mode, so i dont need this bit
@@ -78,10 +82,12 @@ void USART_Init(uint32 baudRate) {
 	// Tweak the Frame
 	// Set the baud rate
 
-	uint16 UBBR_Value = 0;
-
+//	USART_ConfigPtr -> bitData 		= USART_8_BIT;
+//	USART_ConfigPtr -> parity 			= USART_PARITY_DISABLED;
+//	USART_ConfigPtr -> stopBit		= USART_STOP_1_BIT;
+//	USART_ConfigPtr -> baudRate	= USART_BAUDRATE_9600;
+/*
 	SET_BIT(UCSRA, U2X);
-
 	SET_BIT(UCSRB, TXEN);
 	SET_BIT(UCSRB, RXEN);
 
@@ -92,12 +98,18 @@ void USART_Init(uint32 baudRate) {
 	CLR_BIT(UCSRC, UCSZ2);
 	SET_BIT(UCSRC, UCSZ1);
 	SET_BIT(UCSRC, UCSZ0);
+*/
+
+	UCSRA |= (1 << U2X);
+	UCSRB |= (1 << TXEN) | (1 << RXEN);
+	UCSRC |= (1 << URSEL) | (1 << UMSEL) | (1 << UCSZ1) | (1 << UCSZ0);
 
 	// UBBRH = 0;
 	// UBBRL = 207;
 	// (0000) (1100 1111) 12 bits, (0000) is for UBBRH, (1100 1111) if for UBBRL
 
-	UBBR_Value = (uint16) ( ( (F_CPU) / (8 * baudRate * 8UL) ) - 1 );
+	uint16 UBBR_Value = 0;
+	UBBR_Value = (uint16) ( ( (F_CPU) / (8 * (USART_ConfigPtr->baudRate) * 8UL) ) - 1 );
 	UBRRH = UBBR_Value >> 8;
 	// Because I want the 4 Zeroes in it
 

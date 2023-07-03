@@ -22,13 +22,8 @@
  *                                									Definitions                                  					  *
  *******************************************************************************/
 
-
-/*******************************************************************************
- *                               							Types Declaration                            	 					  *
- *******************************************************************************/
-
-#define KEYPAD_COL_NUM								3
-#define KEYPAD_ROW_NUM								4
+#define KEYPAD_COL_NUM							4
+#define KEYPAD_ROW_NUM							4
 
 #define KEYPAD_COL_PORT							PORT_B
 #define KEYPAD_ROW_PORT							PORT_B
@@ -38,7 +33,6 @@
 
 #define KEYPAD_BUTTON_PRESSED				LOGIC_LOW
 #define KEYPAD_BUTTON_RELEASED			LOGIC_HIGH
-
 
 /*******************************************************************************
  *                              						Functions Prototypes                          						  *

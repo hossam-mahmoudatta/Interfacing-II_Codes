@@ -28,7 +28,7 @@ void LCD_Init(void) {
 
 	// Initializing Sending Commands
 	// Checks which BIT Mode, 4 or 8 line bit
-	if (LCD_BIT_MODE == 4) {
+	if (LCD_BIT_MODE == LCD_4_BIT) {
 		GPIO_setupPinDirection(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 0), PIN_OUTPUT);
 		GPIO_setupPinDirection(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 1), PIN_OUTPUT);
 		GPIO_setupPinDirection(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 2), PIN_OUTPUT);
@@ -38,7 +38,7 @@ void LCD_Init(void) {
 		LCD_sendCommand(LCD_TWO_LINE_FOUR_BIT_INIT2);
 		LCD_sendCommand(LCD_TWO_LINE_FOUR_BIT);
 	}
-	else if (LCD_BIT_MODE == 8) {
+	else if (LCD_BIT_MODE == LCD_8_BIT) {
 		// Setup the port and pins for the data pins inside the LCD
 		GPIO_setupPortDirection(LCD_DATA_PORT, PORT_OUTPUT);
 
@@ -71,7 +71,7 @@ void LCD_sendCommand(uint8 command) {
 
 	// Inserts the command in the assigned PORT to be sent to the LCD
 	// uint8 BIT_MODE;
-	if (LCD_BIT_MODE == 4) {
+	if (LCD_BIT_MODE == LCD_4_BIT) {
 		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 0), GET_BIT( command, 4 ));
 		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 1), GET_BIT( command, 5 ));
 		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 2), GET_BIT( command, 6 ));
@@ -96,7 +96,7 @@ void LCD_sendCommand(uint8 command) {
 		GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
 		_delay_ms(1); /* delay for processing Th = 13ns */
 	}
-	else if (LCD_BIT_MODE == 8) {
+	else if (LCD_BIT_MODE == LCD_8_BIT) {
 		GPIO_writePort(LCD_DATA_PORT, command);
 		_delay_ms(1);
 
@@ -128,7 +128,7 @@ void LCD_displayCharacter(uint8 data) {
 
 	// Inserts the data in the assigned PORT to be sent to the LCD
 	// Inserts the data in the assigned PORT to be sent to the LCD
-	if (LCD_BIT_MODE == 4) {
+	if (LCD_BIT_MODE == LCD_4_BIT) {
 		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 0), GET_BIT( data, 4 ));
 		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 1), GET_BIT( data, 5 ));
 		GPIO_writePin(LCD_DATA_PORT, (LCD_FOUR_BIT_DATAPIN + 2), GET_BIT( data, 6 ));
@@ -153,7 +153,7 @@ void LCD_displayCharacter(uint8 data) {
 		GPIO_writePin(LCD_INIT_PORT, LCD_ENABLE, LOGIC_LOW);
 		_delay_ms(1); /* delay for processing Th = 13ns */
 	}
-	else if (LCD_BIT_MODE == 8) {
+	else if (LCD_BIT_MODE == LCD_8_BIT) {
 		GPIO_writePort(LCD_DATA_PORT, data);
 		_delay_ms(1);
 

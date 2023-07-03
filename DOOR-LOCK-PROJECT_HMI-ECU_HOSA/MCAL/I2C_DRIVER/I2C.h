@@ -70,13 +70,29 @@
 #define I2C_MR_DATA_ACK   		0x50 	// Master received data + received ACK from slave.
 #define I2C_MR_DATA_NACK 	0x58 	// Master received data + received Not ACK from slave.
 
+typedef enum {
+	I2C_ADDRESS_1 = 0x50,
+	I2C_ADDRESS_2 = 0xA0,
+    // Add more address values as needed
+}	I2C_Address;
+
+typedef enum {
+	I2C_BAUDRATE_100K = 100000,
+	I2C_BAUDRATE_400K = 400000,
+    // Add more baud rate values as needed
+}	I2C_BaudRate;
+
+typedef struct {
+	I2C_Address address;
+	I2C_BaudRate bitRate;
+}	I2C_ConfigType;
 
 /*******************************************************************************
  *                              						Functions Prototypes                           					  *
  *******************************************************************************/
 
 // Initializes and enables the SPI Module to start functionality
-void I2C_init(void);
+void I2C_init(const I2C_ConfigType *I2C_ConfigPtr);
 
 // Responsible for the SPI to send an array of bytes, a string
 void I2C_start(void);

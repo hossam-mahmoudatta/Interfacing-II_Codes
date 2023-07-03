@@ -28,9 +28,11 @@
 #define LCD_RS												PIN_1
 #define LCD_ENABLE										PIN_2
 
-#define LCD_BIT_MODE									4			// if '4', then its 4 BIT Mode, if '8' then its 8 BIT Mode
+#define LCD_4_BIT											4			// if '4', then its 4 BIT Mode, if '8' then its 8 BIT Mode
+#define LCD_8_BIT											8			// if '4', then its 4 BIT Mode, if '8' then its 8 BIT Mode
+#define LCD_BIT_MODE									LCD_8_BIT			// if '4', then its 4 BIT Mode, if '8' then its 8 BIT Mode
 
-#if((LCD_BIT_MODE != 4) && (LCD_BIT_MODE != 8))
+#if((LCD_BIT_MODE != LCD_4_BIT) && (LCD_BIT_MODE != LCD_8_BIT))
 	#error "Number of Data bits should be equal to 4 or 8"
 #endif
 

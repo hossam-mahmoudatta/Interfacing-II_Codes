@@ -29,7 +29,7 @@
 #define TIMER1  							1
 #define TIMER2   							2
 
-#define TIMER_SELECT    			TIMER0
+#define TIMER_SELECT    			TIMER1
 
 #define PRESCALER_1024 			1024
 #define PRESCALER_256  			256
@@ -49,7 +49,7 @@
 #define INTERRUPT_DISABLE		0	// Disable the Interrupt in Timer Normal mode
 #define INTERRUPT_ENABLE		1	// Enable the Interrupt in Timer Normal mode
 
-#define INTERRUPT_MODE			INTERRUPT_ENABLE 	// Choose Mode
+#define INTERRUPT_MODE			INTERRUPT_DISABLE 	// Choose Mode
 
 #define CTC_NORMAL					0	// OC0 is disconnected
 #define CTC_TOGGLE  				1	// Toggle OC0
@@ -64,6 +64,28 @@
 
 #define FASTPWM_MODE    		FASTPWM_NOINVERT
 
+
+typedef enum {
+	TIMER_NO_CLOCK,
+	TIMER_PRESCALER_1,
+    TIMER_PRESCALER_8 = 8,
+    TIMER_PRESCALER_64 = 64,
+    TIMER_PRESCALER_256 = 256,
+    TIMER_PRESCALER_1024 = 1024
+}	Timer_Prescaler;
+
+typedef enum {
+    TIMER_NORMAL_MODE,
+    TIMER_COMPARE_MODE,
+	TIMER_FASTPWM_MODE,
+}	Timer_Mode;
+
+typedef struct {
+    uint16 initialValue;
+    uint16 compareValue;
+    Timer_Prescaler prescaler;
+    Timer_Mode mode;
+}	Timer_ConfigType;
 
 
 /* TCCR0 - Timer0 Control Register
@@ -170,34 +192,33 @@
  *******************************************************************************/
 
 // Initializes and enables the SPI Module to start functionality
-void Timer0_Init(void);
-void Timer0_setPrescaler(void);
-void Timer0_setMode(void);
-void Timer0_normalInit(void);
-void Timer0_CTCInit(void);
-void Timer0_fastPWMInit(void);
+void Timer0_Init(const Timer_ConfigType* TIMER0_ConfigPtr);
+void Timer0_deInit(void);
 
-void Timer1_Init(void);
-void Timer1_setPrescaler(void);
-void Timer1_setMode(void);
-void Timer1_normalInit(void);
-void Timer1_CTCInit(void);
-void Timer1_fastPWMInit(void);
+void Timer1_Init(const Timer_ConfigType* TIMER1_ConfigPtr);
+void Timer1_deInit(void);
 
-void Timer2_Init(void);
-void Timer2_setPrescaler(void);
-void Timer2_setMode(void);
-void Timer2_normalInit(void);
-void Timer2_CTCInit(void);
-void Timer2_fastPWMInit(void);
+void Timer2_Init(const Timer_ConfigType* TIMER2_ConfigPtr);
+void Timer2_deInit(void);
 
-void Timer_setNormalMode_normalDelay(float32 timeDelay);
-void Timer_setNormalMode_interruptDelay(float32 timeDelay);
+
+void Timer0_normalDelaySec(float32 timeDelay);
+
+void Timer1_normalDelaySec(float32 timeDelay);
+
+
+
 void Timer_setCTCMode_normalFreq(float freqKHZ, uint8 port_num, uint8 pin_num);
 uint8 Timer_setCTCMode_interruptFreq(float freqKHZ);
 // void Timer_setCTCMode_interruptFreq(float freqKHZ, uint8 port_num, uint8 pin_num);
 void Timer_setfastPWMMode_normalFreq(float freqKHZ, uint8 port_num, uint8 pin_num);
 void Timer_setfastPWMMode_interruptFreq(float freqKHZ, uint8 port_num, uint8 pin_num);
+
+static void (*Timer1_callback)(void) = NULL;
+
+void Timer0_setCallBack(void(*a_ptr)(void));
+void Timer1_setCallBack(void(*a_ptr)(void));
+void Timer2_setCallBack(void(*a_ptr)(void));
 
 /*
 void Timer_Start(void);

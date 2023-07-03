@@ -54,7 +54,7 @@
  *******************************************************************************/
 
 // Initializes and enables the Master mode for the TWI Module to start functionality
-void I2C_init(void) {
+void I2C_init(const I2C_ConfigType *I2C_ConfigPtr) {
 	/* For TWBR
 	 * SCL Freq = (F_CPU) / (16 + 2 * TWBR * 4^TWPS)
 	 * In the previous equation, I have two unknowns, the TWBR & TWPS
