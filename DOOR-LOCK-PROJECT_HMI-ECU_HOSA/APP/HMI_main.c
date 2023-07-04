@@ -61,7 +61,7 @@
 
 /*
 ISR(TIMER0_COMP_vect) {
-	compareMatches++;
+	compadreMatches++;
 	LED_Toggle(PORT_C, PIN_0);
 
 	if(compareMatches == 2) {
@@ -80,6 +80,8 @@ ISR(TIMER0_COMP_vect) {
 }
 
 int main(void) {
+	LCD_Init();
+	LCD_displayString("Plz Enter Pass: ");
 
 
 	while (1) {
