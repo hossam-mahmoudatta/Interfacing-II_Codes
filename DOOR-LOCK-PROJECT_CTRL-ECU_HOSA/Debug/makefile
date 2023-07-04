@@ -17,11 +17,13 @@ RM := rm -rf
 -include MCAL/EXT_INTERRUPT_DRIVER/subdir.mk
 -include MCAL/ADC_DRIVER/subdir.mk
 -include ECUAL/SEVEN-SEGMENT_DRIVER/subdir.mk
+-include ECUAL/MOTOR_DRIVER/subdir.mk
 -include ECUAL/LM35_DRIVER/subdir.mk
 -include ECUAL/LED_DRIVER/subdir.mk
 -include ECUAL/LCD_DRIVER/subdir.mk
 -include ECUAL/KEYPAD_DRIVER/subdir.mk
 -include ECUAL/EEPROM_DRIVER/subdir.mk
+-include ECUAL/BUZZER_DRIVER/subdir.mk
 -include ECUAL/BUTTON_DRIVER/subdir.mk
 -include APP/subdir.mk
 -include subdir.mk

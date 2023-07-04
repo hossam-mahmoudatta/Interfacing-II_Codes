@@ -82,11 +82,9 @@ ISR(TIMER0_COMP_vect) {
 int main(void) {
 
 
-
-
-
 	while (1) {
 
 	}
+
 }
 

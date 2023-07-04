@@ -23,10 +23,10 @@
  *******************************************************************************/
 
 #define LCD_DATA_PORT								PORT_A
-#define LCD_INIT_PORT									PORT_A
+#define LCD_INIT_PORT									PORT_B
 
-#define LCD_RS												PIN_1
-#define LCD_ENABLE										PIN_2
+#define LCD_RS												PIN_0
+#define LCD_ENABLE										PIN_1
 
 #define LCD_4_BIT											4			// if '4', then its 4 BIT Mode, if '8' then its 8 BIT Mode
 #define LCD_8_BIT											8			// if '4', then its 4 BIT Mode, if '8' then its 8 BIT Mode
