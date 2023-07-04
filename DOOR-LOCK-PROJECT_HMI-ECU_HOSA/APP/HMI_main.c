@@ -80,7 +80,7 @@ ISR(TIMER0_COMP_vect) {
 }
 
 int main(void) {
-	LCD_Init();
+	LCD_Init(); //sd
 	LCD_displayString("Plz Enter Pass: ");
 
 
