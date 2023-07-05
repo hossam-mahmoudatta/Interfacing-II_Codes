@@ -18,7 +18,6 @@
 #include "../../LIB/COMMON_MACROS.h"
 
 
-
 typedef enum {
     USART_5_BIT,
     USART_6_BIT,

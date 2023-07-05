@@ -39,6 +39,7 @@
 //#include "../ECUAL/SEVEN-SEGMENT_DRIVER/SEGMENT.h"
 //#include "../ECUAL/BUTTON_DRIVER/BUTTON.h"
 
+#include "../ECUAL/BUZZER_DRIVER/BUZZER.h"
 #include "../ECUAL/KEYPAD_DRIVER/KEYPAD.h" // I will need this driver for this ECU Driver
 #include "../ECUAL/LCD_DRIVER/LCD.h" // I will need this driver for this ECU Driver
 #include "../ECUAL/LED_DRIVER/LED.h" // I will need this driver for this ECU Driver
@@ -81,8 +82,15 @@ ISR(TIMER0_COMP_vect) {
 
 int main(void) {
 	LCD_Init(); //sd
-	LCD_displayString("Plz Enter Pass: ");
+	Buzzer_Init(PORT_B, PIN_2);
+	KEYPAD_Init();
+	USART_ConfigType USARTConfig;
+	USARTConfig.bitData = USART_BAUDRATE_9600;
+	USARTConfig.stopBit = USART_STOP_1_BIT;
+	USARTConfig.parity = USART_PARITY_DISABLED;
+	USART_Init(*USARTConfig);
 
+	LCD_displayString("Plz Enter Pass: ");
 
 	while (1) {
 
