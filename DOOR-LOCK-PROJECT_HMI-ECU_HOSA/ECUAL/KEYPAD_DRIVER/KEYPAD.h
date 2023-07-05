@@ -25,8 +25,8 @@
 #define KEYPAD_COL_NUM							4
 #define KEYPAD_ROW_NUM							4
 
-#define KEYPAD_COL_PORT							PORT_B
-#define KEYPAD_ROW_PORT							PORT_B
+#define KEYPAD_COL_PORT							PORT_C
+#define KEYPAD_ROW_PORT							PORT_C
 
 #define KEYPAD_FIRSTCOL_PIN						PIN_0
 #define KEYPAD_FIRSTROW_PIN						PIN_4

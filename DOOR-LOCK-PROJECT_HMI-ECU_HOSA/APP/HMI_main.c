@@ -17,6 +17,7 @@
 
 //#include <util/delay.h>
 #include <avr/io.h>
+#include <util/delay.h>
 #include <avr/interrupt.h>
 
 /*******************************************************************************
@@ -84,13 +85,24 @@ int main(void) {
 	LCD_Init(); //sd
 	Buzzer_Init(PORT_B, PIN_2);
 	KEYPAD_Init();
-	USART_ConfigType USARTConfig;
-	USARTConfig.bitData = USART_BAUDRATE_9600;
-	USARTConfig.stopBit = USART_STOP_1_BIT;
-	USARTConfig.parity = USART_PARITY_DISABLED;
-	USART_Init(*USARTConfig);
+//	USART_ConfigType *USARTConfig;
+//	USARTConfig -> bitData = USART_BAUDRATE_9600;
+//	USARTConfig  -> stopBit = USART_STOP_1_BIT;
+//	USARTConfig -> parity = USART_PARITY_DISABLED;
+//	USART_Init(USARTConfig);
 
 	LCD_displayString("Plz Enter Pass: ");
+	//_delay_ms(1000);
+	uint8 passLength = 5;
+	int i = 0;
+
+	while (i < 5) {
+		if (KEYPAD_getPressedKey()) {
+			LCD_displayCharacter('*');
+			i++;
+		}
+	}
+	LCD_displayString("Whyat?");
 
 	while (1) {
 

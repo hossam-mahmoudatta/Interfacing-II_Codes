@@ -102,7 +102,7 @@ void USART_Init(const USART_ConfigType *USART_ConfigPtr) {
 
 	UCSRA |= (1 << U2X);
 	UCSRB |= (1 << TXEN) | (1 << RXEN);
-	UCSRC |= (1 << URSEL) | (1 << UMSEL) | (1 << UCSZ1) | (1 << UCSZ0);
+	UCSRC |= (1 << URSEL) | (1 << UCSZ1) | (1 << UCSZ0);
 
 	// UBBRH = 0;
 	// UBBRL = 207;
