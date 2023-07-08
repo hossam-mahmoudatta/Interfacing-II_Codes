@@ -91,14 +91,21 @@ int main(void) {
 //	USARTConfig -> parity = USART_PARITY_DISABLED;
 //	USART_Init(USARTConfig);
 
-	LCD_displayString("Plz Enter Pass: ");
+	LCD_moveCursor(0, 0);
+	LCD_displayString("Enter Password: ");
+	LCD_moveCursor(1, 0);
 	//_delay_ms(1000);
 	uint8 passLength = 5;
 	int i = 0;
+	char KEYPAD_Value =  KEYPAD_getPressedKey();
+	if((KEYPAD_Value >= 0) && (KEYPAD_Value <= 9)) {
+		LCD_displayCharacter(KEYPAD_Value);
+		i++;
+	}
 
-	while (i < 5) {
-		if (KEYPAD_getPressedKey()) {
-			LCD_displayCharacter('*');
+	while (i < passLength) {
+		if((KEYPAD_Value >= 0) && (KEYPAD_Value <= 9)) {
+			LCD_displayCharacter(KEYPAD_Value);
 			i++;
 		}
 	}

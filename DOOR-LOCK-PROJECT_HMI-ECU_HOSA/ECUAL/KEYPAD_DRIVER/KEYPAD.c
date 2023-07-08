@@ -13,9 +13,7 @@
 #include "KEYPAD.h"
 #include "avr/io.h" /* To use the IO Ports Registers */
 
-#define STD_KEYPAD
 #ifndef STD_KEYPAD
-
 	#if (KEYPAD_COL_NUM == 3)
 	/*
 	 * Function responsible for mapping the switch number in the keypad to
@@ -29,59 +27,58 @@
 	 */
 		static uint8 KEYPAD_4x4_adjustKeyNumber(uint8 button_number);
 	#endif
-
 #endif /* STD_KEYPAD */
 
 
 void KEYPAD_Init(void) {
-		/* Setup PORT and PINS for for KEYPAD Rows*/
-		GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN, PIN_INPUT);
-		GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN+1, PIN_INPUT);
-		GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN+2, PIN_INPUT);
-		GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN+3, PIN_INPUT);
+	/* Setup PORT and PINS for for KEYPAD Rows*/
+	GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN, PIN_INPUT);
+	GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN + 1, PIN_INPUT);
+	GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN + 2, PIN_INPUT);
+	GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN + 3, PIN_INPUT);
 
-		/* Setup PORT and PINS for for KEYPAD Columns*/
-		GPIO_setupPinDirection(KEYPAD_COL_PORT, KEYPAD_FIRSTCOL_PIN, PIN_INPUT);
-		GPIO_setupPinDirection(KEYPAD_COL_PORT, KEYPAD_FIRSTCOL_PIN+1, PIN_INPUT);
-		GPIO_setupPinDirection(KEYPAD_COL_PORT, KEYPAD_FIRSTCOL_PIN+2, PIN_INPUT);
+	/* Setup PORT and PINS for for KEYPAD Columns*/
+	GPIO_setupPinDirection(KEYPAD_COL_PORT, KEYPAD_FIRSTCOL_PIN, PIN_INPUT);
+	GPIO_setupPinDirection(KEYPAD_COL_PORT, KEYPAD_FIRSTCOL_PIN + 1, PIN_INPUT);
+	GPIO_setupPinDirection(KEYPAD_COL_PORT, KEYPAD_FIRSTCOL_PIN + 2, PIN_INPUT);
 
-		#if(KEYPAD_COL_NUM == 4)
-			GPIO_setupPinDirection(KEYPAD_COL_PORT, KEYPAD_FIRSTCOL_PIN+3, PIN_INPUT);
-		#endif
+	#if(KEYPAD_COL_NUM == 4)
+		GPIO_setupPinDirection(KEYPAD_COL_PORT, KEYPAD_FIRSTCOL_PIN + 3, PIN_INPUT);
+	#endif
 }
 
 
 uint8 KEYPAD_getPressedKey(void) {
 	uint8 row, col;
 	while(1) {
-			for (row = 0 ; row < KEYPAD_ROW_NUM ; row++) {
-				// I set the pin by '1' for the row, and will iterate
-				GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN + row, PIN_OUTPUT);
+		for (row = 0 ; row < KEYPAD_ROW_NUM ; row++) {
+			// I set the pin by '1' for the row, and will iterate
+			GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN + row, PIN_OUTPUT);
 
-				/* Set/Clear the row output pin */
-				GPIO_writePin(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN + row, KEYPAD_BUTTON_PRESSED);
+			/* Set/Clear the row output pin */
+			GPIO_writePin(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN + row, KEYPAD_BUTTON_PRESSED);
 
-				for (col = 0 ; col < KEYPAD_COL_NUM ; col++) {
-					/* Check if the switch is pressed in this column */
-					if(GPIO_readPin(KEYPAD_COL_PORT,KEYPAD_FIRSTCOL_PIN + col) == KEYPAD_BUTTON_PRESSED) {
-						#if (KEYPAD_COL_NUM == 3)
-							#ifdef STD_KEYPAD
-								return ( (row * KEYPAD_COL_NUM) + col + 1);
-							#else
-								return KEYPAD_4x3_adjustKeyNumber( (row * KEYPAD_COL_NUM) + col + 1);
-							#endif
-						#elif (KEYPAD_COL_NUM == 4)
-							#ifdef STD_KEYPAD
-								return ( (row * KEYPAD_COL_NUM) + col + 1);
-							#else
-								return KEYPAD_4x4_adjustKeyNumber( (row * KEYPAD_COL_NUM) + col + 1);
-							#endif
+			for (col = 0 ; col < KEYPAD_COL_NUM ; col++) {
+				/* Check if the switch is pressed in this column */
+				if(GPIO_readPin(KEYPAD_COL_PORT,KEYPAD_FIRSTCOL_PIN + col) == KEYPAD_BUTTON_PRESSED) {
+					#if (KEYPAD_COL_NUM == 3)
+						#ifdef STD_KEYPAD
+							return ( (row * KEYPAD_COL_NUM) + col + 1);
+						#else
+							return KEYPAD_4x3_adjustKeyNumber( (row * KEYPAD_COL_NUM) + col + 1);
 						#endif
-					}
+					#elif (KEYPAD_COL_NUM == 4)
+						#ifdef STD_KEYPAD
+							return ( (row * KEYPAD_COL_NUM) + col + 1);
+						#else
+							return KEYPAD_4x4_adjustKeyNumber( (row * KEYPAD_COL_NUM) + col + 1);
+						#endif
+					#endif
 				}
-				GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN + row, PIN_INPUT);
 			}
+			GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN + row, PIN_INPUT);
 		}
+	}
 }
 
 // Whats the use for this #idndef STD Keypad stuff?
@@ -148,5 +145,3 @@ uint8 KEYPAD_getPressedKey(void) {
 	#endif
 
 #endif /* STD_KEYPAD */
-
-
