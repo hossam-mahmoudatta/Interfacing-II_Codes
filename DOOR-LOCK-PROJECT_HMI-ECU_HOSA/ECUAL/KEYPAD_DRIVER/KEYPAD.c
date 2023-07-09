@@ -54,7 +54,6 @@ uint8 KEYPAD_getPressedKey(void) {
 		for (row = 0 ; row < KEYPAD_ROW_NUM ; row++) {
 			// I set the pin by '1' for the row, and will iterate
 			GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN + row, PIN_OUTPUT);
-
 			/* Set/Clear the row output pin */
 			GPIO_writePin(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN + row, KEYPAD_BUTTON_PRESSED);
 

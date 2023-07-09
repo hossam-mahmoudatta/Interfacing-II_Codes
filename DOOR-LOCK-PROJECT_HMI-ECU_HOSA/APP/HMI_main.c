@@ -97,23 +97,32 @@ int main(void) {
 	//_delay_ms(1000);
 	uint8 passLength = 5;
 	int i = 0;
-	char KEYPAD_Value =  KEYPAD_getPressedKey();
-	if((KEYPAD_Value >= 0) && (KEYPAD_Value <= 9)) {
-		LCD_displayCharacter(KEYPAD_Value);
+
+
+	LCD_displayString("Whyat?");
+//			LCD_displayCharacter(KEYPAD_Value);
+
+		//for (int i = 0 ; i < passLength ; i++) {
+
+	while (1) {
+		uint8 KEYPAD_Value = 100;
+		KEYPAD_Value =  KEYPAD_getPressedKey();
+		_delay_ms(50);
+		if (i < passLength) {
+			if((KEYPAD_Value >= 0) && (KEYPAD_Value <= 9)) {
+				LCD_moveCursor(1, i);
+				LCD_intgerToString(KEYPAD_Value);
+			}
+		}
+		else if (i >= passLength) {
+			i = 0;
+		}
 		i++;
 	}
 
-	while (i < passLength) {
-		if((KEYPAD_Value >= 0) && (KEYPAD_Value <= 9)) {
-			LCD_displayCharacter(KEYPAD_Value);
-			i++;
-		}
-	}
-	LCD_displayString("Whyat?");
 
-	while (1) {
 
-	}
+
 
 }
 
