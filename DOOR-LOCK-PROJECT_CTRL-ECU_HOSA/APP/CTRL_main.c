@@ -51,6 +51,16 @@ ISR(TIMER0_COMP_vect) {
 
 }
 
+// USART receive ISR
+ISR(USART_RXC_vect) {
+    uint8 receivedByte = UDR; // Read received data from UART Data Register
+
+    // Call the callback function if it's set
+    if (USART_receiveCallback != NULL) {
+        uartReceiveCallback(receivedByte);
+    }
+}
+
 
 int main(void) {
 	USART_ConfigType *USARTConfig;
