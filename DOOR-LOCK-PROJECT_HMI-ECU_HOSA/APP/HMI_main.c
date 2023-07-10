@@ -15,10 +15,7 @@
  *                              					 Application Libraries                                					  *
  *******************************************************************************/
 
-//#include <util/delay.h>
-#include <avr/io.h>
-#include <util/delay.h>
-#include <avr/interrupt.h>
+#include "mainApp_Functions.h"
 
 /*******************************************************************************
  *                              						  Modules Drivers                                  					  *
@@ -81,43 +78,30 @@ ISR(TIMER0_COMP_vect) {
 
 }
 
+
 int main(void) {
-	LCD_Init(); //sd
+	USART_ConfigType *USARTConfig;
+	USARTConfig -> bitData 		= USART_8_BIT;
+	USARTConfig -> stopBit 		= USART_STOP_1_BIT;
+	USARTConfig -> parity 		= USART_PARITY_DISABLED;
+	USARTConfig -> baudRate 	= USART_BAUDRATE_9600;
+	USART_Init(USARTConfig);
 	Buzzer_Init(PORT_B, PIN_2);
 	KEYPAD_Init();
-//	USART_ConfigType *USARTConfig;
-//	USARTConfig -> bitData = USART_BAUDRATE_9600;
-//	USARTConfig  -> stopBit = USART_STOP_1_BIT;
-//	USARTConfig -> parity = USART_PARITY_DISABLED;
-//	USART_Init(USARTConfig);
+	LCD_Init();
 
-	LCD_moveCursor(0, 0);
-	LCD_displayString("Enter Password: ");
-	LCD_moveCursor(1, 0);
-	//_delay_ms(1000);
-	uint8 passLength = 5;
-	int i = 0;
+	uint8* password1 						= passwordEntry1();
+	uint8* passwordVerification 	= passwordEntry2();
+
+	// Displays the passwords saved in the arrays to check if keypad inputed correctly
+	displayPasswords(password1, passwordVerification);
 
 
-	LCD_displayString("Whyat?");
-//			LCD_displayCharacter(KEYPAD_Value);
-
-		//for (int i = 0 ; i < passLength ; i++) {
 
 	while (1) {
-		uint8 KEYPAD_Value = 100;
-		KEYPAD_Value =  KEYPAD_getPressedKey();
-		_delay_ms(50);
-		if (i < passLength) {
-			if((KEYPAD_Value >= 0) && (KEYPAD_Value <= 9)) {
-				LCD_moveCursor(1, i);
-				LCD_intgerToString(KEYPAD_Value);
-			}
-		}
-		else if (i >= passLength) {
-			i = 0;
-		}
-		i++;
+
+
+
 	}
 
 
@@ -125,4 +109,3 @@ int main(void) {
 
 
 }
-

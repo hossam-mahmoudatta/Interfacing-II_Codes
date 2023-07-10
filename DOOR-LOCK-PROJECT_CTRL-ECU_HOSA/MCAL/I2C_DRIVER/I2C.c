@@ -54,7 +54,8 @@
  *******************************************************************************/
 
 // Initializes and enables the Master mode for the TWI Module to start functionality
-void I2C_init(const I2C_ConfigType *I2C_ConfigPtr) {
+// const I2C_ConfigType *I2C_ConfigPtr
+void I2C_Init(void) {
 	/* For TWBR
 	 * SCL Freq = (F_CPU) / (16 + 2 * TWBR * 4^TWPS)
 	 * In the previous equation, I have two unknowns, the TWBR & TWPS
@@ -70,7 +71,7 @@ void I2C_init(const I2C_ConfigType *I2C_ConfigPtr) {
 }
 
 // Responsible for the SPI to send an array of bytes, a string
-void I2C_start(void) {
+void I2C_Start(void) {
 	// Again enabling the I2C Module, Set the Start Condition, Clearing the TWINT Flag
 	/* But why I'm not using the normal set bit technique?
 	 * Because I don't want to keep old data, & I want the information always set by me
@@ -84,7 +85,7 @@ void I2C_start(void) {
 }
 
 // Responsible for the SPI to receive an array of bytes, a string
-void I2C_stop(void) {
+void I2C_Stop(void) {
 	TWCR = (1 << TWEN) | (1 << TWINT) | (1 << TWSTO);
 }
 

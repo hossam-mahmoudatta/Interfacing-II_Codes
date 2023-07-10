@@ -15,20 +15,18 @@
  *                              					 Application Libraries                                					  *
  *******************************************************************************/
 
-//#include <util/delay.h>
-#include <avr/io.h>
-#include <avr/interrupt.h>
+#include "mainApp_Functions.h"
 
 /*******************************************************************************
  *                              						  Modules Drivers                                  					  *
  *******************************************************************************/
 
 //#include "../MCAL/ADC_DRIVER/ADC.h"
-//#include "../MCAL/I2C_DRIVER/I2C.h"
 //#include "../MCAL/ICU_DRIVER/ICU.h"
 //#include "../MCAL/SPI_DRIVER/SPI.h"
 //#include "../MCAL/EXT_INTERRUPT_DRIVER/EXT_INTERRUPT.h"
 
+#include "../MCAL/I2C_DRIVER/I2C.h"
 #include "../MCAL/TIMER_DRIVER/TIMER.h" // I will need this driver for this ECU Driver
 #include "../MCAL/USART_DRIVER/USART.h" // I will need this driver for this ECU Driver
 
@@ -49,27 +47,25 @@
 
 
 
-/*
-ISR(TIMER0_COMP_vect) {
-	compareMatches++;
-	LED_Toggle(PORT_C, PIN_0);
-
-	if(compareMatches == 2) {
-		LED_Toggle(PORT_C, PIN_1);
-	}
-	else if(compareMatches == 4) {
-		LED_Toggle(PORT_C, PIN_1);
-		LED_Toggle(PORT_C, PIN_2);
-		compareMatches = 0;
-	}
-}
-*/
-
 ISR(TIMER0_COMP_vect) {
 
 }
+
 
 int main(void) {
+	USART_ConfigType *USARTConfig;
+	USARTConfig -> bitData 		= USART_8_BIT;
+	USARTConfig -> stopBit 		= USART_STOP_1_BIT;
+	USARTConfig -> parity 		= USART_PARITY_DISABLED;
+	USARTConfig -> baudRate 	= USART_BAUDRATE_9600;
+	USART_Init(USARTConfig);
+	I2C_Init();
+
+    // Set the receive complete callback function
+    USART_setReceiveCompleteCallback(USART_receiveCompleteCallback());
+
+    // Enable UART receive interrupt
+    UART_enableReceiveInterrupt();
 
 	while (1) {
 

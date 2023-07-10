@@ -71,4 +71,8 @@ void USART_sendString(const uint8 *str);
 // Responsible for the USART to receive an array of bytes, a string
 void USART_receiveString(uint8 *str);
 
+typedef void (*USART_receiveCompleteCallback)(uint8 receivedByte);
+
+extern USART_receiveCompleteCallback USART_receiveCallback;
+
 #endif /* USART_H_ */

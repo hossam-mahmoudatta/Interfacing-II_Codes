@@ -19,7 +19,7 @@
 
 
 uint8 EEPROM_writeByte(uint16 u16Address, uint8 u8Data) {
-	I2C_start();
+	I2C_Start();
 	if (I2C_getStatus() != I2C_START) {
 	        return ERROR;
 	}
@@ -47,14 +47,14 @@ uint8 EEPROM_writeByte(uint16 u16Address, uint8 u8Data) {
 		return ERROR;
 	}
 
-	I2C_stop();
+	I2C_Stop();
 
 	return SUCCESS;
 }
 
 
 uint8 EEPROM_readByte(uint16 u16Address, uint8 *u8Data) {
-	I2C_start();
+	I2C_Start();
 	if (I2C_getStatus() != I2C_START) {
 			return ERROR;
 	}
@@ -77,7 +77,7 @@ uint8 EEPROM_readByte(uint16 u16Address, uint8 *u8Data) {
 		return ERROR;
 	}
 
-	I2C_start();
+	I2C_Start();
 	if (I2C_getStatus() != I2C_REP_START) {
 		return ERROR;
 	}
@@ -92,7 +92,7 @@ uint8 EEPROM_readByte(uint16 u16Address, uint8 *u8Data) {
 		return ERROR;
 	}
 
-	I2C_stop();
+	I2C_Stop();
 
 	return SUCCESS;
 }

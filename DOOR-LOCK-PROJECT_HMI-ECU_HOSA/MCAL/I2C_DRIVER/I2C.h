@@ -92,13 +92,13 @@ typedef struct {
  *******************************************************************************/
 
 // Initializes and enables the SPI Module to start functionality
-void I2C_init(const I2C_ConfigType *I2C_ConfigPtr);
+void I2C_Init(void);
 
 // Responsible for the SPI to send an array of bytes, a string
-void I2C_start(void);
+void I2C_Start(void);
 
 // Responsible for the SPI to receive an array of bytes, a string
-void I2C_stop(void);
+void I2C_Stop(void);
 
 // Responsible for the SPI to receive an array of bytes, a string
 void I2C_writeByte(uint8 data);

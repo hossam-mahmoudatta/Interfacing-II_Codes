@@ -12,6 +12,7 @@
 
 #include "KEYPAD.h"
 #include "avr/io.h" /* To use the IO Ports Registers */
+#include <util/delay.h>
 
 #ifndef STD_KEYPAD
 	#if (KEYPAD_COL_NUM == 3)
@@ -56,7 +57,7 @@ uint8 KEYPAD_getPressedKey(void) {
 			GPIO_setupPinDirection(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN + row, PIN_OUTPUT);
 			/* Set/Clear the row output pin */
 			GPIO_writePin(KEYPAD_ROW_PORT, KEYPAD_FIRSTROW_PIN + row, KEYPAD_BUTTON_PRESSED);
-
+			//_delay_ms(8);
 			for (col = 0 ; col < KEYPAD_COL_NUM ; col++) {
 				/* Check if the switch is pressed in this column */
 				if(GPIO_readPin(KEYPAD_COL_PORT,KEYPAD_FIRSTCOL_PIN + col) == KEYPAD_BUTTON_PRESSED) {

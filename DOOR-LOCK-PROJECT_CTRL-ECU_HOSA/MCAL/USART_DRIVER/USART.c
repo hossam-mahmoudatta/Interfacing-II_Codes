@@ -102,14 +102,81 @@ void USART_Init(const USART_ConfigType *USART_ConfigPtr) {
 
 	UCSRA |= (1 << U2X);
 	UCSRB |= (1 << TXEN) | (1 << RXEN);
-	UCSRC |= (1 << URSEL) | (1 << UMSEL) | (1 << UCSZ1) | (1 << UCSZ0);
+	UCSRC |= (1 << URSEL);
+
+	switch (USART_ConfigPtr -> bitData) {
+		case	USART_5_BIT:
+			UCSRC &= ~((1 << UCSZ1) & (1 << UCSZ0) & (1 << UCSZ2));
+		break;
+		case	USART_6_BIT:
+			UCSRC |= (1 << UCSZ0);
+		break;
+		case	USART_7_BIT:
+			UCSRC |= (1 << UCSZ1);
+		break;
+		case	USART_8_BIT:
+			UCSRC |= (1 << UCSZ0) | (1 << UCSZ1);
+		break;
+		case	USART_9_BIT:
+			UCSRC |= (1 << UCSZ0) | (1 << UCSZ1) | (1 << UCSZ2);
+		break;
+		default:
+			UCSRC |= (1 << UCSZ0) | (1 << UCSZ1);
+		break;
+	}
+
+	switch (USART_ConfigPtr -> parity) {
+		case	USART_PARITY_DISABLED:
+			UCSRC &= ~((1 << UPM0) & (1 << UPM1));
+		break;
+		case	USART_PARITY_EVEN:
+			UCSRC |= (1 << UPM1);
+		break;
+		case	USART_PARITY_ODD:
+			UCSRC |= (1 << UPM0) | (1 << UPM1);
+		break;
+		default:
+			UCSRC &= ~((1 << UPM0) & (1 << UPM1));
+		break;
+	}
+
+	switch (USART_ConfigPtr -> parity) {
+		case	USART_STOP_1_BIT:
+			UCSRC &= ~(1 << USBS);
+		break;
+		case	USART_STOP_2_BIT:
+			UCSRC |= (1 << USBS);
+		break;
+		default:
+			UCSRC &= ~(1 << USBS);
+		break;
+	}
+
+	uint32 baudrate = 0;
+	switch (USART_ConfigPtr -> baudRate) {
+		case	USART_BAUDRATE_2400:
+			baudrate = 2400;
+		break;
+		case	USART_BAUDRATE_4800:
+			baudrate = 4800;
+		break;
+		case	USART_BAUDRATE_9600:
+			baudrate = 9600;
+		break;
+		case	USART_BAUDRATE_14400:
+			baudrate = 14400;
+		break;
+		default:
+			baudrate = 9600;
+		break;
+	}
 
 	// UBBRH = 0;
 	// UBBRL = 207;
 	// (0000) (1100 1111) 12 bits, (0000) is for UBBRH, (1100 1111) if for UBBRL
 
 	uint16 UBBR_Value = 0;
-	UBBR_Value = (uint16) ( ( (F_CPU) / (8 * (USART_ConfigPtr->baudRate) * 8UL) ) - 1 );
+	UBBR_Value = (uint16) ( ( (F_CPU) / (8 * (baudrate) * 8UL) ) - 1 );
 	UBRRH = UBBR_Value >> 8;
 	// Because I want the 4 Zeroes in it
 
@@ -128,7 +195,7 @@ void USART_sendByte(const uint8 data) {
 	  *  UDRE flag is set when the TX Buffer (UDR) is empty and ready
 	  *  for transmitting a new byte waiting untill this flag is set to '1'
 	  */
-	while(BIT_IS_CLR(UCSRA,UDRE)) {
+	while(BIT_IS_CLR(UCSRA, UDRE)) {
 		// Polling (Busy Wait)
 	}
 
@@ -154,12 +221,10 @@ uint8 USART_receiveByte(void) {
 	/* UCSRA - USART Control and Status Register A
 	  *  Bit 7 – RXC: USART Receive Complete, when it receives data, the flag = 0
 	  */
-
 	while ( BIT_IS_CLR(UCSRA, RXC) );
 	// This is waiting for the flag to be set to '0' to know that I received data
 
-	// When reading
-	return UDR;
+	return UDR; // When reading
 }
 
 
