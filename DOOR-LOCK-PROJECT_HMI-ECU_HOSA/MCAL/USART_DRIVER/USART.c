@@ -251,11 +251,12 @@ void USART_receiveString(uint8 *str) {
 }
 
 
-USART_receiveCompleteCallback USART_receiveCallback = NULL;
+//USART_receiveCompleteCallback USART_receiveCallback = NULL;
 
+/*
 void USART_setReceiveCompleteCallback(USART_receiveCompleteCallback callback) {
 	USART_receiveCallback = callback;
 }
-
+*/
 
 

@@ -30,7 +30,7 @@ void displayPasswords(uint8* pass1, uint8* pass2);
 
 void USART_sendPassword(uint8* pass);
 
-void USART_receiveCompleteCallback(uint8 receivedByte);
+//void USART_receiveCompleteCallback(uint8 receivedByte);
 
 
 #endif /*MAINAPPFUNCTIONS_H_*/

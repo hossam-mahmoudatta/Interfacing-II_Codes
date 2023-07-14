@@ -45,20 +45,24 @@
  *                              						Application Execution                              					  *
  *******************************************************************************/
 
+volatile uint8 dataReceived 	= 0;
+volatile uint8 ackSent 			= 0;
 
-
-ISR(TIMER0_COMP_vect) {
-
-}
 
 // USART receive ISR
 ISR(USART_RXC_vect) {
-    uint8 receivedByte = UDR; // Read received data from UART Data Register
+    // Handle receive interrupt
+    dataReceived = UDR;
 
-    // Call the callback function if it's set
-    if (USART_receiveCallback != NULL) {
-        uartReceiveCallback(receivedByte);
-    }
+    // Send acknowledgment
+    ackSent = 1;
+    USART_Transmit(dataReceived);
+}
+
+ISR(USART_TXC_vect) {
+    // Handle transmit complete interrupt
+	// Acknowledgment transmission is complete
+	ackSent = 0;
 }
 
 

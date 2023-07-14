@@ -74,10 +74,22 @@ ISR(TIMER0_COMP_vect) {
 }
 */
 
+volatile uint8 dataReceived 	= 0;
+volatile uint8 dataSent 			= 0;
+
 ISR(TIMER0_COMP_vect) {
 
 }
 
+ISR(USART_RXC_vect) {
+    // Handle receive interrupt
+
+}
+
+ISR(USART_TXC_vect) {
+    // Handle transmit complete interrupt
+    // Data transmission is complete
+}
 
 int main(void) {
 	USART_ConfigType *USARTConfig;
@@ -95,6 +107,9 @@ int main(void) {
 
 	// Displays the passwords saved in the arrays to check if keypad inputed correctly
 	displayPasswords(password1, passwordVerification);
+
+	USART_sendPassword(password1);
+
 
 
 

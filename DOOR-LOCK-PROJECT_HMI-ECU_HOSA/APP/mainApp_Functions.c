@@ -87,6 +87,7 @@ void USART_sendPassword(uint8* pass) {
 	}
 }
 
+/*
 void USART_receiveCompleteCallback(uint8 receivedByte) {
 	volatile uint8 dataReceivedCount = 0;
 	volatile uint8 receivedData[ARRAY_SIZE];
@@ -96,5 +97,6 @@ void USART_receiveCompleteCallback(uint8 receivedByte) {
         dataReceivedCount++;
     }
 }
+*/
 
 
